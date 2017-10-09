@@ -26,14 +26,14 @@ gems:
 
 # Site owner
 owner: 
-  name: 
-  email: 
+  name: "AHRA CHO"
+  email: "ahracho89@gmail.com"
   twitter:
   google: 
     ad-client:
     ad-slot:
   bio:
-  avatar: bio-photo.jpg # 160x160 px image for author byline
+  avatar: profile-photo.jpg # 160x160 px image for author byline
   disqus-shortname:
 
 

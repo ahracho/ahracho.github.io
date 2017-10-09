@@ -1,17 +1,17 @@
-# Skinny Bones Jekyll Starter
+# 'ahracho' Jekyll Blog
 
-Just a little something I'm using to jump start a site refresh. I like to think of it as a starter for building your own Jekyll site. I purposely keep the styling minimal and bare to make it easier to add your own flare and markup.
-
-I'm currently using a variation of it on my personal website [Made Mistakes](http://mademistakes.com) with some modifications. To learn more about how to use the theme and install it check out the [Skinny Bones demo](http://mmistakes.github.io/skinny-bones-jekyll/) (*work in progress*).
-
-![screenshot of Skinny Bones](http://mmistakes.github.io/skinny-bones-jekyll/images/skinny-bones-theme-feature.jpg)
+본 프로젝트는 Jekyll Blog(https://ahracho.github.io/)를 운영하기 위한 Github 페이지입니다.  
+블로그는 C/C++, Python, Data Science, Machine Learning 등을 학습하면서 배운 내용과  
+기초 C언어 강좌 등을 차례로 업로드할 예정입니다.  
 
 ---
 
-## Notable Features
+## 블로그 컨텐츠
+### 학습 컨텐츠
+* 기초 파이썬
+* Machine Learning 강의 정리
 
-* Jekyll 3.x and GitHub Pages compatible.
-* Stylesheet built using Sass.
-* Data files for easier customization of the site navigation/footer and for supporting multiple authors.
-* Optional Disqus comments, table of contents, social sharing links, and Google AdSense ads.
+### 강의 컨텐츠
+* 기초 C언어
+
 * And more.
