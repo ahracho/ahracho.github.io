@@ -1,6 +1,6 @@
-# 'ahracho' Jekyll Blog
+# 'Vision Makes Future' Jekyll Blog
 
-본 프로젝트는 Jekyll Blog(https://ahracho.github.io/)를 운영하기 위한 Github 페이지입니다.  
+본 프로젝트는 Jekyll Blog(https://ahracho.github.io)를 운영하기 위한 Github 페이지입니다.  
 블로그는 C/C++, Python, Data Science, Machine Learning 등을 학습하면서 배운 내용과  
 기초 C언어 강좌 등을 차례로 업로드할 예정입니다.  
 
