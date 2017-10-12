@@ -5,7 +5,7 @@ description: "For a Better Life"
 logo: # 120x120 px default image used for Twitter summary card
 teaser: "teaser-image.jpg" # 400x250 px default teaser image used in image archive grid
 locale: en
-url:
+url: "https://ahracho.github.io"
 feed:
   path: atom.xml
 
@@ -27,12 +27,9 @@ gems:
 # Site owner
 owner: 
   name: "AHRA CHO"
+  web:  "http://visionmakesfuture.wordpress.com"
   email: "ahracho89@gmail.com"
-  twitter:
-  google: 
-    ad-client:
-    ad-slot:
-  bio:
+  bio: Change Maker; Tech for good
   avatar: profile-photo.jpg # 160x160 px image for author byline
   disqus-shortname:
 

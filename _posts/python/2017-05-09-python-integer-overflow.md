@@ -2,6 +2,8 @@
 layout: article
 title:  "[기초 파이썬] 파이썬 3에는 오버플로우가 없다?"
 categories: python
+tags: [sample]
+comments: true
 ---
 
 ## 오버플로우(Overflow)란?

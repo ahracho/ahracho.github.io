@@ -1,4 +1,13 @@
 # Footer navigation links
 
-- title:
-  url:
+- title: Home
+  url: /
+
+- title: Python
+  url: /python/
+
+- title: Maching Learning
+  url: /ml/
+
+- title: Lectures
+  url: /lecture/

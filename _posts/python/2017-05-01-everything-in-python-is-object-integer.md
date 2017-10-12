@@ -2,6 +2,8 @@
 layout: article
 title:  "[기초 파이썬] 파이썬의 모든 것은 Object이다 (정수편)"
 categories: python
+tags: [sample]
+comments: true
 ---
 
 ## C에서 변수가 저장되는 방식 : 변수 = 메모리

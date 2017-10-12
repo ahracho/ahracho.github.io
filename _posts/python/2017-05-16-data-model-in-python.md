@@ -2,6 +2,8 @@
 layout: article
 title:  "[기초 파이썬] 데이터 모델 - 파이썬에서 데이터를 표현하는 방식에는 어떤 것들이 있나"
 categories: python
+tags: [sample]
+comments: true
 ---
 
 이번 포스팅은 아래 파이썬 공식 홈페이지의 설명을 나름대로 해석한 내용입니다.  
