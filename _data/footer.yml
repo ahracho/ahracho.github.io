@@ -3,11 +3,8 @@
 - title: Home
   url: /
 
-- title: Python
-  url: /python/
+- title: Site Map
+  url: /
 
-- title: Maching Learning
-  url: /ml/
-
-- title: Lectures
-  url: /lecture/
+- title: Resume
+  url: /resume

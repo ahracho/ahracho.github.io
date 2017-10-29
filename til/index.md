@@ -1,9 +1,9 @@
 ---
 layout: archive
-title: "Python"
+title: "TIL"
 date: 2014-05-30T11:39:03-04:00
 modified:
-excerpt: "파이썬 기초문법부터 원리까지"
+excerpt: "What I learned Today"
 tags: []
 image:
   feature:
@@ -11,7 +11,7 @@ image:
 ---
 
 <div class="tiles">
-{% for post in site.categories.python %}
+{% for post in site.categories.til %}
   {% include post-grid.html %}
 {% endfor %}
 </div><!-- /.tiles -->

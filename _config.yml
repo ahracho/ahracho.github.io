@@ -1,7 +1,7 @@
 # Site wide configuration
 
-title: "Vision Makes the Future"
-description: "For a Better Life"
+title: "프로그래밍 필기노트"
+description: "Technology for good"
 logo: # 120x120 px default image used for Twitter summary card
 teaser: "teaser-image.jpg" # 400x250 px default teaser image used in image archive grid
 locale: en
