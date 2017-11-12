@@ -11,16 +11,21 @@ comments: true
 
 우리는 각각의 가중치를 적당히 조절해가면서 우리가 예측한 값이 실제의 결과와 최대한 비슷할 수 있도록 해야하고, 이것을 '학습'시킨다고 한다.  
 
-(네트워크 관련 이미지 삽입)  
+![인공신경망학습](http://cfile6.uf.tistory.com/image/212B724858BCE20914680E)  
+출처: 구글 이미지(http://cfile6.uf.tistory.com/image/212B724858BCE20914680E)
 
 ## Supervised Learning with Neural Network
 지도학습(Supervised Learning)은 정답이 주어진 학습 과정이라고 이해할 수 있다. 실제 (X, Y)값의 데이터들이 준비되어 있고, 우리는 이 실제 데이터를 가지고 새로운 X들이 주어졌을 때 실제와 가까운 Y값을 예측할 수 있도록 식을 설계해야 한다. X와 Y 값의 관계식 혹은 학습시키는 방식은 문제에 따라서 달라질 수 있는데, 딥러닝을 적용할 때도 마찬가지이다.  
 
 ### Neural Network 종류
+Neural network은 해결해야 할 문제에 따라서 여러 종류를 사용할 수 있는데, 간단한 분류는 아래와 같다.  
+
 Standard NN : Regression이 필요한 경우  
 CNN : 이미지 분류  
 RNN : 음성 인식, 번역 (데이터의 순서(Sequencial Data)가 의미있는 분석의 경우)  
 
 ### 데이터의 종류
+데이터 분석 입문에서 알아야 할 기본 개념 중의 하나로, 우리가 분석에 사용해야 할 데이터들의 분류인데, 크게 Structured/Unstructured로 나눌 수 있다.  
+
 Structured Data : 각 featrue들이 정의되어 있고, 정리되어 있는 데이터
 Unstructured Data : 오디오, 이미지, 자연어 등 feature들이 정의되어 있지 않은 데이터  
