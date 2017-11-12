@@ -9,9 +9,15 @@ image:
   feature:
   teaser:
 ---
-
 <div class="tiles">
 {% for post in site.categories.coursera %}
+  {% include post-grid.html %}
+{% endfor %}
+</div><!-- /.tiles -->
+
+
+<div class="tiles">
+{% for post in site.categories.RL %}
   {% include post-grid.html %}
 {% endfor %}
 </div><!-- /.tiles -->
