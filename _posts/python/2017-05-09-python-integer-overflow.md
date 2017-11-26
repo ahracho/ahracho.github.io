@@ -1,8 +1,8 @@
 ---
-layout: article
+layout: post
 title:  "[기초 파이썬] 파이썬 3에는 오버플로우가 없다?"
-categories: python
-tags: [sample]
+categories: Python
+tags: [Python]
 comments: true
 ---
 

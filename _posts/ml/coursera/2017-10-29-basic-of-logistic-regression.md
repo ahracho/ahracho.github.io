@@ -1,8 +1,8 @@
 ---
-layout: article
+layout: post
 title:  "[Deep Learning] Logistic Regression (Part 1)"
-categories: coursera
-tags: [deeplearning, coursera, andrewng]
+categories: 
+tags: [Deep-Learning, Coursera]
 comments: true
 ---
 <script type="text/javascript"  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>

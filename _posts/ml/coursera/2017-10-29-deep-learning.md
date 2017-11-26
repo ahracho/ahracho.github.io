@@ -1,8 +1,8 @@
 ---
-layout: article
+layout: post
 title:  "[Deep Learning] Introduction to deep learning"
-categories: coursera
-tags: [deeplearning, coursera, andrewng]
+categories: Coursera
+tags: [Deep-Learning, Coursera]
 comments: true
 ---
 

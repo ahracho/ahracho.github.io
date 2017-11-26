@@ -1,8 +1,8 @@
 ---
-layout: article
+layout: post
 title:  "[Q-Learning] Frozen Lake 사용하기"
-categories: RL
-tags: [강화학습, OpenAI Gym, Frozen Lake]
+categories: 강화학습
+tags: [강화학습, OpenAI-Gym, Frozen-Lake]
 comments: true
 ---
 

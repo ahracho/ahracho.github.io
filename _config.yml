@@ -1,61 +1,42 @@
-# Site wide configuration
+# Welcome to Jekyll!
+#
+# This config file is meant for settings that affect your whole blog, values
+# which you are expected to set up once and rarely need to edit after that.
+# For technical reasons, this file is *NOT* reloaded automatically when you use
+# 'jekyll serve'. If you change this file, please restart the server process.
 
-title: "프로그래밍 필기노트"
-description: "Technology for good"
-logo: # 120x120 px default image used for Twitter summary card
-teaser: "teaser-image.jpg" # 400x250 px default teaser image used in image archive grid
-locale: en
-url: "https://ahracho.github.io"
-feed:
-  path: atom.xml
+# Site settings
+title: AHRA's Tech Blog
+brief-intro: Learn and Share
+baseurl: "" # the subpath of your site, e.g. /blog
+url: "https://ahracho.github.io" # the base hostname & protocol for your site
 
-# Jekyll configuration
+permalink: /:year/:month/:day/:title/
 
-sass:
-  sass_dir: _sass
-  style: compressed
-permalink: /:categories/:title/
-kramdown:
-  toc_levels: 1..2
-highlighter: rouge
-gems:
-  - jekyll-sitemap
-  - jekyll-gist
-  - jekyll-feed
+# other links
+facebook_username: ahra.cho3
+github_username:  ahracho
+email: ahracho89@gmail.com
 
+# comments
+# two ways to comment, only choose one, and use your own short name
+# 两种评论插件，选一个就好了，使用自己的 short_name
+disqus_shortname: ahracho
 
-# Site owner
-owner: 
-  name: "AHRA CHO"
-  web:  "http://visionmakesfuture.wordpress.com"
-  email: "ahracho89@gmail.com"
-  bio: Change Maker; Tech for good
-  avatar: profile-photo.jpg # 160x160 px image for author byline
-  disqus-shortname:
+# Build settings
+# markdown: kramdown
 
+# kramdown:
+#   input: GFM
+#   syntax_highlighter: rouge
 
-include:
-  - .htaccess
-exclude:
-  - "*.less"
-  - "*.sublime-project"
-  - "*.sublime-workspace"
-  - .asset-cache
-  - .bundle
-  - .jekyll-assets-cache
-  - .sass-cache
-  - CHANGELOG
-  - Capfile
-  - Gemfile
-  - Gruntfile.js
-  - LICENSE
-  - README
-  - Rakefile
-  - config
-  - gulpfile.js
-  - lib
-  - log
-  - node_modules
-  - package.json
-  - spec
-  - tmp
+# url
+category_dir: category/
+tag_dir: tag/
+
+# excerpt
+excerpt_separator: "\n\n\n\n"
+
+# paginate
+gems: [jekyll-paginate]
+paginate: 6

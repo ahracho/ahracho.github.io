@@ -1,8 +1,8 @@
 ---
-layout: article
+layout: post
 title:  "[기초 파이썬] 데이터 모델 - 파이썬에서 데이터를 표현하는 방식에는 어떤 것들이 있나"
-categories: python
-tags: [sample]
+categories: Python
+tags: [Python]
 comments: true
 ---
 

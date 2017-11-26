@@ -1,8 +1,8 @@
 ---
-layout: article
+layout: post
 title:  "[기초 파이썬] 파이썬의 모든 것은 Object이다 (정수편)"
-categories: python
-tags: [sample]
+categories: Python
+tags: [Python]
 comments: true
 ---
 
