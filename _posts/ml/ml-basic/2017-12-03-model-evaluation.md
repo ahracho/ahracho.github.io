@@ -16,7 +16,7 @@ Andrew Ng 교수님의 Coursera 강의에서는 지도학습의 과정을 아래
 ![Learning Process(Coursera)](https://d3c33hcgiwev3.cloudfront.net/imageAssetProxy.v1/H6qTdZmYEeaagxL7xdFKxA_2f0f671110e8f7446bb2b5b2f75a8874_Screenshot-2016-10-23-20.14.58.png?expiry=1512432000000&hmac=Zl9OsYAqqtv8YIxuurv1Hn5OPEEoeM6daRn4oqk9A8o)  
 Training Set(훈련데이터)를 바탕으로 알고리즘을 학습시킨 다음, 완성된 가설(h)를 적용하여 문제 x에 대한 예측값 y를 도출해 내는 것이 기계학습을 사용하여 문제를 해결하는 과정이다. 하지만 위 그림에서는 알고리즘을 어떻게 학습시키는 것인지는 설명하고 있지 않다. 그래서 내가 공부한 내용을 바탕으로 아래와 같이 학습 과정을 도식화하였다.  
 
-![Learning Process]({{ site.url }}/images/ml/ML_BASIC/learning_process.png)  
+![Learning Process]({{ site.url }}/images/ml/ML_BASIC/5_ML_Basic_Learning_Process.jpg)  
 
 훈련 데이터를 사용하여 학습을 진행할 때 크게 세 단계를 거치는데,  
 1. 모델(또는 가설)을 세워서 적용하고,
