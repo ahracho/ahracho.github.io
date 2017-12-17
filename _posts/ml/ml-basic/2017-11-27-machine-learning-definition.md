@@ -14,7 +14,7 @@ comments: true
 이번 첫번째 연재에서는 머신러닝이란 것이 무엇인지, 학습을 시킨다는 것은 어떤 의미인지 등 기본적인 정의부터 잡아보려고 한다.
 
 ## Machine Learning (기계학습)이란 무엇인가
-![기계학습의 정의]({{ site.url }}/images/ml/ML_BASIC/1_ML_Basic_Definition.JPG)  
+![기계학습의 정의]({{ site.url }}/images/ml/ML_BASIC/ML_Basic_Concept/1_ML_Basic_Definition.JPG)  
 
 "A computer program is said to learn from experience E with respect to some task T and some performance measure P, if its performance on T, as measured by P, improves with experience E." (Tom M. Mitchell)  
 
@@ -30,14 +30,16 @@ comments: true
 
 
 ## Supervised vs. Unsupervised Learning
-![Supervised Learning]({{ site.url }}/images/ml/ML_BASIC/2_ML_Basic_Supervised.JPG)  
+![Supervised Learning]({{ site.url }}/images/ml/ML_BASIC/ML_Basic_Concept/2_ML_Basic_Supervised.JPG)  
 기계학습의 학습방법은 크게 지도학습과 비지도학습, 두가지로 나눌 수 있다. 영어로는 Supervised / Unsupervised Learning 이라고 하는데 Supervise의 사전적 의미는 '(v)감독하다'라는 것을 생각하면 두 학습 방법의 의미를 조금 더 쉽게 이해할 수 있을 것이다. 지도학습과 비지도학습의 가장 큰 차이는 학습 중에 나의 문제풀이와 비교할 수 있는 정답이 있는지 여부이다.  
 
 기계학습에서는 Labeled Data라고 하는데, 데이터에 라벨이 붙어있다는 의미이다. 예를 들어, 이미지 분류 작업을 한다면, A 이미지는 고양이 이미지, B 이미지는 노트북 이미지 등 주어진 모든 데이터에 대해서 해당 데이터가 어떤 그룹에 속해있는지, 혹은 기준에 포함되는지 등 문제 상황에 맞는 답이 이미 정해져 있는 데이터를 Labeled Data라고 한다. 지도학습은 Labeled Data를 사용하는 학습 기법이다. 어떤 모델을 가설로 설정한 후, 그 모델의 예측/분류 성능이 어느 정도인지 가늠할 때 모델을 적용한 예측값과 Label값을 비교하는 것이다. 가장 대표적인 지도학습 기법에는 선형회귀와 Classification(분류) 문제가 있다.
 
-![Unsupervised Learning]({{ site.url }}/images/ml/ML_BASIC/3_ML_Basic_Unsupervised.JPG)  
+![Unsupervised Learning]({{ site.url }}/images/ml/ML_BASIC/ML_Basic_Concept/3_ML_Basic_Unsupervised.JPG)  
 이에 반해 비지도학습은 Labeled Data를 학습에 활용하지 않는다. 미리 정답이 주어지지 않은 상황에서 모델 나름의 기준에 따라 문제를 해결하고, 대표적인 비지도학습 기법에는 Clustering이 있다.  
 
 
 ## Structured vs. Unstructured Data
+![Data Type]({{ site.url }}/images/ml/ML_BASIC/ML_Basic_Concept/4_ML_Basic_Data_Type.JPG)  
+
 마지막으로 데이터 분석에 사용하는 데이터의 종류에 대해서 알아보자. 기계학습에서 빼놓을 수 없는 것이 데이터인데, 해결해야 하는 문제에 따라서 데이터가 깔끔하게 정리되어 있는 경우가 있을 수 있고, 정리하기 애매한 형태의 데이터가 있을 수 있다. 예를 들어, 주식 가격을 예측하는 모델을 찾는다고 할 때, 사용할 수 있는 데이터는 1년 동안의 주식 가격, 투자자별 매수/매도 현황, 영업이익률 등 각 특질(feature)들을 명확하게 구분하여 나타낼 수 있다. 반면에 음성인식 모델을 만든다고 가정하면, 사람들의 대화가 녹음된 음성데이터를 사용해야 하는 건 알지만 이 음성데이터에서 어떤 특질들을 추출하여 사용해야 하는지 명확하지 않다. 전자를 Structured Data라고 하고, 후자를 Unstructured Data라고 하는데, 후자의 경우에는 특히나 데이터를 가공하고 전처리 하는데에 설계자의 경험과 능력이 모델 완성의 중요한 역할을 한다.  

@@ -16,7 +16,7 @@ Andrew Ng 교수님의 Coursera 강의에서는 지도학습의 과정을 아래
 ![Learning Process(Coursera)](https://d3c33hcgiwev3.cloudfront.net/imageAssetProxy.v1/H6qTdZmYEeaagxL7xdFKxA_2f0f671110e8f7446bb2b5b2f75a8874_Screenshot-2016-10-23-20.14.58.png?expiry=1512432000000&hmac=Zl9OsYAqqtv8YIxuurv1Hn5OPEEoeM6daRn4oqk9A8o)  
 Training Set(훈련데이터)를 바탕으로 알고리즘을 학습시킨 다음, 완성된 가설(h)를 적용하여 문제 x에 대한 예측값 y를 도출해 내는 것이 기계학습을 사용하여 문제를 해결하는 과정이다. 하지만 위 그림에서는 알고리즘을 어떻게 학습시키는 것인지는 설명하고 있지 않다. 그래서 내가 공부한 내용을 바탕으로 아래와 같이 학습 과정을 도식화하였다.  
 
-![Learning Process]({{ site.url }}/images/ml/ML_BASIC/5_ML_Basic_Learning_Process.jpg)  
+![Learning Process]({{ site.url }}/images/ml/ML_BASIC/ML_Basic_Concept/5_ML_Basic_Learning_Process.jpg)  
 
 훈련 데이터를 사용하여 학습을 진행할 때 크게 세 단계를 거치는데,  
 1. 모델(또는 가설)을 세워서 적용하고,
@@ -30,7 +30,7 @@ Training Set(훈련데이터)를 바탕으로 알고리즘을 학습시킨 다�
 ## 모델(가설) 평가
 ※ 아래에서 설명하는 내용은 **지도학습(Supervised Learning)**을 대상으로 하는 것임을 참고하기 바란다.   
 
-![Loss Function]({{ site.url }}/images/ml/ML_BASIC/6_ML_Basic_Model_Evaluation.jpg)  
+![Loss Function]({{ site.url }}/images/ml/ML_BASIC/ML_Basic_Concept/6_ML_Basic_Model_Evaluation.jpg)  
 
 현재 내가 세운 가설을 데이터에 적용하였을 때 기대하는 수준의 성능이 나오는지를 확인하고 모델을 수정하는 과정을 반복하는 것이 학습이라고 하였다. 그렇다면 무엇을 기준으로 모델의 성능을 평가할 수 있을까?  
 
@@ -72,7 +72,7 @@ def mean_squeared_error(x, t):
 식에서 C는 분류 그룹의 개수, 손글씨 인식 문제는 C=10이다. y과 y'는 모두 원-핫 인코딩으로 표현되었고, 곱은 행렬곱이 아닌 원소곱(element-wise)이다. 즉, 이 식은 예측값 중에서 실제 정답 그룹의 로그값만 취한다.  
 \\(\large {\left[ \begin{matrix} 0 & 1 & 0 \end{matrix} \right] *\left[ \begin{matrix} lnA & lnB & lnC \end{matrix} \right] =\left[ \begin{matrix} 0 & lnB & 0 \end{matrix} \right] }\\)  
 
-![자연로그 그래프]({{ site.url }}/images/ml/ML_BASIC/ln_graph.png)  
+![자연로그 그래프]({{ site.url }}/images/ml/ML_BASIC/ML_Basic_Concept/ln_graph.png)  
 위 그래프에서 확인할 수 있듯이 \\(\ln { 1 } =0\\) 이기 때문에 정답 레이블과 예측 레이블이 같다면 오차는 0이 되고, 자연로그의 음수값을 취했기 때문에 예측 레이블이 0에 가까워질수록 오차는 커진다. m개의 훈련 데이터에서 교차 엔트로피 오차를 구하려면 각 샘플의 오차들을 모두 합하면 된다. 당연히 합의 작을수록 실제값과 예측값의 차이가 적다는 것이기 때문에 모델의 성능이 좋다는 것을 의미한다.  
 \\(\large {L=-\sum _{ j=1 }^{ m }{ \sum _{ i=1 }^{ C }{ y\ln { \hat { y }  }  }  } }\\)  
 

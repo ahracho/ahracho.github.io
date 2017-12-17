@@ -10,7 +10,7 @@ comments: true
 
 이번 포스트에서는 학습 프로세스의 마지막 단계인 3단계, 모델 업데이트 방법을 소개하고자 한다. 모델 업데이트는 학습 결과와 실제 정답을 비교하여 모델을 평가한 다음, 그에 맞는 피드백을 제공하여 실제 정답에 근접한 모델을 찾아가기 위해 필요한 과정이다.  
 
-![Model Update]({{ site.url }}/images/ml/ML_BASIC/7-1_ML_Basic_Gradient_Descent_1.jpg)  
+![Model Update]({{ site.url }}/images/ml/ML_BASIC/ML_Basic_Concept/7-1_ML_Basic_Gradient_Descent_1.jpg)  
 
 모델은 간단히 말해 변수들 간의 관계식이다. 중학교 수학에서 배웠던 방정식은 \\(y=Wx+b\\) 이라는 관계식이 정해져 있고, 관계식에 따라 y에 상응하는 x값을 찾는 것이었다. 기계학습은 반대로 (x, y)의 데이터가 주어졌을 때 이 둘의 관계를 가장 잘 설명하는 W와 b 값을 귀납적인 방법으로 찾아간다. 지난 포스트에서 다뤘던 손실함수를 사용해서 손실함수의 값을 최소화하는 방향으로 가중치를 바꿔가면 정답에 근접한 관계식을 찾을 수 있다.  
 
@@ -25,7 +25,7 @@ comments: true
 
 변수가 하나인 가장 단순한 모델을 통해 경사하강법을 이해해보자.  
 
-![Gradient Descent with One Variable]({{ site.url }}/images/ml/ML_BASIC/7-2_ML_Basic_Gradient_Descent_2.jpg)  
+![Gradient Descent with One Variable]({{ site.url }}/images/ml/ML_BASIC/ML_Basic_Concept/7-2_ML_Basic_Gradient_Descent_2.jpg)  
 
 앞서 설명했듯이 경사하강법은 매 업데이트마다 순간기울기의 일정 비율만큼 움직인다. 이것을 식으로 나타내면 아래와 같다.  
 \\(\large {x=x-\gamma \ast \frac { dJ }{ dx } }\\)  
@@ -42,7 +42,7 @@ comments: true
 
 ### 변수가 여러 개인 경우  
 
-![Gradient Descent with One Variable]({{ site.url }}/images/ml/ML_BASIC/7-3_ML_Basic_Gradient_Descent_3.jpg)  
+![Gradient Descent with One Variable]({{ site.url }}/images/ml/ML_BASIC/ML_Basic_Concept/7-3_ML_Basic_Gradient_Descent_3.jpg)  
 
 변수가 여러 개인 경우의 경사하강법도 원리는 동일하다. 다만 매 업데이트마다 각 변수들의 값을 모두 수정해주면 된다.  그래프 상에서 보듯이 변수가 여러 개인 경우 손실함수의 그래프는 2차원 이상으로 나타나고, 그마저도 3차원 이상인 경우에는 그래프로 표현할 수 없다. 연역적인 방법으로 최소값을 찾을 수 없기 때문에 경사하강법이 절실하다.  
 
