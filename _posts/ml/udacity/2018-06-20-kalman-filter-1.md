@@ -9,9 +9,9 @@ comments: true
 [//]: # (Image References)
 
 [KF Process]: {{ site.url }}/images/ml/udacity/kf-process.png "칼만필터 과정"
-[Note1]: {{ site.url }}/images/ml/udacity/kf1-note1.png "Prediction 1D"
-[Note2]: {{ site.url }}/images/ml/udacity/kf1-note2.png "Measurement Update 1D"
-[Note3]: {{ site.url }}/images/ml/udacity/kf1-note3.png "Kalman Filter in 2D"
+[Note1]: {{ site.url }}/images/ml/udacity/kf1_note1.JPG "Prediction 1D"
+[Note2]: {{ site.url }}/images/ml/udacity/kf1_note2.JPG "Measurement Update 1D"
+[Note3]: {{ site.url }}/images/ml/udacity/kf1_note3.JPG "Kalman Filter in 2D"
 
 Udacity Self-Driving Car Nanodegree Term 2의 첫 과제는 칼만 필터를 구현하는 것이다. 
 
