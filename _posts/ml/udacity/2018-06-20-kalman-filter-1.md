@@ -9,9 +9,8 @@ comments: true
 [//]: # (Image References)
 
 [KF Process]: {{ site.url }}/images/ml/udacity/kf-process.png "칼만필터 과정"
-[Note1]: {{ site.url }}/images/ml/udacity/kf1_note1.JPG "Prediction 1D"
-[Note2]: {{ site.url }}/images/ml/udacity/kf1_note2.JPG "Measurement Update 1D"
-[Note3]: {{ site.url }}/images/ml/udacity/kf1_note3.JPG "Kalman Filter in 2D"
+[Note1]: {{ site.url }}/images/ml/udacity/kf1-note1.png "KF in 1D"
+[Note2]: {{ site.url }}/images/ml/udacity/kf1-note2.png "KF in 2D"
 
 Udacity Self-Driving Car Nanodegree Term 2의 첫 과제는 칼만 필터를 구현하는 것이다. 
 
@@ -31,19 +30,16 @@ LIDAR와  RADAR 센서값을 받으면 먼저 현재까지의 정보를 바탕�
 ## LIDAR 센서
 LIDAR 센서는 물체의 위치에 대한 값만 알아낸다 (속도에 대한 정보 없음).  
 
-### 1D - Prediction
-현재 우리가 가지고 있는 위치와 속도 정보만 가지고 t+1에서의 위치를 예측한다. Extended Kalman Filter에서는 물체의 이동 속도는 일정하다고 가정한다 (v’ = v).  
+### 1D
 
 ![Note1]  
 
-### 1D - Measurement Update
+Prediction 과정에서는 현재 우리가 가지고 있는 위치와 속도 정보만 가지고 t+1에서의 위치를 예측한다. Extended Kalman Filter에서는 물체의 이동 속도는 일정하다고 가정한다 (v’ = v).  
 
-새롭게 얻은 센서값과 우리의 예측값을 비교하여 최종 예측값을 도출한다.  
-
-![Note2]  
+Measurement Update 과정에서는 새롭게 얻은 센서값과 우리의 예측값을 비교하여 최종 예측값을 도출한다.  
 
 ### 2D
 
-기본적인 골격은 1차원과 같지만, 2차원에서는 물체의 위치와 속도가 x축과 y축이 각각 있어야 하기 때문에 x 벡터의 모양이 바뀌었다. 이에 따라 행렬 F와 H의 값이 바뀌었다.  
+기본적인 골격은 1차원과 같지만, 2차원에서는 물체의 위치와 속도가 x축과 y축이 각각 있어야 하기 때문에 x 벡터의 모양이 바뀌었다. 이에 따라 행렬 F와 H, Q 값이 바뀐다.  
 
-![Note3]  
+![Note2]  
