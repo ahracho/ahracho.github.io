@@ -5,7 +5,6 @@ categories: Linear-Algebra
 tags: [Math, Linear-Algebra, KMOOC]
 comments: true
 ---
-<script type="text/javascript"  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
 [//]: # (Image References)
 
@@ -16,7 +15,10 @@ comments: true
 [Note5]: {{ site.url }}/images/linear-algebra/1-5.png "Note5"
 [Note6]: {{ site.url }}/images/linear-algebra/1-6.png "Note6"
 
-한양대 이상화 교수님의 오픈 강의로 공부한 내용을 정리한 것입니다. 강의 영상과 강의 노트는 다음 링크에서 다운받아 작성하였습니다 ![한양대 MOOC](http://www.kocw.net/home/search/kemView.do?kemId=977757).  
+<script type="text/javascript"  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+한양대 이상화 교수님의 오픈 강의로 공부한 내용을 정리한 것입니다. 강의 영상과 강의 노트는 다음 링크에서 다운받아 작성하였습니다 [한양대 MOOC](http://www.kocw.net/home/search/kemView.do?kemId=977757).  
 
 ## 선형성의 정의
 선형대수에서 다루는 주제들은 보통 행렬을 바탕으로 하는데, 행렬은 선형적인 관계를 나타내기 때문에 '선형적'이라는 것이 어떤 의미인지 이해하는 것이 중요하다.  
