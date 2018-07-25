@@ -1,0 +1,46 @@
+---
+layout: post
+title:  "[선형대수] 6강 : 영벡터공간과 해집합"
+categories: Linear-Algebra
+tags: [Math, Linear-Algebra, KMOOC]
+comments: true
+---
+
+[//]: # (Image References)
+
+[Note1]: {{ site.url }}/images/linear-algebra/ch2/6-1.png "Note1"
+[Note2]: {{ site.url }}/images/linear-algebra/ch2/6-2.png "Note2"
+[Note3]: {{ site.url }}/images/linear-algebra/ch2/6-3.png "Note3"
+[Note4]: {{ site.url }}/images/linear-algebra/ch2/6-4.png "Note4"
+[Note5]: {{ site.url }}/images/linear-algebra/ch2/6-5.png "Note5"
+[Note6]: {{ site.url }}/images/linear-algebra/ch2/6-6.png "Note6"
+
+
+한양대 이상화 교수님의 오픈 강의로 공부한 내용을 정리한 것입니다. 강의 영상과 강의 노트는 다음 링크에서 다운받아 작성하였습니다 [한양대 MOOC](http://www.kocw.net/home/search/kemView.do?kemId=977757).  
+---
+
+
+## Null Space of A : N(A)
+![Note1]  
+`Ax = 0`을 만족하는 x의 집합을 A의 영벡터공간(Null Space)라고 한다. `Ax = 0`을 계산해보면 벡터 덧셈과 스칼라 곱셈에 닫혀있기 때문에 Null 'Space'로 볼 수 있다.  
+
+## Solving Ax=0 and Ax=b
+![Note2]  
+`Ax = 0`에서 A의 역행렬이 존재한다면, 해당 식은 `x = 0`일 때만 성립하고, C(A)는 whole space이다(모든 b가 C(A)에 속하기 때문에). 반대로 N(A)에 `x = 0` 말고 다른 벡터도 존재한다면, C(A)는 whole space가 아니다.
+
+## Echelon Form U and Row Reduced Form R
+![Note3]  
+![Note4]  
+N(A)가 영벡터보다 클 때, 이를 구하는 정형화된 방식을 설명한다. 가우스 소거법을 통해 free variable과 pivot variable을 구한 다음, pivot variable을 free variable을 사용하여 표현한다. 이 방법을 통해 해집합을 벡터(Special Solution)의 combination으로 표현할 수 있다.  
+
+## Solving Ax=b
+![Note5]
+`Ax = b`의 해집합을 벡터들의 조합으로 표현하는 방법.  
+Row reduced form으로 A와 b를 변형하여 조건에 맞는 b를 하나 정한다. 임의의 b를 대입하여 마찬가지로 free variable과 벡터들(Special Solution + Particular Solution)의 조합으로 해집합을 표현한다. 
+
+### 종합
+Finding the solution `Ax = b (where A is m by n matrix (m<n)`,  
+1. [A;b] -> [R;b'] using G/E
+2. Seperate pivot and free variables
+3. Find the special solution for null space from R
+4. Find particular solution
