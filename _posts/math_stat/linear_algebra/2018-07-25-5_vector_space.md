@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "[선형대수] 6강 : 영벡터공간"
+title:  "[선형대수] 5강 : 벡터 공간과 열벡터"
 categories: Linear-Algebra
 tags: [Math, Linear-Algebra, KMOOC]
 comments: true
