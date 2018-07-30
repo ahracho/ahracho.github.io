@@ -10,8 +10,8 @@ comments: true
 
 [Note1]: {{ site.url }}/images/linear-algebra/ch2/8-1.png "Note1"
 [Note2]: {{ site.url }}/images/linear-algebra/ch2/8-2.png "Note2"
-[Note2]: {{ site.url }}/images/linear-algebra/ch2/8-3.png "Note3"
-[Note2]: {{ site.url }}/images/linear-algebra/ch2/8-4.png "Note4"
+[Note3]: {{ site.url }}/images/linear-algebra/ch2/8-3.png "Note3"
+[Note4]: {{ site.url }}/images/linear-algebra/ch2/8-4.png "Note4"
 
 
 한양대 이상화 교수님의 오픈 강의로 공부한 내용을 정리한 것입니다. 강의 영상과 강의 노트는 다음 링크에서 다운받아 작성하였습니다 [한양대 MOOC](http://www.kocw.net/home/search/kemView.do?kemId=977757).  
