@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>[Machine Learning] 학습 프로세스 (2단계. 오차계산법)</title>
+    <meta name="description" content="지난 포스트에서 학습은 모델 적용, 모델 평가, 모델 업데이트의 반복이라고 간단히 설명하였는데, 기계학습에서 학습이 어떻게 진행되는지 조금 더 심도있게 들여다보자.학습 프로세스Andrew Ng 교수님의 Coursera 강의에서는 지도학습의 과정을 아래와 같이 설명하였다.Traini...">
+
+    <link rel="shortcut icon" href="/favicon.ico?" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico?" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://at.alicdn.com/t/font_8v3czwksspqlg14i.css">
+    <link rel="stylesheet" href="/css/main.css ">
+    <link rel="canonical" href="http://localhost:4000/2017/12/03/model-evaluation/">
+    <link rel="alternate" type="application/rss+xml" title="AHRA's Tech Blog" href="http://localhost:4000/feed.xml ">
+
+
+
+
+
+</head>
+
+
+  <body>
+
+    <header id="top">
+    <div class="wrapper">
+        <a href="/" class="brand">AHRA's Tech Blog</a>
+        <small>Learn and Share</small>
+        <button id="headerMenu" class="menu"><i class="fa fa-bars"></i></button>
+        <nav id="headerNav">
+            <ul>
+                <li>
+                    
+                    <a href="/">
+                    
+                        <i class="fa fa-home"></i>Home
+                    </a>
+                </li>
+
+                
+                    
+                    <li>
+                        
+                        <a href="/archive/">
+                        
+                            <i class="fa fa-archive"></i>Archives
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/category/">
+                        
+                            <i class="fa fa-th-list"></i>Categories
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/tag/">
+                        
+                            <i class="fa fa-tags"></i>Tags
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/about/">
+                        
+                            <i class="fa fa-heart"></i>About Me
+                        </a>
+                    </li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+        </nav>
+    </div>
+</header>
+
+
+        <div class="page clearfix" post>
+    <div class="left">
+        <h1>[Machine Learning] 학습 프로세스 (2단계. 오차계산법)</h1>
+        <div class="label">
+
+            <div class="label-card">
+                <i class="fa fa-calendar"></i>2017-12-03
+            </div>
+
+            <div class="label-card">
+                
+            </div>
+
+            <div class="label-card">
+                
+            </div>
+
+            <div class="label-card">
+            
+
+
+<!-- <span class="point">•</span> -->
+<span class="categories">
+  <i class="fa fa-th-list"></i>
+  
+    
+        <a href="/category/#Machine-Learning" title="Category: Machine-Learning" rel="category">Machine-Learning</a>
+    
+  
+
+  <!-- <span class="point">•</span> -->
+</span>
+
+
+            </div>
+
+            <div class="label-card">
+            
+<!-- <span class="point">•</span> -->
+<span class="pageTag">
+  <i class="fa fa-tags"></i>
+  
+    
+        <!--a href="/tag/#Machine-Learning" title="Tag: Machine-Learning" rel="tag">Machine-Learning</a-->
+        <a href="/tag/#Machine-Learning" title="Tag: Machine-Learning" rel="tag">Machine-Learning</a>&nbsp;
+    
+        <!--a href="/tag/#Beginner" title="Tag: Beginner" rel="tag">Beginner</a-->
+        <a href="/tag/#Beginner" title="Tag: Beginner" rel="tag">Beginner</a>
+    
+  
+
+</span>
+
+            </div>
+
+        </div>
+        <hr>
+        <article itemscope itemtype="http://schema.org/BlogPosting">
+        <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<p>지난 포스트에서 <strong>학습은 모델 적용, 모델 평가, 모델 업데이트의 반복</strong>이라고 간단히 설명하였는데, 기계학습에서 학습이 어떻게 진행되는지 조금 더 심도있게 들여다보자.</p>
+
+<h2 id="학습-프로세스">학습 프로세스</h2>
+<p>Andrew Ng 교수님의 Coursera 강의에서는 지도학습의 과정을 아래와 같이 설명하였다.<br />
+<img src="https://d3c33hcgiwev3.cloudfront.net/imageAssetProxy.v1/H6qTdZmYEeaagxL7xdFKxA_2f0f671110e8f7446bb2b5b2f75a8874_Screenshot-2016-10-23-20.14.58.png?expiry=1512432000000&amp;hmac=Zl9OsYAqqtv8YIxuurv1Hn5OPEEoeM6daRn4oqk9A8o" alt="Learning Process(Coursera)" /><br />
+Training Set(훈련데이터)를 바탕으로 알고리즘을 학습시킨 다음, 완성된 가설(h)를 적용하여 문제 x에 대한 예측값 y를 도출해 내는 것이 기계학습을 사용하여 문제를 해결하는 과정이다. 하지만 위 그림에서는 알고리즘을 어떻게 학습시키는 것인지는 설명하고 있지 않다. 그래서 내가 공부한 내용을 바탕으로 아래와 같이 학습 과정을 도식화하였다.</p>
+
+<p><img src="http://localhost:4000/images/ml/ML_BASIC/ML_Basic_Concept/5_ML_Basic_Learning_Process.jpg" alt="Learning Process" /></p>
+
+<p>훈련 데이터를 사용하여 학습을 진행할 때 크게 세 단계를 거치는데,</p>
+<ol>
+  <li>모델(또는 가설)을 세워서 적용하고,</li>
+  <li>세운 가설을 평가하고,</li>
+  <li>평가를 바탕으로 가설을 업데이트한다.<br />
+위의 3단계를 반복하면서 주어진 문제를 가장 잘 풀 수 있는 가설을 찾아가는 것이 학습의 과정이다.</li>
+</ol>
+
+<p>1단계에서 세우는 모델의 종류에 대해서는 하나씩 차근히 공부하기로 하고, 이번과 다음 포스트에서는 2단계와 3단계가 어떻게 수행되는지 알아보도록 하자.</p>
+
+<h2 id="모델가설-평가">모델(가설) 평가</h2>
+<p>※ 아래에서 설명하는 내용은 <strong>지도학습(Supervised Learning)</strong>을 대상으로 하는 것임을 참고하기 바란다.</p>
+
+<p><img src="http://localhost:4000/images/ml/ML_BASIC/ML_Basic_Concept/6_ML_Basic_Model_Evaluation.jpg" alt="Loss Function" /></p>
+
+<p>현재 내가 세운 가설을 데이터에 적용하였을 때 기대하는 수준의 성능이 나오는지를 확인하고 모델을 수정하는 과정을 반복하는 것이 학습이라고 하였다. 그렇다면 무엇을 기준으로 모델의 성능을 평가할 수 있을까?</p>
+
+<p>지도학습 모델의 경우 항상 정답이 주어진다는 것을 상기한다면, <strong>모델을 적용하여 내가 푼 문제와 실제 정답이 얼마나 다른지(오차)</strong>를 측정한 값을 모델 평가의 기준으로 삼을 수 있을 것이다. 이를 계산하는 계산식을 손실함수(Loss Function) 혹은 비용함수(Cost Function)이라고 하고, 문제에 따라 평균 제곱 오차 혹은 교차 엔트로피 오차 두 가지 손실함수 중 하나를 사용할 수 있다.</p>
+
+<p>기계학습의 문제 유형은 크게 예측과 분류로 구분된다는 것을 기억하고 있는가? 문제 유형은 Output Y로도 구분할 수 있는데, Y값이 연속적인 경우(주식 가격, 부동산 가격 등)는 보통 회귀(Regression) 문제로 접근하고, Y값이 이산적인 경우는 분류(Classification) 문제로 접근한다.</p>
+
+<h3 id="평균-제곱-오차-mse-mean-squared-error">평균 제곱 오차 (MSE, Mean Squared Error)</h3>
+<p>평균 제곱 오차는 회귀 모델을 평가하는 식으로, 예측값 Y’와 실제 정답 Y의 오차를 제곱하여 더한 값을 계산하는데 함수는 다음과 같다.</p>
+
+<p>\(\large {L = \frac { 1 }{ 2m } \sum _{ i=0 }^{ m }{ { (\hat { y } - y) }^{ 2 } } = \frac { 1 }{ 2m } \sum _{ i=1 }^{ m }{ { (h(x) - y) }^{ 2 } }} \)</p>
+
+<p>식에서 y’(y-hat)은 모델을 적용하여 도출된 예측값, y는 훈련 데이터에서 주어진 실제 정답이다. m은 훈련 데이터의 개수로 100개의 데이터가 있다면 각 데이터의 오차를 모두 더하여 평균을 낸 값이 해당 모델의 평균 제곱 오차 값이다. 당연히 예측값과 실제값의 차이가 적은 모델이 성능이 좋은 모델이다.</p>
+
+<p>평균 제곱 오차를 계산하는 함수를 파이썬으로 작성해보면 아래와 같다.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="s">"""
+x : 훈련데이터 m개가 각 행에 저장되어 있는 Input 데이터
+t : 각 x 데이터에 대응되는 결과값 (Labeled Data)
+Return : 예측 결과와 실제값의 평균제곱오차값
+"""</span>
+<span class="k">def</span> <span class="nf">mean_squeared_error</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">t</span><span class="p">):</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">predict</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="c"># 현재의 가설을 바탕으로 x 데이터에 대한 예측값 y를 리턴하는 함수</span>
+    <span class="n">m</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="c"># 훈련 데이터의 개수</span>
+    <span class="n">mse</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">m</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="nb">sum</span><span class="p">((</span><span class="n">y</span> <span class="o">-</span> <span class="n">t</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">mse</span>
+</code></pre></div></div>
+
+<h3 id="교차-엔트로피-오차-cee-cross-entropy-error">교차 엔트로피 오차 (CEE, Cross Entropy Error)</h3>
+<p>교차 엔트로피 오차는 주로 분류 모델을 평가하는데 사용하며, 특히 CEE를 사용하기 위해서는 <strong>Output Y값이 원-핫 인코딩(One-hot Encoding)으로 구성되어야 한다.</strong></p>
+<ul>
+  <li>원-핫 인코딩 : Input을 N개 그룹으로 나누는 분류 문제가 있을 때, 데이터에 해당하는 그룹은 1, 그 밖의 나머지 그룹은 0으로 표현하는 방법. 예를 들어 손글씨 인식 문제의 경우 글씨를 0부터 9 중 하나의 숫자로 분류하게 되는데, 주어진 이미지가 3인 경우, [0 0 0 1 0 0 …]과 같이 나타낸다.</li>
+</ul>
+
+<p>하나의 샘플에 대해 교차 엔트로피 오차는 아래와 같은 식으로 구한다.<br />
+\(\large {L=-\sum _{ i=1 }^{ C }{ y\ln { \hat { y }  }  } }\)</p>
+
+<p>식에서 C는 분류 그룹의 개수, 손글씨 인식 문제는 C=10이다. y과 y’는 모두 원-핫 인코딩으로 표현되었고, 곱은 행렬곱이 아닌 원소곱(element-wise)이다. 즉, 이 식은 예측값 중에서 실제 정답 그룹의 로그값만 취한다.<br />
+\(\large {\left[ \begin{matrix} 0 &amp; 1 &amp; 0 \end{matrix} \right] *\left[ \begin{matrix} lnA &amp; lnB &amp; lnC \end{matrix} \right] =\left[ \begin{matrix} 0 &amp; lnB &amp; 0 \end{matrix} \right] }\)</p>
+
+<p><img src="http://localhost:4000/images/ml/ML_BASIC/ML_Basic_Concept/ln_graph.png" alt="자연로그 그래프" /><br />
+위 그래프에서 확인할 수 있듯이 \(\ln { 1 } =0\) 이기 때문에 정답 레이블과 예측 레이블이 같다면 오차는 0이 되고, 자연로그의 음수값을 취했기 때문에 예측 레이블이 0에 가까워질수록 오차는 커진다. m개의 훈련 데이터에서 교차 엔트로피 오차를 구하려면 각 샘플의 오차들을 모두 합하면 된다. 당연히 합의 작을수록 실제값과 예측값의 차이가 적다는 것이기 때문에 모델의 성능이 좋다는 것을 의미한다.<br />
+\(\large {L=-\sum _{ j=1 }^{ m }{ \sum _{ i=1 }^{ C }{ y\ln { \hat { y }  }  }  } }\)</p>
+
+<p>교차 엔트로피 오차를 계산하는 함수를 파이썬으로 작성해보면 아래와 같다.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="s">"""
+x : 훈련데이터 m개가 각 행에 저장되어 있는 Input 데이터
+t : 각 x 데이터에 대응되는 결과값 (One-hot encoded)
+Return : 예측 결과와 실제값의 교차 엔트로피 오차값
+"""</span>
+<span class="k">def</span> <span class="nf">mean_squeared_error</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">t</span><span class="p">):</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">predict</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="c"># 현재의 가설을 바탕으로 x 데이터에 대한 예측값 y를 원-핫 인코딩으로 리턴하는 함수</span>
+    <span class="n">delta</span> <span class="o">=</span> <span class="mf">1e-7</span>
+    <span class="n">cee</span> <span class="o">=</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="nb">sum</span><span class="p">(</span><span class="n">t</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">y</span><span class="o">+</span><span class="n">delta</span><span class="p">))</span> <span class="c"># y = 0일 때 로그가 무한대로 발산하기 때문에 delta 값을 더해서 방지</span>
+    <span class="k">return</span> <span class="n">cee</span> 
+</code></pre></div></div>
+
+        </article>
+        <hr>
+
+        
+        
+            
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                        
+                        <h2 id="similar_posts">Similar Posts</h2>
+                        <ul>
+                        
+                        <li class="relatedPost">
+                            <a href="/2018/06/21/kalman-filter-2/">[Udacity SDCND] 칼만필터 Kalman Filter 이해하기 (2)
+                            
+                            </a>
+                        </li>
+                        
+                        
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                        
+                        <li class="relatedPost">
+                            <a href="/2018/06/20/kalman-filter-1/">[Udacity SDCND] 칼만필터 Kalman Filter 이해하기 (1)
+                            
+                            </a>
+                        </li>
+                        
+                        
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+        
+        
+            </ul>
+        
+
+        <div class="post-recent">
+    <div class="pre">
+        
+        <p><strong>Prev</strong> <a href="/2017/11/27/machine-learning-definition/">[Machine Learning] Introduction to machine learning</a></p>
+        
+    </div>
+    <div class="nex">
+
+        
+        <p><strong>Next</strong> <a href="/2017/12/09/gradient-descent/">[Machine Learning] 학습 프로세스 (3단계. 모델업데이트)</a></p>
+        
+    </div>
+</div>
+
+
+        <h2 id="comments">Comments</h2>
+        
+<div id="disqus_thread"></div>
+<script>
+    /**
+     * RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     * LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+
+    var disqus_config = function() {
+        this.page.url = 'http://localhost:4000/2017/12/03/model-evaluation/'; // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'http://localhost:4000/2017/12/03/model-evaluation/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+
+    (function() { // DON'T EDIT BELOW THIS LINE
+        var d = document,
+            s = d.createElement('script');
+
+        s.src = '//ahracho.disqus.com/embed.js';
+
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+
+
+
+    </div>
+    <button class="anchor"><i class="fa fa-anchor"></i></button>
+    <div class="right">
+        <div class="wrap">
+
+            <!-- Content -->
+            <div class="side content">
+                <div>
+                    Content
+                </div>
+                <ul id="content-side" class="content-ul">
+                    
+                    <li><a href="#similar_posts">Similar Posts</a></li>
+                    
+                    <li><a href="#comments">Comments</a></li>
+                </ul>
+            </div>
+            <!-- 其他div框放到这里 -->
+            <!-- <div class="side">bbbb</div> -->
+        </div>
+    </div>
+</div>
+<script>
+/**
+ * target _blank
+ */
+(function() {
+    var aTags = document.querySelectorAll('article a:not([id])')
+    for (var i = 0; i < aTags.length; i++) {
+        aTags[i].setAttribute('target', '_blank')
+    }
+}());
+</script>
+<script src="/js/pageContent.js " charset="utf-8"></script>
+
+
+    <footer class="site-footer">
+
+
+    <div class="wrapper">
+
+        <p class="description">
+            
+        </p>
+        <p class="contact">
+            Contact me at: 
+            <a href="https://github.com/ahracho" title="GitHub"><i class="fa fa-github" aria-hidden="true"></i></a>  
+            <a href="mailto:ahracho89@gmail.com" title="email"><i class="fa fa-envelope-o" aria-hidden="true"></i></a>     
+            <a href="https://www.facebook.com/ahra.cho3" title="Facebook"><i class="fa fa-facebook-official" aria-hidden="true"></i></a>    
+        </p>
+        <p class="power">
+            <span>
+                Site powered by <a href="https://jekyllrb.com/">Jekyll</a> & <a href="https://pages.github.com/">Github Pages</a>.
+            </span>
+            <span>
+                Theme designed by <a href="https://github.com/Gaohaoyang">HyG</a>.
+            </span>
+        </p>
+    </div>
+</footer>
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+    <div class="back-to-top">
+    <a href="#top" data-scroll>
+        <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    </a>
+</div>
+
+    <script src=" /js/main.js " charset="utf-8"></script>
+    <script src=" /js/smooth-scroll.min.js " charset="utf-8"></script>
+    <script type="text/javascript">
+      smoothScroll.init({
+        speed: 500, // Integer. How fast to complete the scroll in milliseconds
+        easing: 'easeInOutCubic', // Easing pattern to use
+        offset: 20, // Integer. How far to offset the scrolling anchor location in pixels
+      });
+    </script>
+    <!-- <script src=" /js/scroll.min.js " charset="utf-8"></script> -->
+  </body>
+
+</html>

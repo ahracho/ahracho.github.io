@@ -1,0 +1,1117 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>AHRA&#39;s Tech Blog</title>
+    <meta name="description" content="">
+
+    <link rel="shortcut icon" href="/favicon.ico?" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico?" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://at.alicdn.com/t/font_8v3czwksspqlg14i.css">
+    <link rel="stylesheet" href="/css/main.css ">
+    <link rel="canonical" href="http://localhost:4000/page3/">
+    <link rel="alternate" type="application/rss+xml" title="AHRA's Tech Blog" href="http://localhost:4000/feed.xml ">
+
+
+
+
+
+</head>
+
+
+  <body>
+
+    <header id="top">
+    <div class="wrapper">
+        <a href="/" class="brand">AHRA's Tech Blog</a>
+        <small>Learn and Share</small>
+        <button id="headerMenu" class="menu"><i class="fa fa-bars"></i></button>
+        <nav id="headerNav">
+            <ul>
+                <li>
+                    
+                    <a href="/">
+                    
+                        <i class="fa fa-home"></i>Home
+                    </a>
+                </li>
+
+                
+                    
+                    <li>
+                        
+                        <a href="/archive/">
+                        
+                            <i class="fa fa-archive"></i>Archives
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/category/">
+                        
+                            <i class="fa fa-th-list"></i>Categories
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/tag/">
+                        
+                            <i class="fa fa-tags"></i>Tags
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/about/">
+                        
+                            <i class="fa fa-heart"></i>About Me
+                        </a>
+                    </li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+        </nav>
+    </div>
+</header>
+
+
+        <div class="page clearfix" index>
+    <div class="left">
+        <h1>Welcome to AHRA's Blog!</h1>
+        <small>프로그래밍 필기노트</small>
+        <hr>
+        <ul>
+            
+              <li>
+                <h2>
+                  <a class="post-link" href="/2017/12/03/model-evaluation/">[Machine Learning] 학습 프로세스 (2단계. 오차계산법)</a>
+                </h2>
+                <div class="label">
+                    <div class="label-card">
+                        <i class="fa fa-calendar"></i>2017-12-03
+                    </div>
+                    <div class="label-card">
+                        
+                    </div>
+                    <div class="label-card">
+                        
+                    </div>
+
+                    <div class="label-card">
+                    
+
+
+<!-- <span class="point">•</span> -->
+<span class="categories">
+  <i class="fa fa-th-list"></i>
+  
+    
+        <a href="/category/#Machine-Learning" title="Category: Machine-Learning" rel="category">Machine-Learning</a>
+    
+  
+
+  <!-- <span class="point">•</span> -->
+</span>
+
+
+                    </div>
+
+                    <div class="label-card">
+                    
+<!-- <span class="point">•</span> -->
+<span class="pageTag">
+  <i class="fa fa-tags"></i>
+  
+    
+        <a href="/tag/#Machine-Learning" title="Tag: Machine-Learning" rel="tag">Machine-Learning</a>&nbsp;
+    
+        <a href="/tag/#Beginner" title="Tag: Beginner" rel="tag">Beginner</a>
+    
+  
+
+</span>
+
+                    </div>
+                </div>
+                <div class="excerpt">
+                    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<p>지난 포스트에서 <strong>학습은 모델 적용, 모델 평가, 모델 업데이트의 반복</strong>이라고 간단히 설명하였는데, 기계학습에서 학습이 어떻게 진행되는지 조금 더 심도있게 들여다보자.</p>
+
+<h2 id="학습-프로세스">학습 프로세스</h2>
+<p>Andrew Ng 교수님의 Coursera 강의에서는 지도학습의 과정을 아래와 같이 설명하였다.<br />
+<img src="https://d3c33hcgiwev3.cloudfront.net/imageAssetProxy.v1/H6qTdZmYEeaagxL7xdFKxA_2f0f671110e8f7446bb2b5b2f75a8874_Screenshot-2016-10-23-20.14.58.png?expiry=1512432000000&amp;hmac=Zl9OsYAqqtv8YIxuurv1Hn5OPEEoeM6daRn4oqk9A8o" alt="Learning Process(Coursera)" /><br />
+Training Set(훈련데이터)를 바탕으로 알고리즘을 학습시킨 다음, 완성된 가설(h)를 적용하여 문제 x에 대한 예측값 y를 도출해 내는 것이 기계학습을 사용하여 문제를 해결하는 과정이다. 하지만 위 그림에서는 알고리즘을 어떻게 학습시키는 것인지는 설명하고 있지 않다. 그래서 내가 공부한 내용을 바탕으로 아래와 같이 학습 과정을 도식화하였다.</p>
+
+<p><img src="http://localhost:4000/images/ml/ML_BASIC/ML_Basic_Concept/5_ML_Basic_Learning_Process.jpg" alt="Learning Process" /></p>
+
+<p>훈련 데이터를 사용하여 학습을 진행할 때 크게 세 단계를 거치는데,</p>
+<ol>
+  <li>모델(또는 가설)을 세워서 적용하고,</li>
+  <li>세운 가설을 평가하고,</li>
+  <li>평가를 바탕으로 가설을 업데이트한다.<br />
+위의 3단계를 반복하면서 주어진 문제를 가장 잘 풀 수 있는 가설을 찾아가는 것이 학습의 과정이다.</li>
+</ol>
+
+<p>1단계에서 세우는 모델의 종류에 대해서는 하나씩 차근히 공부하기로 하고, 이번과 다음 포스트에서는 2단계와 3단계가 어떻게 수행되는지 알아보도록 하자.</p>
+
+<h2 id="모델가설-평가">모델(가설) 평가</h2>
+<p>※ 아래에서 설명하는 내용은 <strong>지도학습(Supervised Learning)</strong>을 대상으로 하는 것임을 참고하기 바란다.</p>
+
+<p><img src="http://localhost:4000/images/ml/ML_BASIC/ML_Basic_Concept/6_ML_Basic_Model_Evaluation.jpg" alt="Loss Function" /></p>
+
+<p>현재 내가 세운 가설을 데이터에 적용하였을 때 기대하는 수준의 성능이 나오는지를 확인하고 모델을 수정하는 과정을 반복하는 것이 학습이라고 하였다. 그렇다면 무엇을 기준으로 모델의 성능을 평가할 수 있을까?</p>
+
+<p>지도학습 모델의 경우 항상 정답이 주어진다는 것을 상기한다면, <strong>모델을 적용하여 내가 푼 문제와 실제 정답이 얼마나 다른지(오차)</strong>를 측정한 값을 모델 평가의 기준으로 삼을 수 있을 것이다. 이를 계산하는 계산식을 손실함수(Loss Function) 혹은 비용함수(Cost Function)이라고 하고, 문제에 따라 평균 제곱 오차 혹은 교차 엔트로피 오차 두 가지 손실함수 중 하나를 사용할 수 있다.</p>
+
+<p>기계학습의 문제 유형은 크게 예측과 분류로 구분된다는 것을 기억하고 있는가? 문제 유형은 Output Y로도 구분할 수 있는데, Y값이 연속적인 경우(주식 가격, 부동산 가격 등)는 보통 회귀(Regression) 문제로 접근하고, Y값이 이산적인 경우는 분류(Classification) 문제로 접근한다.</p>
+
+<h3 id="평균-제곱-오차-mse-mean-squared-error">평균 제곱 오차 (MSE, Mean Squared Error)</h3>
+<p>평균 제곱 오차는 회귀 모델을 평가하는 식으로, 예측값 Y’와 실제 정답 Y의 오차를 제곱하여 더한 값을 계산하는데 함수는 다음과 같다.</p>
+
+<p>\(\large {L = \frac { 1 }{ 2m } \sum _{ i=0 }^{ m }{ { (\hat { y } - y) }^{ 2 } } = \frac { 1 }{ 2m } \sum _{ i=1 }^{ m }{ { (h(x) - y) }^{ 2 } }} \)</p>
+
+<p>식에서 y’(y-hat)은 모델을 적용하여 도출된 예측값, y는 훈련 데이터에서 주어진 실제 정답이다. m은 훈련 데이터의 개수로 100개의 데이터가 있다면 각 데이터의 오차를 모두 더하여 평균을 낸 값이 해당 모델의 평균 제곱 오차 값이다. 당연히 예측값과 실제값의 차이가 적은 모델이 성능이 좋은 모델이다.</p>
+
+<p>평균 제곱 오차를 계산하는 함수를 파이썬으로 작성해보면 아래와 같다.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="s">"""
+x : 훈련데이터 m개가 각 행에 저장되어 있는 Input 데이터
+t : 각 x 데이터에 대응되는 결과값 (Labeled Data)
+Return : 예측 결과와 실제값의 평균제곱오차값
+"""</span>
+<span class="k">def</span> <span class="nf">mean_squeared_error</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">t</span><span class="p">):</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">predict</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="c"># 현재의 가설을 바탕으로 x 데이터에 대한 예측값 y를 리턴하는 함수</span>
+    <span class="n">m</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="c"># 훈련 데이터의 개수</span>
+    <span class="n">mse</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">m</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="nb">sum</span><span class="p">((</span><span class="n">y</span> <span class="o">-</span> <span class="n">t</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">mse</span>
+</code></pre></div></div>
+
+<h3 id="교차-엔트로피-오차-cee-cross-entropy-error">교차 엔트로피 오차 (CEE, Cross Entropy Error)</h3>
+<p>교차 엔트로피 오차는 주로 분류 모델을 평가하는데 사용하며, 특히 CEE를 사용하기 위해서는 <strong>Output Y값이 원-핫 인코딩(One-hot Encoding)으로 구성되어야 한다.</strong></p>
+<ul>
+  <li>원-핫 인코딩 : Input을 N개 그룹으로 나누는 분류 문제가 있을 때, 데이터에 해당하는 그룹은 1, 그 밖의 나머지 그룹은 0으로 표현하는 방법. 예를 들어 손글씨 인식 문제의 경우 글씨를 0부터 9 중 하나의 숫자로 분류하게 되는데, 주어진 이미지가 3인 경우, [0 0 0 1 0 0 …]과 같이 나타낸다.</li>
+</ul>
+
+<p>하나의 샘플에 대해 교차 엔트로피 오차는 아래와 같은 식으로 구한다.<br />
+\(\large {L=-\sum _{ i=1 }^{ C }{ y\ln { \hat { y }  }  } }\)</p>
+
+<p>식에서 C는 분류 그룹의 개수, 손글씨 인식 문제는 C=10이다. y과 y’는 모두 원-핫 인코딩으로 표현되었고, 곱은 행렬곱이 아닌 원소곱(element-wise)이다. 즉, 이 식은 예측값 중에서 실제 정답 그룹의 로그값만 취한다.<br />
+\(\large {\left[ \begin{matrix} 0 &amp; 1 &amp; 0 \end{matrix} \right] *\left[ \begin{matrix} lnA &amp; lnB &amp; lnC \end{matrix} \right] =\left[ \begin{matrix} 0 &amp; lnB &amp; 0 \end{matrix} \right] }\)</p>
+
+<p><img src="http://localhost:4000/images/ml/ML_BASIC/ML_Basic_Concept/ln_graph.png" alt="자연로그 그래프" /><br />
+위 그래프에서 확인할 수 있듯이 \(\ln { 1 } =0\) 이기 때문에 정답 레이블과 예측 레이블이 같다면 오차는 0이 되고, 자연로그의 음수값을 취했기 때문에 예측 레이블이 0에 가까워질수록 오차는 커진다. m개의 훈련 데이터에서 교차 엔트로피 오차를 구하려면 각 샘플의 오차들을 모두 합하면 된다. 당연히 합의 작을수록 실제값과 예측값의 차이가 적다는 것이기 때문에 모델의 성능이 좋다는 것을 의미한다.<br />
+\(\large {L=-\sum _{ j=1 }^{ m }{ \sum _{ i=1 }^{ C }{ y\ln { \hat { y }  }  }  } }\)</p>
+
+<p>교차 엔트로피 오차를 계산하는 함수를 파이썬으로 작성해보면 아래와 같다.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="s">"""
+x : 훈련데이터 m개가 각 행에 저장되어 있는 Input 데이터
+t : 각 x 데이터에 대응되는 결과값 (One-hot encoded)
+Return : 예측 결과와 실제값의 교차 엔트로피 오차값
+"""</span>
+<span class="k">def</span> <span class="nf">mean_squeared_error</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">t</span><span class="p">):</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">predict</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="c"># 현재의 가설을 바탕으로 x 데이터에 대한 예측값 y를 원-핫 인코딩으로 리턴하는 함수</span>
+    <span class="n">delta</span> <span class="o">=</span> <span class="mf">1e-7</span>
+    <span class="n">cee</span> <span class="o">=</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="nb">sum</span><span class="p">(</span><span class="n">t</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">y</span><span class="o">+</span><span class="n">delta</span><span class="p">))</span> <span class="c"># y = 0일 때 로그가 무한대로 발산하기 때문에 delta 값을 더해서 방지</span>
+    <span class="k">return</span> <span class="n">cee</span> 
+</code></pre></div></div>
+
+                </div>
+                <div class="read-all">
+                    <a  href="/2017/12/03/model-evaluation/"><i class="fa fa-newspaper-o"></i>Read All</a>
+                </div>
+                <hr>
+              </li>
+            
+              <li>
+                <h2>
+                  <a class="post-link" href="/2017/11/27/machine-learning-definition/">[Machine Learning] Introduction to machine learning</a>
+                </h2>
+                <div class="label">
+                    <div class="label-card">
+                        <i class="fa fa-calendar"></i>2017-11-27
+                    </div>
+                    <div class="label-card">
+                        
+                    </div>
+                    <div class="label-card">
+                        
+                    </div>
+
+                    <div class="label-card">
+                    
+
+
+<!-- <span class="point">•</span> -->
+<span class="categories">
+  <i class="fa fa-th-list"></i>
+  
+    
+        <a href="/category/#Machine-Learning" title="Category: Machine-Learning" rel="category">Machine-Learning</a>
+    
+  
+
+  <!-- <span class="point">•</span> -->
+</span>
+
+
+                    </div>
+
+                    <div class="label-card">
+                    
+<!-- <span class="point">•</span> -->
+<span class="pageTag">
+  <i class="fa fa-tags"></i>
+  
+    
+        <a href="/tag/#Machine-Learning" title="Tag: Machine-Learning" rel="tag">Machine-Learning</a>&nbsp;
+    
+        <a href="/tag/#Beginner" title="Tag: Beginner" rel="tag">Beginner</a>
+    
+  
+
+</span>
+
+                    </div>
+                </div>
+                <div class="excerpt">
+                    <p>최근 AI, 인공지능 분야가 IT 업계를 포함한 전 분야에서 활발히 논의되기 시작하면서, 해당 분야를 공부해보고자 하는 사람들이 늘고 있다. 나 또한 그 중 하나로, 데이터 분석을 포함해서 인공지능, 머신러닝, 딥러닝, 강화학습 등 여러 분야에 대해서 (얕고 넓게) 공부해보고 있다. 인공지능 분야가 흥미로운 것은 컴퓨터 공학을 전공하는 사람이 아니더라도 간단한 파이썬 프로그래밍 지식만 있으면 누구나 (쉽지는 않지만) 공부하고 실습해 볼 수 있다는 것이다. 또한, 인공지능 기술이 적용되는 분야는 IT분야 뿐만 아니라 의학, 사회학, 언어학 등 데이터를 분석하여 의미있는 결과를 도출하고자 하는 분야는 어디든 적용할 수 있기 때문에 전공/비전공의 의미가 무색해졌다.</p>
+
+<p>내가 잘 하는 것 중 하나가 새로운 것을 빠르게 배워서 남들에게 쉽게 설명하는 것이다. 그래서 이번에는 모두들 공부해보고 싶어하지만 섣불리 엄두내기 힘들어하는 인공지능(이라고 하기에는 거창하지만)의 기초 머신러닝 분야를 차근차근 설명해나가고자 한다. 본인도 아직 초보자이기 때문에 내가 공부했던 내용들을, 내가 이해했던 방식대로 쉽게 풀어서 설명하도록 노력할 것이다.</p>
+
+<p>이번 첫번째 연재에서는 머신러닝이란 것이 무엇인지, 학습을 시킨다는 것은 어떤 의미인지 등 기본적인 정의부터 잡아보려고 한다.</p>
+
+<h2 id="machine-learning-기계학습이란-무엇인가">Machine Learning (기계학습)이란 무엇인가</h2>
+<p><img src="http://localhost:4000/images/ml/ML_BASIC/ML_Basic_Concept/1_ML_Basic_Definition.JPG" alt="기계학습의 정의" /></p>
+
+<p>“A computer program is said to learn from experience E with respect to some task T and some performance measure P, if its performance on T, as measured by P, improves with experience E.” (Tom M. Mitchell)</p>
+
+<p>컴퓨터 프로그램은 본디 특정한 기능을 수행하기 위한 목적으로 만들어진다. 프로그래밍이라는 것은 쉽게 말해 컴퓨터에게 이런 상황에서는 이렇게 동작하라, 저런 상황에서는 저렇게 동작하라는 지시를 개발자가 일일이 알려주는 것이라고 이해할 수 있는데, 이런 컴퓨터가 사람처럼 학습을 한다니 이게 무슨 의미일까?</p>
+
+<p><strong>머신러닝은 프로그램 스스로 어떤 문제를 해결할 수 있도록 모델을 개선해가는 알고리즘을 뜻한다</strong><br />
+기계학습은 문제를 해결하기 위한 것이다. 여기서 문제라는 것은 보통 크게 두가지로 구분하는데, 하나는 <strong>예측</strong>이고, 다른 하나는 <strong>분류</strong>이다. 예측 문제의 예로는 주식 가격, 날씨 등이 있고, 분류 문제에는 이미지, 기사, Market Segment 분류 등이 있을 수 있다. 이러한 문제를 사람이 직접 푼다고 생각하면 어떤 식으로 접근할까 생각해보자. 주식 가격을 예측하고자 한다면 일단 과거의 주식 관련 데이터를 모을 것이고, 다양한 데이터들에서 가격에 영향을 미치는 요인들을 추출한 다음, 요인들과 가격 변동 간의 상관관계(패턴)를 찾아내려고 할 것이다.</p>
+
+<p>기계학습이란 위와 같은 문제를 해결하고자 할 때, 결과값에 영향을 미치는 요인들, 요인들과 결과값의 상관관계를 사람의 조작 없이 스스로 모델을 개선해가는 알고리즘을 가리킨다. 주식과 관련된 데이터들을 기계학습 알고리즘에 제공하면 스스로 모델을 수정해가면서 예측 성능이 가장 좋은 모델을 만들어가는 것이다. 해결해야 하는 문제에 따라서 각기 다른 기계학습 알고리즘을 적용해야 하고 그 기법들에 대해서는 하나씩 차근차근히 배워나갈 것이다.</p>
+
+<p><strong>학습은 모델 적용, 모델 평가, 모델 업데이트의 반복</strong>
+우리가 수학 문제를 푼다고 가정해보자. 문제가 주어지면 일단 내가 알고 있는 방법으로 문제를 풀어보고(모델 적용) 정답(모델 평가)이 맞으면 다행이지만, 혹시나 틀렸다면 문제 푸는 방법을 고친 후(모델 업데이트) 다시 풀어볼 것이다. 마찬가지로 기계학습에서도 문제를 해결하고자 할 때 주어진 문제에 맞는 모델을 설정한 다음, 데이터에 모델을 적용하고, 성능이 얼마나 좋은지 모델을 평가하고, 성능을 개선할 수 있도록 모델 업데이트 하는 3개의 동작을 반복한다.</p>
+
+<h2 id="supervised-vs-unsupervised-learning">Supervised vs. Unsupervised Learning</h2>
+<p><img src="http://localhost:4000/images/ml/ML_BASIC/ML_Basic_Concept/2_ML_Basic_Supervised.JPG" alt="Supervised Learning" /><br />
+기계학습의 학습방법은 크게 지도학습과 비지도학습, 두가지로 나눌 수 있다. 영어로는 Supervised / Unsupervised Learning 이라고 하는데 Supervise의 사전적 의미는 ‘(v)감독하다’라는 것을 생각하면 두 학습 방법의 의미를 조금 더 쉽게 이해할 수 있을 것이다. 지도학습과 비지도학습의 가장 큰 차이는 학습 중에 나의 문제풀이와 비교할 수 있는 정답이 있는지 여부이다.</p>
+
+<p>기계학습에서는 Labeled Data라고 하는데, 데이터에 라벨이 붙어있다는 의미이다. 예를 들어, 이미지 분류 작업을 한다면, A 이미지는 고양이 이미지, B 이미지는 노트북 이미지 등 주어진 모든 데이터에 대해서 해당 데이터가 어떤 그룹에 속해있는지, 혹은 기준에 포함되는지 등 문제 상황에 맞는 답이 이미 정해져 있는 데이터를 Labeled Data라고 한다. 지도학습은 Labeled Data를 사용하는 학습 기법이다. 어떤 모델을 가설로 설정한 후, 그 모델의 예측/분류 성능이 어느 정도인지 가늠할 때 모델을 적용한 예측값과 Label값을 비교하는 것이다. 가장 대표적인 지도학습 기법에는 선형회귀와 Classification(분류) 문제가 있다.</p>
+
+<p><img src="http://localhost:4000/images/ml/ML_BASIC/ML_Basic_Concept/3_ML_Basic_Unsupervised.JPG" alt="Unsupervised Learning" /><br />
+이에 반해 비지도학습은 Labeled Data를 학습에 활용하지 않는다. 미리 정답이 주어지지 않은 상황에서 모델 나름의 기준에 따라 문제를 해결하고, 대표적인 비지도학습 기법에는 Clustering이 있다.</p>
+
+<h2 id="structured-vs-unstructured-data">Structured vs. Unstructured Data</h2>
+<p><img src="http://localhost:4000/images/ml/ML_BASIC/ML_Basic_Concept/4_ML_Basic_Data_Type.JPG" alt="Data Type" /></p>
+
+<p>마지막으로 데이터 분석에 사용하는 데이터의 종류에 대해서 알아보자. 기계학습에서 빼놓을 수 없는 것이 데이터인데, 해결해야 하는 문제에 따라서 데이터가 깔끔하게 정리되어 있는 경우가 있을 수 있고, 정리하기 애매한 형태의 데이터가 있을 수 있다. 예를 들어, 주식 가격을 예측하는 모델을 찾는다고 할 때, 사용할 수 있는 데이터는 1년 동안의 주식 가격, 투자자별 매수/매도 현황, 영업이익률 등 각 특질(feature)들을 명확하게 구분하여 나타낼 수 있다. 반면에 음성인식 모델을 만든다고 가정하면, 사람들의 대화가 녹음된 음성데이터를 사용해야 하는 건 알지만 이 음성데이터에서 어떤 특질들을 추출하여 사용해야 하는지 명확하지 않다. 전자를 Structured Data라고 하고, 후자를 Unstructured Data라고 하는데, 후자의 경우에는 특히나 데이터를 가공하고 전처리 하는데에 설계자의 경험과 능력이 모델 완성의 중요한 역할을 한다.</p>
+
+                </div>
+                <div class="read-all">
+                    <a  href="/2017/11/27/machine-learning-definition/"><i class="fa fa-newspaper-o"></i>Read All</a>
+                </div>
+                <hr>
+              </li>
+            
+              <li>
+                <h2>
+                  <a class="post-link" href="/2017/10/29/deep-learning/">[Deep Learning] Introduction to deep learning</a>
+                </h2>
+                <div class="label">
+                    <div class="label-card">
+                        <i class="fa fa-calendar"></i>2017-10-29
+                    </div>
+                    <div class="label-card">
+                        
+                    </div>
+                    <div class="label-card">
+                        
+                    </div>
+
+                    <div class="label-card">
+                    
+
+
+<!-- <span class="point">•</span> -->
+<span class="categories">
+  <i class="fa fa-th-list"></i>
+  
+    
+        <a href="/category/#Coursera" title="Category: Coursera" rel="category">Coursera</a>
+    
+  
+
+  <!-- <span class="point">•</span> -->
+</span>
+
+
+                    </div>
+
+                    <div class="label-card">
+                    
+<!-- <span class="point">•</span> -->
+<span class="pageTag">
+  <i class="fa fa-tags"></i>
+  
+    
+        <a href="/tag/#Deep-Learning" title="Tag: Deep-Learning" rel="tag">Deep-Learning</a>&nbsp;
+    
+        <a href="/tag/#Coursera" title="Tag: Coursera" rel="tag">Coursera</a>
+    
+  
+
+</span>
+
+                    </div>
+                </div>
+                <div class="excerpt">
+                    <h2 id="what-is-neural-network">What is Neural Network?</h2>
+<p>딥러닝은 머신러닝 기법의 하나로, 신경망 학습을 여러 층으로 설계하는 기법을 나타낸다. 신경망 학습은 입력값을 설계된 네트워크에 적용하여 결과를 예측하는 방식인데, 여기서 네트워크란 학습된 가중치들의 집합이라고 정의할 수 있겠다. 즉, 입력값(X, input layer)에 가중치(hidden layer)를 적용해서 미리 정의된 식에 대입하면 예측값(Y, output layer)를 얻게 되는 것이다.</p>
+
+<p>우리는 각각의 가중치를 적당히 조절해가면서 우리가 예측한 값이 실제의 결과와 최대한 비슷할 수 있도록 해야하고, 이것을 ‘학습’시킨다고 한다.</p>
+
+<p><img src="http://cfile6.uf.tistory.com/image/212B724858BCE20914680E" alt="인공신경망학습" /><br />
+출처: 구글 이미지(http://cfile6.uf.tistory.com/image/212B724858BCE20914680E)</p>
+
+<h2 id="supervised-learning-with-neural-network">Supervised Learning with Neural Network</h2>
+<p>지도학습(Supervised Learning)은 정답이 주어진 학습 과정이라고 이해할 수 있다. 실제 (X, Y)값의 데이터들이 준비되어 있고, 우리는 이 실제 데이터를 가지고 새로운 X들이 주어졌을 때 실제와 가까운 Y값을 예측할 수 있도록 식을 설계해야 한다. X와 Y 값의 관계식 혹은 학습시키는 방식은 문제에 따라서 달라질 수 있는데, 딥러닝을 적용할 때도 마찬가지이다.</p>
+
+<h3 id="neural-network-종류">Neural Network 종류</h3>
+<p>Neural network은 해결해야 할 문제에 따라서 여러 종류를 사용할 수 있는데, 간단한 분류는 아래와 같다.</p>
+
+<p>Standard NN : Regression이 필요한 경우<br />
+CNN : 이미지 분류<br />
+RNN : 음성 인식, 번역 (데이터의 순서(Sequencial Data)가 의미있는 분석의 경우)</p>
+
+<h3 id="데이터의-종류">데이터의 종류</h3>
+<p>데이터 분석 입문에서 알아야 할 기본 개념 중의 하나로, 우리가 분석에 사용해야 할 데이터들의 분류인데, 크게 Structured/Unstructured로 나눌 수 있다.</p>
+
+<p>Structured Data : 각 featrue들이 정의되어 있고, 정리되어 있는 데이터
+Unstructured Data : 오디오, 이미지, 자연어 등 feature들이 정의되어 있지 않은 데이터</p>
+
+                </div>
+                <div class="read-all">
+                    <a  href="/2017/10/29/deep-learning/"><i class="fa fa-newspaper-o"></i>Read All</a>
+                </div>
+                <hr>
+              </li>
+            
+              <li>
+                <h2>
+                  <a class="post-link" href="/2017/10/29/basic-of-logistic-regression/">[Deep Learning] Logistic Regression (Part 1)</a>
+                </h2>
+                <div class="label">
+                    <div class="label-card">
+                        <i class="fa fa-calendar"></i>2017-10-29
+                    </div>
+                    <div class="label-card">
+                        
+                    </div>
+                    <div class="label-card">
+                        
+                    </div>
+
+                    <div class="label-card">
+                    
+
+
+
+                    </div>
+
+                    <div class="label-card">
+                    
+<!-- <span class="point">•</span> -->
+<span class="pageTag">
+  <i class="fa fa-tags"></i>
+  
+    
+        <a href="/tag/#Deep-Learning" title="Tag: Deep-Learning" rel="tag">Deep-Learning</a>&nbsp;
+    
+        <a href="/tag/#Coursera" title="Tag: Coursera" rel="tag">Coursera</a>
+    
+  
+
+</span>
+
+                    </div>
+                </div>
+                <div class="excerpt">
+                    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<h2 id="logistic-regression에-신경망-적용하기-1">Logistic Regression에 신경망 적용하기 (1)</h2>
+<h3 id="binary-classification">Binary Classification</h3>
+<p>Logistic Regression은 보통 Yes or No 문제를 정의할 때 사용한다. 어떤 사진을 주고 고양이 사진인지 아닌지를 판단한다든지, 스팸 메일인지 아닌지 판단하는 등의 문제를 떠올리면 된다.</p>
+
+<p>고양이 사진을 추려내는 문제가 있다고 가정해보자. 우리에게 64x64 크기의 사진이 주어질 것이고, 각 픽셀은 RGB 값으로 나타낸다. 우리의 학습 모델에서 Input Layer는 64x64x3의 픽셀 색상 정보가 될 것이고, Output Layer는 0 / 1이 될 것이다.</p>
+
+<p>M개의 데이터가 있고, 각 X가 N개의 요소로 구성되어 있다고 하면, {(X1, Y1), (X2, Y2), … (Xm, Ym)}으로 나타낼 수 있고, 이것을 한 행렬로 나타내면 X = ‘[X1;X2; … ;Xm’] ‘(N x M 행렬’), Y = ‘[Y1; Y2; … ;Ym’]이 된다.</p>
+
+<h3 id="logistic-regression">Logistic Regression</h3>
+<p>X가 주어졌을 때 Yes or No로 결과를 얻기 위해서는 어떤 식으로 식을 설계해야할까? 결과값 Y를 P(y=1 | X), 즉, X(Input)가 주어졌을 때 결과가 1일 확률이라고 정의하면 Y값이 우리가 가진 기준보다 높을 때 고양이일 것이라고 판단할 수 있다.</p>
+
+<p>저 확률은 어떻게 구할까? X와 Y의 관계식을 가장 간단하게 1차식으로 정의하면 t = wX + b이 되고, X는 N x M 행렬이기 때문에 W는 N차 행렬로 정의할 수 있다.</p>
+
+<p>위의 식으로 구한 t의 값을 0 &lt;= Y &lt;= 1 이도록 하기 위해서 Sigmoid 함수를 사용하는데, 식과 그래프는 다음과 같다. <br />
+\(sig(t)=\frac{1}{1+e^(-t)}\)<br />
+(Sigmoid 함수 그래프 삽입)</p>
+
+<p>위의 식에서 t에 해당하는 것이 wX + b이고 Y = sig(wX + b)로 정의할 수 있다.</p>
+
+<h3 id="cost-function">Cost Function</h3>
+<p>우리가 참에 가까운 관계식을 찾아가기 위해서 w와 b를 계속해서 바꿔나가면서 학습을 할텐데, 지금의 관계식이 다른 것들보다 효과적인 모델인지 아닌지 판단할 수 있는 기준이 필요하다. 머신러닝에서는 Cost Function을 판단 기준으로 삼는다. 즉, 이 식으로 학습을 시킬 때의 Cost, 비용이 얼마나 드는지를 계산하는 것인데, 여기서 Cost란 참값과 예측값 사이의 차이의 합(Training Set이 여러개이기 때문에)이다. 쉽게 말해, 우리가 식을 가지고 도출해낸 예측값과 실제의 y값들의 차이가 적으면 적을수록 효과적인 모델을 찾아낸 것이라고 생각할 수 있다. 각 Training Set에서의 비용을 계산하는 식을 Loss(Error) Function이라고 하는데,</p>
+
+<p>Linear Regression에서는 아래와 같은 식으로, 
+\( L(X, Y) = ((wX+b)-Y)^2)\)</p>
+
+<p>Logistic Regression에서는 아래의 식을 사용한다.<br />
+\(L(y, Y) = -(Ylogy + (1-Y)log(1-y))\) (y는 예측값, Y는 참값이라고 하자)</p>
+
+<p>선형회귀와 달리 Logistic 회귀에서 이런 괴상한 식이 나오게 된 이유를 찬찬히 생각해보자. Loss Function의 기능은 예측값과 참값의 차이를 계산하는 것이기 때문에, 예측값과 참값이 다르면 값이 커지고, 같으면 값이 작아져야 한다. 그런데 Logistic Regression은 선형회귀분석과 달리 y값의 범위가 0과 1 사이로 한정되어 있기 때문에 기존의 것을 그대로 사용할 경우 함수의 결과값이 차이를 드러내는 데에 효과적이지 않다. 그래서 좀 더 극적으로 예측값과 참값의 차이를 드러내기 위해서 위와 같은 Loss Function을 고안하게 된 것이다.</p>
+
+<p>생각해보자. Y = 1이라고 하면 L = -logy가 될 것이고, L의 값이 작아지기 위해서는 y 값이 커야하고, y가 1일 때 가장 크다. 반대로 Y = 0이라고 하면 L = -log(1-y)이고, L의 값이 작아지기 위해서는 마찬가지로 1-y의 값이 커야하고, y가 0일 때 가장 크다.  위의 Loss Function은 예측값과 참값이 같을 때 가장 작은 값을, 다를 때 가장 큰 값을 리턴하는 아주 효과적인 함수인 것이다.</p>
+
+<p>각각의 Training Set에 대해 Loss를 구하면 그것을 다 더한 값이 Cost Function의 결과가 된다(내가 지금 가지고 있는 모델의 Cost).<br />
+\( Cost(w, b) = \frac{1}{M}sum(L(y, Y))\)</p>
+
+<h3 id="gradient-descent">Gradient Descent</h3>
+<p>Cost Function 구하는 식을 왜 배운 것일까? 이걸로 우리는 무엇을 할 수 있을까? 기계학습에서 ‘학습’이란 무엇인가? 하는 질문들은 결국에는 Cost Function으로 귀결된다. Cost Function의 결과는 현재 내가 가지고 있는 관계식(wX+b)를 바탕으로 내가 예측한 y값과 참값 Y 사이의 오차를 의미한다. 우리가 학습을 통해 좀 더 나은 예측을 한다는 것은 결국 예측값과 참값의 오차가 작아야 한다는 의미이고, 우리는 Cost Function의 결과값을 <strong>최소</strong>로 하는 w와 b 값을 찾아야 하는 것이다.</p>
+
+<p><strong>우리 학습의 목표는 Cost를 최소로 하는 w와 b를 찾는 것!!</strong></p>
+
+<p>그런데 Cost Function은 정적인 값, 현재 내가 들고 있는 w, b 값으로 얻어낸 결과이기 때문에 결과가 충분히 좋은 것인지 아니면 더 좋아질 수 있는지 알 수 없다. 결국 w, b 값을 요리조리 바꿔가면서 가장 최적의 값을 찾아가야 하는데, 이런 방법을 Gradient Descent라고 한다. 말 그대로 기울기를 따라 Cost를 내려가는 것이다.</p>
+
+<p>앞서 설명하였듯이 Gradient Descent(경사하강법)은 Cost Function, J(w, b) 함수의 최적값을 찾아가기 위한 방법이다.</p>
+
+<p><img src="http://localhost:4000/images/ml/gradient_descent.jpg" alt="2차함수로 경사하강법 설명하기" /></p>
+
+<p>위의 그림은 간단하게 2차함수로 경사하강법의 원리를 설명한 것이다. 그래프를 변수 w에 따른 Cost Function의 변화 그래프라고 가정해보자. 우리는 w값을 조정해가면서 가장 아래에 있는 최소값에 도달해야 한다. 그런데 현재 우리가 (1)지점에 있다고 가정하면, w값을 점점 줄여가야만 최소값에 도달할 수 있다. 반대로 (2)지점에 있을 때는 w값을 점점 키워가야만 최소값에 도달할 수 있다. 우리는 최소값을 가지는 w값이 무엇인지 모르기 때문에 그래프 상에서 어디에 있든지 한번에 한발짝씩 옮겨가면서 왼쪽으로 이동할지, 오른쪽으로 이동할지 결정해야만 한다. 그럼 한번에 이동할 양을 어떻게 정할까? Gradient Descent라는 이름에서도 알 수 있듯이 한번에 순간 기울기만큼 이동하기로 정한다.</p>
+
+<p>즉, 한번 w값을 옮길 때마다 \( w = w - alpha * \frac{dJ(w)}{dw}\) 만큼씩 w값에 변화를 주는 것이다. 이 식이 위에서 우리가 그림으로 이해한 것과 맞아떨어지는지 살펴보자. (1)지점에서는 기울기, 곧 \(\frac{dJ(w)}{dw}\)가 (+)이기 때문에 변화한 w값은 이전보다 왼쪽으로 이동한다. 반대로 (2)지점에서는 기울기가 (-)이기 때문에 (-) x (-) = (+)가 되어 w값은 증가하게 된다. 여기에서 alpha라고 하는 값을 기울기에 곱해주는데 alpha는 learning rate이라고 하며 이동하는 보폭을 조정하는 역할을 한다. learning rate이 너무 작은 값을 가지면 한번 움직일 때마다 종종걸음으로 이동하기 때문에 최소값을 찾는데 너무 많은 연산을 거쳐야 하고, 반대로 너무 큰 값을 가지면 한번 움직일 때마다 최소값을 그냥 지나쳐버려 값을 찾는데에 실패할 가능성이 있다. 그렇기 때문에 상황에 맞는 적절한 learning rate을 정하는 것 역시 학습에서 중요한 역할을 한다.</p>
+
+
+                </div>
+                <div class="read-all">
+                    <a  href="/2017/10/29/basic-of-logistic-regression/"><i class="fa fa-newspaper-o"></i>Read All</a>
+                </div>
+                <hr>
+              </li>
+            
+              <li>
+                <h2>
+                  <a class="post-link" href="/2017/09/26/qlearning-dummy/">[Q-Learning] Frozen Lake 사용하기</a>
+                </h2>
+                <div class="label">
+                    <div class="label-card">
+                        <i class="fa fa-calendar"></i>2017-09-26
+                    </div>
+                    <div class="label-card">
+                        
+                    </div>
+                    <div class="label-card">
+                        
+                    </div>
+
+                    <div class="label-card">
+                    
+
+
+<!-- <span class="point">•</span> -->
+<span class="categories">
+  <i class="fa fa-th-list"></i>
+  
+    
+        <a href="/category/#강화학습" title="Category: 강화학습" rel="category">강화학습</a>
+    
+  
+
+  <!-- <span class="point">•</span> -->
+</span>
+
+
+                    </div>
+
+                    <div class="label-card">
+                    
+<!-- <span class="point">•</span> -->
+<span class="pageTag">
+  <i class="fa fa-tags"></i>
+  
+    
+        <a href="/tag/#강화학습" title="Tag: 강화학습" rel="tag">강화학습</a>&nbsp;
+    
+        <a href="/tag/#OpenAI-Gym" title="Tag: OpenAI-Gym" rel="tag">OpenAI-Gym</a>&nbsp;
+    
+        <a href="/tag/#Frozen-Lake" title="Tag: Frozen-Lake" rel="tag">Frozen-Lake</a>
+    
+  
+
+</span>
+
+                    </div>
+                </div>
+                <div class="excerpt">
+                    <h2 id="강화학습이란">강화학습이란</h2>
+<p>심리학개론 수업을 들으면 스키너의 강화이론이라는 것을 배운다. 교육학에서도 언급되는 이론인데, 요지는 이렇다. 대상이 어떤 행동을 하게 하려면 Reward를 주고, 어떤 행동을 하지 않게 하려면 Punishment을 주면 된다. 강화학습은 강화이론을 머신러닝에 적용한 형태라고 이해하면 되는데 알고리즘에 따라서 어떤 판단을 했을 때 돌아오는 Reward에 따라서 이 판단이 옳은 것이었는지를 학습하는 것이다.</p>
+
+<p>강화학습을 진행할 때는 크게 state, action, reward에 신경을 쓰면 된다. state는 현재의 상태, 테트리스 게임의 예를 들면, 현재 아래에 쌓여있는 블럭과 아래로 내려오고 있는 블럭의 모양 (현재 화면의 상태) 등이 state에 해당될 것이다. 현재 state에 기반하여 다음에 취하게 될 동작을 나타낸다. 테트리스에서 블럭을 아래로 내릴지, 회전시킬지, 옆으로 움직일지 등이 action에 해당된다. reward는 action에 따라 얻게 되는 보상이다. Reward는 각 action마다 특정한 값으로 보상이 되는데, 양수/음수/0의 값이 돌아온다.</p>
+
+<p>학습을 하는 동안 우리는 <strong>특정 state에서 어떤 action을 취했을 때 돌아오는 reward를 피드백 삼아 앞으로 어떤 action을 취해야 reward를 최대화할 수 있는지 학습</strong>시키는 방법을 공부하게 될 것이다.</p>
+
+<h2 id="playing-openai-gym-games">Playing OpenAI Gym Games</h2>
+<p>“OpenAI Gym is a toolkit for developing and comparing reinforcement learning algorithms.”</p>
+
+<p>강화학습을 공부하면서 알게된 신세계가 있는데 바로 OpenAI Gym이라는 툴이다. Gym이라는 이름처럼 강화학습 알고리즘을 훈련시키는 체육관 같은 툴킷인데 여러 환경이 구축되어 있다. 앞서 설명했듯이 강화학습은 특정 환경에서 어떤 action을 취할 것인가 하는 모델을 구하는 것인데, OpneAI Gym이 환경을 구성하고 우리는 그 환경 안에서 나의 강화학습 모델이 잘 동작을 하는데 테스트 해보는 것이다. 여러 환경 중에서 김성훈 교수님 강의에서는 강화학습 기초 알고리즘을 배우기 위해서 그 중에서 Frozen Lake라는 환경을 주로 활용한다.</p>
+
+<p>Frozen Lake는 얼어붙은 호수 위를 가상으로 만들어 놓은 것인데, M by N의 게임판에서 상하좌우로 이동을 하면서 시작점에서 도착점까지 물에 빠지지 않고 이동하는 것을 reward 1로 계산한다. 완벽하게 얼어붙은 호수가 아니기 때문에 중간중간 성긴 얼음판(Hole)이 있고 이 지점으로 이동할 경우 물에 빠져 게임이 종료된다. 발을 내딛기 전(action을 취하기 전)까지는 그 앞이 얼음인지 구멍인지 알 수 없기 때문에 이것저것 시도해보면서 빠지지 않고 도착점에 갈 수 있도록 학습을 해야한다.</p>
+
+<p>OpenAI Gym을 사용하려면 먼저 github에서 gym 라이브러리를 다운받고 필요한 패키지들을 설치해야 한다.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt <span class="nb">install </span>cmake
+apt-get <span class="nb">install </span>zlib1g-dev
+<span class="nb">sudo</span> <span class="nt">-H</span> pip <span class="nb">install </span>gym
+</code></pre></div></div>
+
+<p>아래는 Frozen Lake 환경에서 사용자 키입력으로 움직이는 게임을 구현한 것이다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">gym</span>  <span class="c"># OpenAI Gym을 사용하기 위해 라이브러리 import</span>
+<span class="kn">from</span> <span class="nn">gym.envs.registration</span> <span class="kn">import</span> <span class="n">register</span>
+<span class="kn">import</span> <span class="nn">sys</span><span class="p">,</span> <span class="n">tty</span><span class="p">,</span> <span class="n">termios</span> <span class="c"># 키 입력을 위한 라이브러리</span>
+
+<span class="c"># 키입력을 받기 위한 클래스</span>
+<span class="k">class</span> <span class="nc">_Getch</span><span class="p">:</span>
+  <span class="c"># 키값 리턴</span>
+  <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+      <span class="n">fd</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">stdin</span><span class="o">.</span><span class="n">fileno</span><span class="p">()</span>
+      <span class="n">old_setting</span> <span class="o">=</span> <span class="n">termios</span><span class="o">.</span><span class="n">tcgetattr</span><span class="p">(</span><span class="n">fd</span><span class="p">)</span>
+      <span class="k">try</span><span class="p">:</span>
+          <span class="n">tty</span><span class="o">.</span><span class="n">setraw</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">stdin</span><span class="o">.</span><span class="n">fileno</span><span class="p">())</span>
+          <span class="n">ch</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">stdin</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+      <span class="k">finally</span><span class="p">:</span>
+          <span class="n">termios</span><span class="o">.</span><span class="n">tcsetattr</span><span class="p">(</span><span class="n">fd</span><span class="p">,</span> <span class="n">termios</span><span class="o">.</span><span class="n">TCSADRAIN</span><span class="p">,</span> <span class="n">old_setting</span><span class="p">)</span>
+      <span class="k">print</span><span class="p">(</span><span class="n">ch</span><span class="p">)</span>
+      <span class="k">return</span> <span class="n">ch</span>
+  
+<span class="n">inkey</span> <span class="o">=</span> <span class="n">_Getch</span><span class="p">()</span>
+
+<span class="c"># OpenAI Gym에서 미리 정의되어 있는 action 매핑</span>
+<span class="n">LEFT</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">DOWN</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">RIGHT</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">UP</span> <span class="o">=</span> <span class="mi">3</span>
+
+<span class="c"># 키보드 키와 상하좌우 동작을 매핑</span>
+<span class="n">arrow_keys</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">'w'</span> <span class="p">:</span> <span class="n">UP</span><span class="p">,</span>
+    <span class="s">'s'</span> <span class="p">:</span> <span class="n">DOWN</span><span class="p">,</span>
+    <span class="s">'d'</span> <span class="p">:</span> <span class="n">RIGHT</span><span class="p">,</span>
+    <span class="s">'a'</span> <span class="p">:</span> <span class="n">LEFT</span>
+<span class="p">}</span>
+
+<span class="c"># Gym 환경설정</span>
+<span class="c"># https://gym.openai.com/envs/ 에 들어가면 다양한 환경을 살펴볼 수 있다.</span>
+<span class="c"># Frozen-Lake : https://gym.openai.com/envs/FrozenLake-v0/ </span>
+<span class="n">register</span><span class="p">(</span>
+    <span class="nb">id</span> <span class="o">=</span> <span class="s">'FrozenLake-v3'</span><span class="p">,</span> 
+    <span class="n">entry_point</span><span class="o">=</span><span class="s">'gym.envs.toy_text:FrozenLakeEnv'</span><span class="p">,</span> 
+    <span class="n">kwargs</span><span class="o">=</span><span class="p">{</span>
+        <span class="s">'map_name'</span> <span class="p">:</span> <span class="s">'4x4'</span><span class="p">,</span> <span class="c"># 4x4 크기의 맵</span>
+        <span class="s">'is_slippery'</span> <span class="p">:</span> <span class="bp">False</span> <span class="c"># 미끄러질 가능성 없음 (나중에 다룰 것)</span>
+    <span class="p">}</span>
+<span class="p">)</span>
+
+<span class="n">env</span> <span class="o">=</span> <span class="n">gym</span><span class="o">.</span><span class="n">make</span><span class="p">(</span><span class="s">"FrozenLake-v3"</span><span class="p">)</span>
+<span class="n">env</span><span class="o">.</span><span class="n">render</span><span class="p">()</span>
+
+<span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+    <span class="c"># 키 값을 기다린다</span>
+    <span class="n">key</span> <span class="o">=</span> <span class="n">inkey</span><span class="p">()</span>
+    <span class="c"># 만약에 우리가 정의한 키 값이 아닌 경우, 게임 종료</span>
+    <span class="k">if</span> <span class="n">key</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">arrow_keys</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">"Game aborted!"</span><span class="p">)</span>
+        <span class="k">break</span>
+    
+    <span class="c"># 키값과 액션 매핑을 사용해서 상하좌우 중 어떤 행동을 취할지 리턴</span>
+    <span class="n">action</span> <span class="o">=</span> <span class="n">arrow_keys</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+    <span class="c"># env.step(action) 은 결정한 행동을 실행한다는 의미이고,</span>
+    <span class="c"># 행동의 결과로 이동한 자리가 어딘지(state), 행동의 reward는 얼마인지(reward), </span>
+    <span class="c"># 게임이 끝났는지: 구멍에 빠지거나 결승점에 도착하거나 (done), 그 밖의 정보 (info)가 리턴된다.</span>
+    <span class="n">state</span><span class="p">,</span> <span class="n">reward</span><span class="p">,</span> <span class="n">done</span><span class="p">,</span> <span class="n">info</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">action</span><span class="p">)</span>
+
+    <span class="c"># 화면에 Frozen Lake 맵과 현재 위치가 어딘지 그림을 그려줌 (Frozen Lake는 콘솔에 출력)</span>
+    <span class="n">env</span><span class="o">.</span><span class="n">render</span><span class="p">()</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"state : {0}, Action : {1}, Reward : {2}, Info : {3}"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">state</span><span class="p">,</span> <span class="n">action</span><span class="p">,</span> <span class="n">reward</span><span class="p">,</span> <span class="n">info</span><span class="p">))</span>
+
+    <span class="c"># 게임이 끝났으면 Reward를 출력</span>
+    <span class="c"># Frozen lake는 결승점에 도착해야만 Reward 1을 받는다.</span>
+    <span class="k">if</span> <span class="n">done</span> <span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">"Finished with reward {0}"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">reward</span><span class="p">))</span>
+        <span class="k">break</span>
+
+</code></pre></div></div>
+
+<p>위의 예제는 OpenAi Gym 환경에 강화학습을 적용하기 전에 Frozen Lake라는 환경이 대략 어떤 식으로 구성되어 있고 동작하는지 이해하기 위한 것이다. 위의 예제를 어느 정도 이해하였다면 이제 이 환경에 강화학습 이론을 적용해보자.</p>
+
+                </div>
+                <div class="read-all">
+                    <a  href="/2017/09/26/qlearning-dummy/"><i class="fa fa-newspaper-o"></i>Read All</a>
+                </div>
+                <hr>
+              </li>
+            
+              <li>
+                <h2>
+                  <a class="post-link" href="/2017/09/09/function/">[기초 파이썬] 파이썬 함수의 숨은 기능들</a>
+                </h2>
+                <div class="label">
+                    <div class="label-card">
+                        <i class="fa fa-calendar"></i>2017-09-09
+                    </div>
+                    <div class="label-card">
+                        
+                    </div>
+                    <div class="label-card">
+                        
+                    </div>
+
+                    <div class="label-card">
+                    
+
+
+<!-- <span class="point">•</span> -->
+<span class="categories">
+  <i class="fa fa-th-list"></i>
+  
+    
+        <a href="/category/#Python" title="Category: Python" rel="category">Python</a>
+    
+  
+
+  <!-- <span class="point">•</span> -->
+</span>
+
+
+                    </div>
+
+                    <div class="label-card">
+                    
+<!-- <span class="point">•</span> -->
+<span class="pageTag">
+  <i class="fa fa-tags"></i>
+  
+    
+        <a href="/tag/#Python" title="Tag: Python" rel="tag">Python</a>
+    
+  
+
+</span>
+
+                    </div>
+                </div>
+                <div class="excerpt">
+                    <p>프로그래밍을 처음 배우는 사람을 이해시키기 힘든 개념 중 하나가 바로 함수이다. 그도 그런 게 나 역시도 중학교 수학 시간에 함수라는 개념을 이해하지 못하고 넘어간 학생 중 하나였다. 기계적으로 문제만 맞게 풀었을 뿐 함수, Function이 어떤 의미인지 완벽하게 이해하지는 못했다.</p>
+
+<p>함수는 말그대로 어떤 Function, 즉 기능을 수행하는 뭉치라고 이해할 수 있는데, 예를 들어, 수학에서 y = x라는 함수는 x가 어떤 값이 되었든 그 값을 y에게 돌려주는 기능을 한다. 프로그래밍에서의 함수도 마찬가지인데, 다만 수학에서 함수는 항상 Input이 있으면 1:1이든 다:1이든 Output을 내놓았다면, 프로그래밍에서의 함수는 Input과 Output이 있을 수도 있고, 없을 수도 있다. 그래서 프로그래밍에서의 함수는 Function을 가진 단위이다라고 이해하는 게 더 효과적이다.</p>
+
+<p>보통 함수를 구성할 때는 세가지가 반드시 필요한데, 그것들은 1) 함수명 2) Parameter 3) Return 이다. 이 중 2번과 3번은 Null(없는)의 상태인 것도 포함한다. 다른 언어들에서보다 파이썬에서는 함수를 구성하기가 참 간단하다. C/C++, Java에서는 파라미터나 리턴값이 어떤 데이터형을 가지는지 일일이 명시해주어야 하는데 파이썬에는 변수에도 명시적인 데이터형을 주지 않기 때문에 함수에서도 마찬가지로 파라미터와 리턴값의 데이터형을 명시하지 않아도 문제가 되지 않는다.</p>
+
+<h3 id="위치-인자와-키워드-인자">위치 인자와 키워드 인자</h3>
+<p>위치인자는 함수를 정의할 때 파라미터 자리에 <strong>순서대로</strong> 이름을 매긴 것이다. 따라서 함수를 호출할 때는 정해진 위치인자 순서대로 의미에 맞는 매개변수를 전달해야 한다.</p>
+
+<p>키워드인자는 각  매개변수에 맞는 이름을 붙인 것인데, 위치인자와 달리 키워드인자를 명시하여 매개변수를 전달하면 꼭 정의된 순서대로 전달하지 않아도 되는 이점이 있다.</p>
+
+<p>단, 위치 인자와 키워드 인자를 섞어 사용한다면 위치인자가 먼저 나와야 한다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">menu</span><span class="p">(</span><span class="n">wine</span><span class="p">,</span> <span class="n">entree</span><span class="p">,</span> <span class="n">dessert</span><span class="p">):</span>
+  <span class="k">return</span> <span class="p">{</span><span class="s">'wine'</span> <span class="p">:</span> <span class="n">wine</span><span class="p">,</span> <span class="s">"entree"</span> <span class="p">:</span> <span class="n">entree</span><span class="p">,</span> <span class="s">"dessert"</span> <span class="p">:</span> <span class="n">dessert</span><span class="p">}</span>
+
+<span class="c"># 위치 인자를 사용한 함수 호출</span>
+<span class="n">menu</span><span class="p">(</span><span class="s">'chardonnay'</span><span class="p">,</span> <span class="s">'chicken'</span><span class="p">,</span> <span class="s">'cake'</span><span class="p">)</span>
+
+<span class="c"># 키워드 인자를 사용한 함수 호출</span>
+<span class="n">menu</span><span class="p">(</span><span class="n">wine</span><span class="o">=</span><span class="s">'chardonnay'</span><span class="p">,</span> <span class="n">dessert</span><span class="o">=</span><span class="s">'cake'</span><span class="p">,</span> <span class="n">entree</span><span class="o">=</span><span class="s">'chicken'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h4 id="args-과-kwargs-">args *과 kwargs **</h4>
+<p>파이썬에서 *은 포인터가 아니라 매개변수에서 __위치인자들을 튜플 하나로 묶어주는 역할__을 한다(포인터에 익숙한 나로서는 이 기능이 항상 헷갈린다).</p>
+
+<p>**은 키워드인자들을 딕셔너리로 하나로 묶어준다.</p>
+
+<p>마찬가지로, 위치인자를 나타낸느 args를 먼저 배치해야 한다.</p>
+
+<h3 id="함수도-객체다">함수도 객체다!</h3>
+<p>파이썬에서는 숫자, 문자열, 튜플, 리스트, 그리고 함수 할 것 없이 모두 객체이다. 이 말인즉슨, 우리가 숫자를 변수로 사용하고 함수의 인자로 사용하고, 리스트의 아이템으로 사용하는 것처럼 함수도 같은 방식으로 사용할 수 있다는 뜻이다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">answer</span><span class="p">()</span> <span class="p">:</span>
+  <span class="k">print</span><span class="p">(</span><span class="s">"Function answer is called"</span><span class="p">)</span>
+  
+<span class="k">def</span> <span class="nf">run_something</span><span class="p">(</span><span class="n">func</span><span class="p">):</span> <span class="c"># 함수명을 파라미터로</span>
+  <span class="n">func</span><span class="p">()</span>
+  
+<span class="o">&gt;&gt;&gt;</span> <span class="n">run_something</span><span class="p">(</span><span class="n">answer</span><span class="p">)</span>
+<span class="c"># Function answer is called will be printed</span>
+</code></pre></div></div>
+
+<p>그럼 아마  파이썬에서는 전역 변수와 같은 이름을 가진 함수를 사용하지 않는 게 좋겠다. 만약에 그렇다면 뒤에 정의된 것으로 덮어써질테니까 (from xxx import * 하지 않는 것과 비슷한 이유)</p>
+
+<h3 id="내부-함수">내부 함수</h3>
+<p>C/C++을 많이 쓴 나로서는 처음에 접했을 때 가장 놀라웠던 건 바로 이 내부 함수의 개념이었다. C에서 함수의 생명 주기는 return이 되면 끝나기 때문에 함수 안에 내부 함수가 있어도 리턴이 되면 생명이 끝난다고 생각했기 때문이다. 그런데 만약에 겉함수의 리턴값이 내부함수의 함수명인 경우 refcounter가 하나 있기 때문에 외부함수의 리턴값을 바탕으로 내부함수를 한번 더 호출할 수 있게 되는 것.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">outer</span><span class="p">()</span> <span class="p">:</span>
+  <span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">a</span><span class="o">+</span><span class="n">b</span>
+  <span class="k">return</span> <span class="n">inner</span>
+  
+<span class="o">&gt;&gt;&gt;</span> <span class="n">func</span> <span class="o">=</span> <span class="n">outer</span><span class="p">()</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">func</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="c"># 3이 출력</span>
+</code></pre></div></div>
+<h4 id="클로져closure">클로져(Closure)</h4>
+<p>몰랐는데 이런 동작을 하는 걸 클로져라고 부르나보다. 클로져는 다른 함수에 의해 동적으로 생성되고, 바깥 함수로부터 생성된 변수값을 변경하고, 저장할 수 있는 함수를 뜻한다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">knights2</span><span class="p">(</span><span class="n">saying</span><span class="p">):</span>
+  <span class="k">def</span> <span class="nf">inner2</span><span class="p">():</span>
+    <span class="k">return</span> <span class="s">"We are the knights who say : '</span><span class="si">%</span><span class="s">s'"</span> <span class="o">%</span> <span class="n">saying</span>
+    
+<span class="o">&gt;&gt;&gt;</span> <span class="n">a</span> <span class="o">=</span> <span class="n">knights2</span><span class="p">(</span><span class="s">"Duck"</span><span class="p">)</span> 
+<span class="o">&gt;&gt;&gt;</span> <span class="n">b</span> <span class="o">=</span> <span class="n">knights2</span><span class="p">(</span><span class="s">"Hasenpfeffer"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>위 코드에서 a, b는 모두 inner2라는 내부 함수를 가리키겠지만, knights2 함수의 서로 다른 매개변수 값을 가지고 있을 것이다.</p>
+
+<p>내부함수는 루프나 코드 중복을 피하기 위해 또 다른 함수 내에 어떤 복잡한 작업을 한 번 이상 수행할 때 유용하게 사용된다.</p>
+
+<h3 id="람다함수">람다함수</h3>
+<p>람다함수는 간단하게 한줄로 표현되는 이름없는 함수이다.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">stairs</span> <span class="o">=</span> <span class="p">[</span><span class="s">'thud'</span><span class="p">,</span> <span class="s">'meow'</span><span class="p">,</span> <span class="s">'hiss'</span><span class="p">]</span>
+<span class="n">edit_story</span><span class="p">(</span><span class="n">stairs</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">word</span> <span class="p">:</span> <span class="n">word</span><span class="o">.</span><span class="n">capitalize</span><span class="p">()</span> <span class="o">+</span> <span class="s">'!'</span><span class="p">)</span>
+</code></pre></div></div>
+<p>람다함수는  인자이름 : 수행할 작업의 형태로 간단하게 표현할 수 있다. 보통의 경우에는 함수를 명시적으로 작성하는 게 좋지만, 람다는 많은 작은 함수를 정의하고, 이들을 호출해서 얻은 모든 결과값을 저장해야하는 경우에 유용하다.</p>
+
+                </div>
+                <div class="read-all">
+                    <a  href="/2017/09/09/function/"><i class="fa fa-newspaper-o"></i>Read All</a>
+                </div>
+                <hr>
+              </li>
+            
+        </ul>
+
+
+
+        <!-- Pagination links -->
+        <div class="pagination">
+          
+            <a href="/index.html" class="previous"><i class="fa fa-angle-double-left"></i></a>
+            <a href="/page2" class="previous"><i class="fa fa-angle-left"></i></a>
+          
+          <span class="page_number ">3/4</span>
+          
+            <a href="/page4" class="next"><i class="fa fa-angle-right"></i></a>
+            <a href="/page4" class="next"><i class="fa fa-angle-double-right"></i></a>
+          
+        </div>
+    </div>
+    <!-- <button class="anchor"><i class="fa fa-anchor"></i></button> -->
+    <div class="right">
+        <div class="wrap">
+            <div class="side">
+                <div>
+                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                    Recent Posts
+                </div>
+                <ul class="content-ul" recent>
+                    
+                        <li><a href="/2018/07/30/8_4_fundamental_subspaces/">[선형대수] 8강 : 4가지 부 벡터 공간</a></li>
+                    
+                        <li><a href="/2018/07/26/7_linear_independent/">[선형대수] 7강 : 선형독립 및 기저벡터</a></li>
+                    
+                        <li><a href="/2018/07/25/6_null_space/">[선형대수] 6강 : 영벡터공간과 해집합</a></li>
+                    
+                        <li><a href="/2018/07/25/5_vector_space/">[선형대수] 5강 : 벡터 공간과 열벡터</a></li>
+                    
+                        <li><a href="/2018/06/29/4_inverse_transpose/">[선형대수] 4강 : 역행렬과 전치행렬</a></li>
+                    
+                        <li><a href="/2018/06/26/3_elementary-matrix/">[선형대수] 3강 : LU Decomposition</a></li>
+                    
+                        <li><a href="/2018/06/26/2_gaussian-elimination/">[선형대수] 2강 : 1차 연립방정식과 가우스소거법</a></li>
+                    
+                        <li><a href="/2018/06/22/1_linearity/">[선형대수] 1강 : 선형성의 정의 및 1차 연립방정식의 의미</a></li>
+                    
+                        <li><a href="/2018/06/21/kalman-filter-2/">[Udacity SDCND] 칼만필터 Kalman Filter 이해하기 (2)</a></li>
+                    
+                        <li><a href="/2018/06/20/kalman-filter-1/">[Udacity SDCND] 칼만필터 Kalman Filter 이해하기 (1)</a></li>
+                    
+                </ul>
+            </div>
+
+            <!-- Content -->
+            <div class="side ">
+                <div>
+                    <i class="fa fa-th-list"></i>
+                    Categories
+                </div>
+                <ul class="content-ul" cate>
+                    
+                    <li>
+                        <a href="/category/#Python" class="categories-list-item" cate="Python">
+                            <span class="name">
+                                Python
+                            </span>
+                            <span class="badge">4</span>
+                        </a>
+                    </li>
+                    
+                    <li>
+                        <a href="/category/#강화학습" class="categories-list-item" cate="강화학습">
+                            <span class="name">
+                                강화학습
+                            </span>
+                            <span class="badge">1</span>
+                        </a>
+                    </li>
+                    
+                    <li>
+                        <a href="/category/#Coursera" class="categories-list-item" cate="Coursera">
+                            <span class="name">
+                                Coursera
+                            </span>
+                            <span class="badge">1</span>
+                        </a>
+                    </li>
+                    
+                    <li>
+                        <a href="/category/#Machine-Learning" class="categories-list-item" cate="Machine-Learning">
+                            <span class="name">
+                                Machine-Learning
+                            </span>
+                            <span class="badge">4</span>
+                        </a>
+                    </li>
+                    
+                    <li>
+                        <a href="/category/#Udacity-SDCND" class="categories-list-item" cate="Udacity-SDCND">
+                            <span class="name">
+                                Udacity-SDCND
+                            </span>
+                            <span class="badge">2</span>
+                        </a>
+                    </li>
+                    
+                    <li>
+                        <a href="/category/#Linear-Algebra" class="categories-list-item" cate="Linear-Algebra">
+                            <span class="name">
+                                Linear-Algebra
+                            </span>
+                            <span class="badge">8</span>
+                        </a>
+                    </li>
+                    
+                </ul>
+            </div>
+            <!-- 其他div框放到这里 -->
+            <div class="side">
+                <div>
+                    <i class="fa fa-tags"></i>
+                    Tags
+                </div>
+                <div class="tags-cloud">
+                    
+                    
+                    
+                    
+
+                    
+
+                    
+                      
+                      
+                      
+                      
+                      
+                      <a href="/tag/#Python" style="font-size: 13pt; color: #555;">Python</a>
+                    
+                      
+                      
+                      
+                      
+                      
+                      <a href="/tag/#강화학습" style="font-size: 9pt; color: #999;">강화학습</a>
+                    
+                      
+                      
+                      
+                      
+                      
+                      <a href="/tag/#OpenAI-Gym" style="font-size: 9pt; color: #999;">OpenAI-Gym</a>
+                    
+                      
+                      
+                      
+                      
+                      
+                      <a href="/tag/#Frozen-Lake" style="font-size: 9pt; color: #999;">Frozen-Lake</a>
+                    
+                      
+                      
+                      
+                      
+                      
+                      <a href="/tag/#Deep-Learning" style="font-size: 10.5pt; color: #888;">Deep-Learning</a>
+                    
+                      
+                      
+                      
+                      
+                      
+                      <a href="/tag/#Coursera" style="font-size: 10.5pt; color: #888;">Coursera</a>
+                    
+                      
+                      
+                      
+                      
+                      
+                      <a href="/tag/#Machine-Learning" style="font-size: 15.5pt; color: #333;">Machine-Learning</a>
+                    
+                      
+                      
+                      
+                      
+                      
+                      <a href="/tag/#Beginner" style="font-size: 13pt; color: #555;">Beginner</a>
+                    
+                      
+                      
+                      
+                      
+                      
+                      <a href="/tag/#Linear-Regression" style="font-size: 9pt; color: #999;">Linear-Regression</a>
+                    
+                      
+                      
+                      
+                      
+                      
+                      <a href="/tag/#지도학습" style="font-size: 9pt; color: #999;">지도학습</a>
+                    
+                      
+                      
+                      
+                      
+                      
+                      <a href="/tag/#SelfDriving-Car" style="font-size: 10.5pt; color: #888;">SelfDriving-Car</a>
+                    
+                      
+                      
+                      
+                      
+                      
+                      <a href="/tag/#Math" style="font-size: 18pt; color: #000;">Math</a>
+                    
+                      
+                      
+                      
+                      
+                      
+                      <a href="/tag/#Linear-Algebra" style="font-size: 18pt; color: #000;">Linear-Algebra</a>
+                    
+                      
+                      
+                      
+                      
+                      
+                      <a href="/tag/#KMOOC" style="font-size: 18pt; color: #000;">KMOOC</a>
+                    
+                </div>
+            </div>
+
+            <!-- <div class="side">
+                <div>
+                    <i class="fa fa-external-link"></i>
+                    Links
+                </div>
+                <ul  class="content-ul">
+
+                </ul>
+            </div> -->
+        </div>
+    </div>
+</div>
+<!-- <script src="/js/scroll.min.js " charset="utf-8"></script> -->
+<!-- <script src="/js/pageContent.js " charset="utf-8"></script> -->
+
+
+    <footer class="site-footer">
+
+
+    <div class="wrapper">
+
+        <p class="description">
+            
+        </p>
+        <p class="contact">
+            Contact me at: 
+            <a href="https://github.com/ahracho" title="GitHub"><i class="fa fa-github" aria-hidden="true"></i></a>  
+            <a href="mailto:ahracho89@gmail.com" title="email"><i class="fa fa-envelope-o" aria-hidden="true"></i></a>     
+            <a href="https://www.facebook.com/ahra.cho3" title="Facebook"><i class="fa fa-facebook-official" aria-hidden="true"></i></a>    
+        </p>
+        <p class="power">
+            <span>
+                Site powered by <a href="https://jekyllrb.com/">Jekyll</a> & <a href="https://pages.github.com/">Github Pages</a>.
+            </span>
+            <span>
+                Theme designed by <a href="https://github.com/Gaohaoyang">HyG</a>.
+            </span>
+        </p>
+    </div>
+</footer>
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+    <div class="back-to-top">
+    <a href="#top" data-scroll>
+        <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    </a>
+</div>
+
+    <script src=" /js/main.js " charset="utf-8"></script>
+    <script src=" /js/smooth-scroll.min.js " charset="utf-8"></script>
+    <script type="text/javascript">
+      smoothScroll.init({
+        speed: 500, // Integer. How fast to complete the scroll in milliseconds
+        easing: 'easeInOutCubic', // Easing pattern to use
+        offset: 20, // Integer. How far to offset the scrolling anchor location in pixels
+      });
+    </script>
+    <!-- <script src=" /js/scroll.min.js " charset="utf-8"></script> -->
+  </body>
+
+</html>

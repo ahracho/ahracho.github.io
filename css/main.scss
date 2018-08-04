@@ -47,7 +47,4 @@
 // Import partials from `sass_dir` (defaults to `_sass`)
 @import "reset", "header", "post", "page", "syntax-highlighting", "index", "demo", "footer", "scrollbar", "backToTop";
 @import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
-@font-face {
-	  font-family: "Gidole-Regular";
-		  src: url( '../_assets/fonts/Gidole-Regular.ttf') format( 'truetype');
-}
+

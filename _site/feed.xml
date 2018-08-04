@@ -1,0 +1,419 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>AHRA's Tech Blog</title>
+    <description></description>
+    <link>http://localhost:4000/</link>
+    <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Sat, 04 Aug 2018 14:06:37 +0900</pubDate>
+    <lastBuildDate>Sat, 04 Aug 2018 14:06:37 +0900</lastBuildDate>
+    <generator>Jekyll v3.8.3</generator>
+    
+      <item>
+        <title>[선형대수] 8강 : 4가지 부 벡터 공간</title>
+        <description>
+&lt;h2 id=&quot;한양대-이상화-교수님의-오픈-강의로-공부한-내용을-정리한-것입니다-강의-영상과-강의-노트는-다음-링크에서-다운받아-작성하였습니다-한양대-mooc&quot;&gt;한양대 이상화 교수님의 오픈 강의로 공부한 내용을 정리한 것입니다. 강의 영상과 강의 노트는 다음 링크에서 다운받아 작성하였습니다 &lt;a href=&quot;http://www.kocw.net/home/search/kemView.do?kemId=977757&quot;&gt;한양대 MOOC&lt;/a&gt;.&lt;/h2&gt;
+
+&lt;h2 id=&quot;4-fundamental-subspaces&quot;&gt;4 Fundamental Subspaces&lt;/h2&gt;
+&lt;img src=&quot;http://localhost:4000/images/linear-algebra/ch2/8-1.png&quot; alt=&quot;Note1&quot; title=&quot;Note1&quot; /&gt;  &lt;img src=&quot;http://localhost:4000/images/linear-algebra/ch2/8-2.png&quot; alt=&quot;Note2&quot; title=&quot;Note2&quot; /&gt;
+
+A : m X n 행렬이고, Rank r 일 때,
+&lt;ul&gt;
+  &lt;li&gt;Column Space C(A) : 차원은 r&lt;/li&gt;
+  &lt;li&gt;Null Space N(A) : 차원은 (n - r)&lt;/li&gt;
+  &lt;li&gt;Row Space C(AT) : 차원은 r&lt;/li&gt;
+  &lt;li&gt;
+    Left Null Space N(AT) : 차원은 (m - r)
+  &lt;/li&gt;
+  &lt;li&gt;C(A) and N(AT) ⊂ Rm, C(AT) and N(A) ⊂ Rn&lt;/li&gt;
+  &lt;li&gt;Dim(C(A)) + Dim(N(AT)) = m, Dim(C(AT)) + Dim(N(A)) = n&lt;/li&gt;
+  &lt;li&gt;C(A) ⊥ N(AT), C(AT) ⊥ N(A)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;existence-of-inverse&quot;&gt;Existence of Inverse&lt;/h2&gt;
+&lt;img src=&quot;http://localhost:4000/images/linear-algebra/ch2/8-3.png&quot; alt=&quot;Note3&quot; title=&quot;Note3&quot; /&gt; &lt;img src=&quot;http://localhost:4000/images/linear-algebra/ch2/8-4.png&quot; alt=&quot;Note4&quot; title=&quot;Note4&quot; /&gt;
+&lt;ul&gt;
+  &lt;li&gt;An inverse exists only when the rank is as large as possible.&lt;/li&gt;
+  &lt;li&gt;정사각행렬이 아닌 경우에, 긴 방향으로만 역행렬이 존재한다.&lt;/li&gt;
+  &lt;li&gt;For r = m (m &amp;lt; n), if there is a right inverse, Ax=b always has a solution(infinitely many solutions) (식보다 미지수가 많은 경우)&lt;/li&gt;
+  &lt;li&gt;For r = n (m &amp;gt; n), it is hard to have an inverse, but once it exists it guarantees an unique solution. (미지수보다 식이 많은 경우 - 2차원에 여러개 직선)&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        <pubDate>Mon, 30 Jul 2018 00:00:00 +0900</pubDate>
+        <link>http://localhost:4000/2018/07/30/8_4_fundamental_subspaces/</link>
+        <guid isPermaLink="true">http://localhost:4000/2018/07/30/8_4_fundamental_subspaces/</guid>
+        
+        <category>Math</category>
+        
+        <category>Linear-Algebra</category>
+        
+        <category>KMOOC</category>
+        
+        
+        <category>Linear-Algebra</category>
+        
+      </item>
+    
+      <item>
+        <title>[선형대수] 7강 : 선형독립 및 기저벡터</title>
+        <description>
+&lt;h2 id=&quot;한양대-이상화-교수님의-오픈-강의로-공부한-내용을-정리한-것입니다-강의-영상과-강의-노트는-다음-링크에서-다운받아-작성하였습니다-한양대-mooc&quot;&gt;한양대 이상화 교수님의 오픈 강의로 공부한 내용을 정리한 것입니다. 강의 영상과 강의 노트는 다음 링크에서 다운받아 작성하였습니다 &lt;a href=&quot;http://www.kocw.net/home/search/kemView.do?kemId=977757&quot;&gt;한양대 MOOC&lt;/a&gt;.&lt;/h2&gt;
+
+&lt;h2 id=&quot;linear-independence&quot;&gt;Linear Independence&lt;/h2&gt;
+&lt;h3 id=&quot;basis-vectors-and-dimension&quot;&gt;Basis Vectors and Dimension&lt;/h3&gt;
+&lt;img src=&quot;http://localhost:4000/images/linear-algebra/ch2/7-1.png&quot; alt=&quot;Note1&quot; title=&quot;Note1&quot; /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;C1V1 + C2V2 + ... + CnVn = 0&lt;/code&gt; 식에서 &lt;code class=&quot;highlighter-rouge&quot;&gt;C1 = C2 = ... = Cn = 0&lt;/code&gt;일 때만 식이 만족할 때 &lt;code class=&quot;highlighter-rouge&quot;&gt;V1, V2, ..., Vn&lt;/code&gt; 벡터들이 선형독립이다.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Vk&lt;/code&gt;가 다른 벡터들의 조합으로 표현 불가할 때 선형독립이다.&lt;/li&gt;
+  &lt;li&gt;가우스 소거법의 결과로 m개의 pivot이 나왔을 때, 해당 m개의 열벡터는 서로 선형독립이다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;rank-of-a&quot;&gt;Rank of A&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;선형독립인 열벡터의 수&lt;/li&gt;
+  &lt;li&gt;선형독립인 행벡터의 수&lt;/li&gt;
+  &lt;li&gt;가우스 소거법 pivot의 개수&lt;/li&gt;
+  &lt;li&gt;C(A)의 Dimension&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;spanning&quot;&gt;Spanning&lt;/h3&gt;
+&lt;img src=&quot;http://localhost:4000/images/linear-algebra/ch2/7-2.png&quot; alt=&quot;Note2&quot; title=&quot;Note2&quot; /&gt;
+&lt;ul&gt;
+  &lt;li&gt;벡터들이 어떤 공간을 구성할 때 span한다고 한다 (All linear combinations of vectors constract a vector space).&lt;/li&gt;
+  &lt;li&gt;특정 공간을 구성하는 벡터의 조합은 유일하지 않다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;basis-vector&quot;&gt;Basis Vector&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;Minimum number of vectors to span the vector space : 2차원 공간을 표현하기 위해서는 적어도 2개의 벡터가 필요&lt;/li&gt;
+  &lt;li&gt;Maximum number of linearly independent vectors&lt;/li&gt;
+  &lt;li&gt;특정 공간을 표현하는 기저 벡터는 유일하지 않지만, 특정 기저벡터의 선형 조합은 유일하다.&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        <pubDate>Thu, 26 Jul 2018 00:00:00 +0900</pubDate>
+        <link>http://localhost:4000/2018/07/26/7_linear_independent/</link>
+        <guid isPermaLink="true">http://localhost:4000/2018/07/26/7_linear_independent/</guid>
+        
+        <category>Math</category>
+        
+        <category>Linear-Algebra</category>
+        
+        <category>KMOOC</category>
+        
+        
+        <category>Linear-Algebra</category>
+        
+      </item>
+    
+      <item>
+        <title>[선형대수] 6강 : 영벡터공간과 해집합</title>
+        <description>
+&lt;h2 id=&quot;한양대-이상화-교수님의-오픈-강의로-공부한-내용을-정리한-것입니다-강의-영상과-강의-노트는-다음-링크에서-다운받아-작성하였습니다-한양대-mooc&quot;&gt;한양대 이상화 교수님의 오픈 강의로 공부한 내용을 정리한 것입니다. 강의 영상과 강의 노트는 다음 링크에서 다운받아 작성하였습니다 &lt;a href=&quot;http://www.kocw.net/home/search/kemView.do?kemId=977757&quot;&gt;한양대 MOOC&lt;/a&gt;.&lt;/h2&gt;
+
+&lt;h2 id=&quot;null-space-of-a--na&quot;&gt;Null Space of A : N(A)&lt;/h2&gt;
+&lt;img src=&quot;http://localhost:4000/images/linear-algebra/ch2/6-1.png&quot; alt=&quot;Note1&quot; title=&quot;Note1&quot; /&gt;&lt;br /&gt;
+&lt;code class=&quot;highlighter-rouge&quot;&gt;Ax = 0&lt;/code&gt;을 만족하는 x의 집합을 A의 영벡터공간(Null Space)라고 한다. &lt;code class=&quot;highlighter-rouge&quot;&gt;Ax = 0&lt;/code&gt;을 계산해보면 벡터 덧셈과 스칼라 곱셈에 닫혀있기 때문에 Null ‘Space’로 볼 수 있다.
+
+&lt;h2 id=&quot;solving-ax0-and-axb&quot;&gt;Solving Ax=0 and Ax=b&lt;/h2&gt;
+&lt;img src=&quot;http://localhost:4000/images/linear-algebra/ch2/6-2.png&quot; alt=&quot;Note2&quot; title=&quot;Note2&quot; /&gt;&lt;br /&gt;
+&lt;code class=&quot;highlighter-rouge&quot;&gt;Ax = 0&lt;/code&gt;에서 A의 역행렬이 존재한다면, 해당 식은 &lt;code class=&quot;highlighter-rouge&quot;&gt;x = 0&lt;/code&gt;일 때만 성립하고, C(A)는 whole space이다(모든 b가 C(A)에 속하기 때문에). 반대로 N(A)에 &lt;code class=&quot;highlighter-rouge&quot;&gt;x = 0&lt;/code&gt; 말고 다른 벡터도 존재한다면, C(A)는 whole space가 아니다.
+
+&lt;h2 id=&quot;echelon-form-u-and-row-reduced-form-r&quot;&gt;Echelon Form U and Row Reduced Form R&lt;/h2&gt;
+&lt;img src=&quot;http://localhost:4000/images/linear-algebra/ch2/6-3.png&quot; alt=&quot;Note3&quot; title=&quot;Note3&quot; /&gt;&lt;br /&gt;
+&lt;img src=&quot;http://localhost:4000/images/linear-algebra/ch2/6-4.png&quot; alt=&quot;Note4&quot; title=&quot;Note4&quot; /&gt;&lt;br /&gt;
+N(A)가 영벡터보다 클 때, 이를 구하는 정형화된 방식을 설명한다. 가우스 소거법을 통해 free variable과 pivot variable을 구한 다음, pivot variable을 free variable을 사용하여 표현한다. 이 방법을 통해 해집합을 벡터(Special Solution)의 combination으로 표현할 수 있다.
+
+&lt;h2 id=&quot;solving-axb&quot;&gt;Solving Ax=b&lt;/h2&gt;
+&lt;img src=&quot;http://localhost:4000/images/linear-algebra/ch2/6-5.png&quot; alt=&quot;Note5&quot; title=&quot;Note5&quot; /&gt;
+&lt;code class=&quot;highlighter-rouge&quot;&gt;Ax = b&lt;/code&gt;의 해집합을 벡터들의 조합으로 표현하는 방법.&lt;br /&gt;
+Row reduced form으로 A와 b를 변형하여 조건에 맞는 b를 하나 정한다. 임의의 b를 대입하여 마찬가지로 free variable과 벡터들(Special Solution + Particular Solution)의 조합으로 해집합을 표현한다.
+
+&lt;h3 id=&quot;종합&quot;&gt;종합&lt;/h3&gt;
+Finding the solution &lt;code class=&quot;highlighter-rouge&quot;&gt;Ax = b (where A is m by n matrix (m&amp;lt;n)&lt;/code&gt;,
+&lt;ol&gt;
+  &lt;li&gt;[A;b] -&amp;gt; [R;b’] using G/E&lt;/li&gt;
+  &lt;li&gt;Seperate pivot and free variables&lt;/li&gt;
+  &lt;li&gt;Find the special solution for null space from R&lt;/li&gt;
+  &lt;li&gt;Find particular solution&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+        <pubDate>Wed, 25 Jul 2018 00:00:00 +0900</pubDate>
+        <link>http://localhost:4000/2018/07/25/6_null_space/</link>
+        <guid isPermaLink="true">http://localhost:4000/2018/07/25/6_null_space/</guid>
+        
+        <category>Math</category>
+        
+        <category>Linear-Algebra</category>
+        
+        <category>KMOOC</category>
+        
+        
+        <category>Linear-Algebra</category>
+        
+      </item>
+    
+      <item>
+        <title>[선형대수] 5강 : 벡터 공간과 열벡터</title>
+        <description>
+&lt;h2 id=&quot;한양대-이상화-교수님의-오픈-강의로-공부한-내용을-정리한-것입니다-강의-영상과-강의-노트는-다음-링크에서-다운받아-작성하였습니다-한양대-mooc&quot;&gt;한양대 이상화 교수님의 오픈 강의로 공부한 내용을 정리한 것입니다. 강의 영상과 강의 노트는 다음 링크에서 다운받아 작성하였습니다 &lt;a href=&quot;http://www.kocw.net/home/search/kemView.do?kemId=977757&quot;&gt;한양대 MOOC&lt;/a&gt;.&lt;/h2&gt;
+
+1단원에서는 nXn의 정사각 행렬을 가정하고 연립 방정식을 푸는 방법에 대해 집중하였다면, 2단원에서는 식의 개수(m)이 미지수의 개수(n)이 많은 경우를 다룬다. 가로가 긴 직사각 행렬의 경우에는 해가 존재하지 않거나, 해가 존재하는 경우에는 무수히 많이 존재한다.
+
+&lt;img src=&quot;http://localhost:4000/images/linear-algebra/ch2/5-1.png&quot; alt=&quot;Note1&quot; title=&quot;Note1&quot; /&gt;
+&lt;h2 id=&quot;vector-space-and-subspace&quot;&gt;Vector Space and Subspace&lt;/h2&gt;
+&lt;h3 id=&quot;벡터공간&quot;&gt;벡터공간&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;벡터의 덧셈과 스칼라 곱셈에 닫혀있고,&lt;/li&gt;
+  &lt;li&gt;원점을 포함하며,&lt;/li&gt;
+  &lt;li&gt;항등원과 역원이 존재하는 공간을 벡터공간으로 정의한다.&lt;/li&gt;
+  &lt;li&gt;벡터 공간의 조건을 만족하는 부분집합을 subspace라고 정의한다(원점을 반드시 지나야)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;img src=&quot;http://localhost:4000/images/linear-algebra/ch2/5-2.png&quot; alt=&quot;Note2&quot; title=&quot;Note2&quot; /&gt;
+&lt;h2 id=&quot;column-space-of-a--ca&quot;&gt;Column Space of A : C(A)&lt;/h2&gt;
+C(A) : 행렬 A의 column 벡터들의 linear combination으로 이루어진 공간&lt;br /&gt;
+&lt;code class=&quot;highlighter-rouge&quot;&gt;Ax = b&lt;/code&gt;에서 b가 C(A)에 포함되어야 해가 존재한다 (&lt;code class=&quot;highlighter-rouge&quot;&gt;Ax=b&lt;/code&gt; is sovable if and only if b can be expressed as a combination of the columns of A. Then b is in the column space).
+
+반대로 A의 역행렬이 존재한다면 &lt;code class=&quot;highlighter-rouge&quot;&gt;x=A'b&lt;/code&gt;로 해가 존재하고, b는 C(A)에 포함된다. b가 무엇이든 C(A)에 속해야 하므고 C(A)는 whole space라고 할 수 있다.
+
+&lt;img src=&quot;http://localhost:4000/images/linear-algebra/ch2/5-3.png&quot; alt=&quot;Note3&quot; title=&quot;Note3&quot; /&gt;
+</description>
+        <pubDate>Wed, 25 Jul 2018 00:00:00 +0900</pubDate>
+        <link>http://localhost:4000/2018/07/25/5_vector_space/</link>
+        <guid isPermaLink="true">http://localhost:4000/2018/07/25/5_vector_space/</guid>
+        
+        <category>Math</category>
+        
+        <category>Linear-Algebra</category>
+        
+        <category>KMOOC</category>
+        
+        
+        <category>Linear-Algebra</category>
+        
+      </item>
+    
+      <item>
+        <title>[선형대수] 4강 : 역행렬과 전치행렬</title>
+        <description>
+한양대 이상화 교수님의 오픈 강의로 공부한 내용을 정리한 것입니다. 강의 영상과 강의 노트는 다음 링크에서 다운받아 작성하였습니다 &lt;a href=&quot;http://www.kocw.net/home/search/kemView.do?kemId=977757&quot;&gt;한양대 MOOC&lt;/a&gt;.
+
+&lt;h2 id=&quot;역행렬의-조건&quot;&gt;역행렬의 조건&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;역행렬은 Det(A) != 0 일 때에만 존재한다. 즉, 가우스 소거를 수행하고 Pivot 자리의 수가 모두 0이 아닌 값일 때만 역행렬이 존재한다.&lt;/li&gt;
+  &lt;li&gt;행렬 A에 대하여, 역행렬이 존재한다면, 행렬 A의 역행렬은 유일하다(Unique). 이는 반대로, Ax = b에서 A의 역행렬이 존재한다면 x도 유일하다는 것을 의미한다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;img src=&quot;http://localhost:4000/images/linear-algebra/4-1.png&quot; alt=&quot;Note1&quot; title=&quot;Note1&quot; /&gt;
+
+&lt;h2 id=&quot;역행렬-구하는-법&quot;&gt;역행렬 구하는 법&lt;/h2&gt;
+가우스 소거법과 역행렬의 성질을 사용하면 행렬 A의 역행렬을 구할 수 있다. A’ = U’L’ (편의상 행렬 A의 역행렬을 A’라고 표기하였다)이고, Det(A) = 행렬 U의 대각선 값의 곱이다. 
+&lt;img src=&quot;http://localhost:4000/images/linear-algebra/4-2.png&quot; alt=&quot;Note2&quot; title=&quot;Note2&quot; /&gt;&lt;br /&gt;
+&lt;img src=&quot;http://localhost:4000/images/linear-algebra/4-3.png&quot; alt=&quot;Note3&quot; title=&quot;Note3&quot; /&gt;
+
+&lt;h2 id=&quot;전치행렬과-대칭행렬의-성질&quot;&gt;전치행렬과 대칭행렬의 성질&lt;/h2&gt;
+&lt;img src=&quot;http://localhost:4000/images/linear-algebra/4-4.png&quot; alt=&quot;Note4&quot; title=&quot;Note4&quot; /&gt;
+</description>
+        <pubDate>Fri, 29 Jun 2018 00:00:00 +0900</pubDate>
+        <link>http://localhost:4000/2018/06/29/4_inverse_transpose/</link>
+        <guid isPermaLink="true">http://localhost:4000/2018/06/29/4_inverse_transpose/</guid>
+        
+        <category>Math</category>
+        
+        <category>Linear-Algebra</category>
+        
+        <category>KMOOC</category>
+        
+        
+        <category>Linear-Algebra</category>
+        
+      </item>
+    
+      <item>
+        <title>[선형대수] 3강 : LU Decomposition</title>
+        <description>한양대 이상화 교수님의 오픈 강의로 공부한 내용을 정리한 것입니다. 강의 영상과 강의 노트는 다음 링크에서 다운받아 작성하였습니다.&lt;br /&gt;
+&lt;a href=&quot;http://www.kocw.net/home/search/kemView.do?kemId=977757&quot;&gt;http://www.kocw.net/home/search/kemView.do?kemId=977757&lt;/a&gt;
+
+&lt;iframe src=&quot;//www.slideshare.net/slideshow/embed_code/key/2wlUBjRmVaPw74&quot; width=&quot;595&quot; height=&quot;485&quot; frameborder=&quot;0&quot; marginwidth=&quot;0&quot; marginheight=&quot;0&quot; scrolling=&quot;no&quot; style=&quot;border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;&quot; allowfullscreen=&quot;&quot;&gt; &lt;/iframe&gt;
+&lt;div style=&quot;margin-bottom:5px&quot;&gt; &lt;strong&gt; &lt;a href=&quot;//www.slideshare.net/ahra-cho/03-lu-decomposition&quot; title=&quot;선형대수 03. LU Decomposition&quot; target=&quot;_blank&quot;&gt;선형대수 03. LU Decomposition&lt;/a&gt; &lt;/strong&gt; from &lt;strong&gt;&lt;a href=&quot;https://www.slideshare.net/ahra-cho&quot; target=&quot;_blank&quot;&gt;AHRA CHO&lt;/a&gt;&lt;/strong&gt; &lt;/div&gt;
+
+&lt;h2 id=&quot;elementary-matrix&quot;&gt;Elementary Matrix&lt;/h2&gt;
+행끼리 계수를 곱해서 빼기, pivoting을 포함하여 가우스 소거법의 과정을 행렬로 표현할 수 있다. 소거법을 진행하면서 계수를 소거하기 위해서 빼고 곱했던 과정은 Lower Triangular Matrix 행렬 L에 표현되어 최종적으로 &lt;code class=&quot;highlighter-rouge&quot;&gt;A = LU&lt;/code&gt;의 형태로 표현할 수 있다.
+
+&lt;h2 id=&quot;triangular-factorization-decomposition&quot;&gt;Triangular Factorization (Decomposition)&lt;/h2&gt;
+연립방정식의 계수 행렬 A는 가우스 소거법을 통해 &lt;code class=&quot;highlighter-rouge&quot;&gt;Lower Triangular Matrix L&lt;/code&gt;과 &lt;code class=&quot;highlighter-rouge&quot;&gt;Upper Triangular Matrix U&lt;/code&gt;로 분할할 수 있다. 거꾸로 L과 U를 알면 A를 구할 수 있게 된다. A라는 비교적 복잡합 시스템을 그대로 이해할 수 없을 때 간단한 L과 U를 안다면, 시스템 A를 추론할 수 있다.
+
+행렬 U는 다시 pivot들의 대각행렬 D와 U로 분할하여 A = LDU로 표현할 수 있다.
+
+가우스 소거법 중간에 Pivot 자리에 0이 있으면 다른 행과 교체하여 진행하는데 이를 Pivoting이라고 하고 이 과정도 Permutation 행렬로 표현할 수 있다.
+
+가우스 소거법의 결과로 생긴 행렬의 Pivot 자리에 0이 생기면 해당 연립방정식은 해를 구할 수 없는 Singular Case이다. 이런 경우에는 행의 위치를 아무리 바꾸어도 Pivot 자리에 적절한 값을 둘 수 없기 때문에 Permutation Matrix를 구할 수 없다. 반대로 Non-singular Case에는 가우스 소거법의 모든 과정을 행렬 연산으로 표현할 수 있고, &lt;code class=&quot;highlighter-rouge&quot;&gt;PA = LU = LDU&lt;/code&gt;로 표현할 수 있다.
+</description>
+        <pubDate>Tue, 26 Jun 2018 00:00:00 +0900</pubDate>
+        <link>http://localhost:4000/2018/06/26/3_elementary-matrix/</link>
+        <guid isPermaLink="true">http://localhost:4000/2018/06/26/3_elementary-matrix/</guid>
+        
+        <category>Math</category>
+        
+        <category>Linear-Algebra</category>
+        
+        <category>KMOOC</category>
+        
+        
+        <category>Linear-Algebra</category>
+        
+      </item>
+    
+      <item>
+        <title>[선형대수] 2강 : 1차 연립방정식과 가우스소거법</title>
+        <description>한양대 이상화 교수님의 오픈 강의로 공부한 내용을 정리한 것입니다. 강의 영상과 강의 노트는 다음 링크에서 다운받아 작성하였습니다.&lt;br /&gt;
+&lt;a href=&quot;http://www.kocw.net/home/search/kemView.do?kemId=977757&quot;&gt;http://www.kocw.net/home/search/kemView.do?kemId=977757&lt;/a&gt;
+
+&lt;iframe src=&quot;//www.slideshare.net/slideshow/embed_code/key/LjLUIlWbCIbpsK&quot; width=&quot;595&quot; height=&quot;485&quot; frameborder=&quot;0&quot; marginwidth=&quot;0&quot; marginheight=&quot;0&quot; scrolling=&quot;no&quot; style=&quot;border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;&quot; allowfullscreen=&quot;&quot;&gt; &lt;/iframe&gt;
+&lt;div style=&quot;margin-bottom:5px&quot;&gt; &lt;strong&gt; &lt;a href=&quot;//www.slideshare.net/ahra-cho/02-108497093&quot; title=&quot;선형대수 02. 가우스 소거법&quot; target=&quot;_blank&quot;&gt;선형대수 02. 가우스 소거법&lt;/a&gt; &lt;/strong&gt; from &lt;strong&gt;&lt;a href=&quot;https://www.slideshare.net/ahra-cho&quot; target=&quot;_blank&quot;&gt;AHRA CHO&lt;/a&gt;&lt;/strong&gt; &lt;/div&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;gaussian-elimination&quot;&gt;Gaussian Elimination&lt;/h2&gt;
+&lt;strong&gt;가우스 소거법&lt;/strong&gt;은 행렬로 표현된 연립방정식에서 1행부터 차례로 적절한 값을 곱하고 서로 빼주면서 쉽게 해를 찾을 수 있는 형태로 변형하여 방정식의 해를 찾는 과정이다. 이 과정에서 계수행렬을 Upper Triangular Matrix로 변형하게 되는데, 행렬 U의 대각선 위치에 있는 값들을 Pivot이라고 한다.&lt;br /&gt;
+Non-Singular의 경우에는, Pivot이 모두 0이 아닌 값을 가지고, Pivot 중에 0인 값이 있으면 Singular Case로, 이 경우에는 해가 없거나, 무수히 많게 된다.
+
+&lt;h2 id=&quot;matrix-notation&quot;&gt;Matrix Notation&lt;/h2&gt;
+Ax=b 형태로 작성된 연립방정식을 다시 풀어보면 상수와 벡터의 Linear Combination으로 표현할 수 있다. 지난 포스팅에서 설명했듯, 연립방정식을 벡터의 조합으로 이해했을 때, 행렬 A의 column vector들을 적절한 배수로 곱하고 더한 값(Linear Combination)이 우항의 벡터가 될 수 있는지를 구하는 것이 연립방정식을 푸는 과정이다.&lt;br /&gt;
+b를 행렬 A의 열벡터 조합으로 표현할 수 있다는 것은 b가 행렬 A가 표현하는 어떤 공간 안의 벡터라는 것이고, 연립방정식의 해가 (하나이든 무한개이든) 존재한다는 의미이다.
+</description>
+        <pubDate>Tue, 26 Jun 2018 00:00:00 +0900</pubDate>
+        <link>http://localhost:4000/2018/06/26/2_gaussian-elimination/</link>
+        <guid isPermaLink="true">http://localhost:4000/2018/06/26/2_gaussian-elimination/</guid>
+        
+        <category>Math</category>
+        
+        <category>Linear-Algebra</category>
+        
+        <category>KMOOC</category>
+        
+        
+        <category>Linear-Algebra</category>
+        
+      </item>
+    
+      <item>
+        <title>[선형대수] 1강 : 선형성의 정의 및 1차 연립방정식의 의미</title>
+        <description>한양대 이상화 교수님의 오픈 강의로 공부한 내용을 정리한 것입니다. 강의 영상과 강의 노트는 다음 링크에서 다운받아 작성하였습니다.&lt;br /&gt;
+&lt;a href=&quot;http://www.kocw.net/home/search/kemView.do?kemId=977757&quot;&gt;http://www.kocw.net/home/search/kemView.do?kemId=977757&lt;/a&gt;
+
+&lt;iframe src=&quot;//www.slideshare.net/slideshow/embed_code/key/5lxPkvCZK1tQ3M&quot; width=&quot;595&quot; height=&quot;485&quot; frameborder=&quot;0&quot; marginwidth=&quot;0&quot; marginheight=&quot;0&quot; scrolling=&quot;no&quot; style=&quot;border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;&quot; allowfullscreen=&quot;&quot;&gt; &lt;/iframe&gt;
+&lt;div style=&quot;margin-bottom:5px&quot;&gt; &lt;strong&gt; &lt;a href=&quot;//www.slideshare.net/ahra-cho/01-1-108458741&quot; title=&quot;선형대수 01. 선형성의 정의와 1차 연립방정식의 의미&quot; target=&quot;_blank&quot;&gt;선형대수 01. 선형성의 정의와 1차 연립방정식의 의미&lt;/a&gt; &lt;/strong&gt; from &lt;strong&gt;&lt;a href=&quot;//www.slideshare.net/ahra-cho&quot; target=&quot;_blank&quot;&gt;AHRA CHO&lt;/a&gt;&lt;/strong&gt; &lt;/div&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;선형성의-정의&quot;&gt;선형성의 정의&lt;/h2&gt;
+선형대수에서 다루는 주제들은 보통 행렬을 바탕으로 하는데, 행렬은 선형적인 관계를 나타내기 때문에 ‘선형적’이라는 것이 어떤 의미인지 이해하는 것이 중요하다.&lt;br /&gt;
+흔히 ‘선형함수’라고 하면 직선을 그리는 1차 방정식을 떠올리는 경우가 많다 (나 또한 그랬고). 하지만 Superposition과 Homogeneity 성질을 모두 만족할 때만 선형적이라고 말할 수 있다. 즉, 선형 함수는 Superposition과 Homogeneity 2가지 조건을 동시에 만족해야 한다.
+
+&lt;h2 id=&quot;gaussian-elimination-가우스-소거법&quot;&gt;Gaussian Elimination (가우스 소거법)&lt;/h2&gt;
+중학교 때 배우던 1차 연립 방정식의 풀이법을 행렬로 바꾸어 계산하면 접근방법이 달라진다. 연립 방정식을 기하학적으로 접근하면, 두 직선의 교점을 찾는 문제이지만, 행렬로 접근하면 두 벡터에 각각 m, n배 하여 그 합이 특정한 값이 나오도록 하는 문제로 바뀐다. 기하학적인 방법이 직관적일 수는 있지만, 우리가 상상할 수 있는 공간이 최대 3차원으로 제한되어 있기 때문에 N차원의 방정식을 풀려고 하면 어려움을 겪는다. 하지만, 행렬로 접근하면 N차원의 행렬은 결국 N차원 벡터의 집합이기 때문에 훨씬 간단하게 풀 수 있다.
+
+앞으로 행렬적인 접근 방법으로 N차원의 연립방정식을 푸는 방법, 역행렬을 찾는 방법 등에 대해서 다룰 것이다.
+</description>
+        <pubDate>Fri, 22 Jun 2018 00:00:00 +0900</pubDate>
+        <link>http://localhost:4000/2018/06/22/1_linearity/</link>
+        <guid isPermaLink="true">http://localhost:4000/2018/06/22/1_linearity/</guid>
+        
+        <category>Math</category>
+        
+        <category>Linear-Algebra</category>
+        
+        <category>KMOOC</category>
+        
+        
+        <category>Linear-Algebra</category>
+        
+      </item>
+    
+      <item>
+        <title>[Udacity SDCND] 칼만필터 Kalman Filter 이해하기 (2)</title>
+        <description>
+&lt;h2 id=&quot;extended-kalman-filter&quot;&gt;Extended Kalman Filter&lt;/h2&gt;
+
+칼만 필터는 센서 하나의 값만으로 사용하는 것이 아니라 여러 개의 센서 값을 동시에 사용할 수 있기 때문에 유용성이 크다. 자율주행차에서도 마찬가지인데, LADAR와 RIDAR 센서를 통해 얻어진 값을 조합하여 물체 인식과 움직임 예측에 사용한다. 센서를 여러 개 사용하더라도 앞선 포스팅에서 설명했던 기본적인 칼만 필터의 동작 방식은 동일하다. 센서값이 들어오면 예측을 하고, 예측 알고리즘을 업데이트를 하여 최종 예측값을 계산한다. 다만, 달라지는 것은 여러 개의 센서들이 번갈아가면서 값을 입력한다는 것이다.
+
+LADAR와 RIDAR 센서는 특성도 다르고, 센서 계측값의 형태도 다르다. 물체의 (x,y) 좌표를 결과값으로 주는 LADAR 센서와 달리, RIDAR 센서는 다른 형태의 측정값을 출력한다 (거리, 각도, 속도 등). Prediction 단계에서는 LADAR / RIDAR 센서의 차이가 없지만, Measurement Update 단계에서는 센서에 따라 다른 식을 사용해야 한다. 특히, 예측값과 센서값을 비교하기 위한 식에서 x를 z(센서 출력값)와 같은 형태로 바꾸기 위한 행렬 H가 바뀌어야 한다. 여기서는 행렬 H 대신 함수 h(x)를 사용한다.
+
+&lt;img src=&quot;http://localhost:4000/images/ml/udacity/ekf-note1.png&quot; alt=&quot;Note1&quot; title=&quot;h(x) function&quot; /&gt;
+
+Error 계산 뿐만 아니라, 행렬 S, K, P를 계산할 때에도 행렬 H가 사용되기 때문에, 이들도 변화가 필요하다. 이때 위에서처럼 함수 h(x)를 그냥 쓰면 간단하겠지만, h(x)는 비선형 함수이기 때문에 이를 사용하면 결과값이 더이상 Gaussian 분포를 따르지 않게 된다는 문제가 있다. 칼만 필터는 Gaussian 분포를 바탕으로 동작하기 때문이다. 기존의 행렬 H도 사용할 수 없고, 함수 h(x)도 사용할 수 없다면 어떡해야 하지?
+
+비선형 함수인 h(x)와 가장 비슷한 분포를 가진 선형 함수를 행렬(Jacobian 행렬)을 찾아 기존의 행렬 H를 대체한다. h(x)의 Jacobian 행렬을 찾는 과정은 아마 미적분 공부를 해야 정확히 이해할 수 있을 것 같다.
+
+&lt;img src=&quot;http://localhost:4000/images/ml/udacity/ekf-note2.png&quot; alt=&quot;Note2&quot; title=&quot;Jacobian&quot; /&gt;
+
+&lt;h2 id=&quot;종합&quot;&gt;종합&lt;/h2&gt;
+&lt;img src=&quot;http://localhost:4000/images/ml/udacity/kf-process.png&quot; alt=&quot;KF Process&quot; title=&quot;칼만필터 과정&quot; /&gt;
+
+칼만필터는 센서값을 가지고 물체의 다음 움직임을 예측하고, 예측값을 튜닝하는 과정을 반복하는 것으로 이루어져 있다. 자율주행차에서는 LADAR와 RIDAR 센서를 사용하여 주변 환경을 인식하는데, 특히 RIDAR 센서를 사용할 때는 센서값이 LADAR와 다른 형태이기 때문에 이를 변형하는 과정이 추가된다. Delta t는 이전 센서값과 현재 센서값 사이의 시간 차이를 나타내고, 두 종류의 센서값이 번갈아가면서 입력되기 때문에, 값을 다룰 때 어떤 센서의 값인지 구분하여야 한다.
+</description>
+        <pubDate>Thu, 21 Jun 2018 00:00:00 +0900</pubDate>
+        <link>http://localhost:4000/2018/06/21/kalman-filter-2/</link>
+        <guid isPermaLink="true">http://localhost:4000/2018/06/21/kalman-filter-2/</guid>
+        
+        <category>Machine-Learning</category>
+        
+        <category>SelfDriving-Car</category>
+        
+        
+        <category>Udacity-SDCND</category>
+        
+      </item>
+    
+      <item>
+        <title>[Udacity SDCND] 칼만필터 Kalman Filter 이해하기 (1)</title>
+        <description>
+Udacity Self-Driving Car Nanodegree Term 2의 첫 과제는 칼만 필터를 구현하는 것이다.
+
+칼만 필터는 자동차에 부착된 센서(LASER, RIDAR)를 통해 입력된 값을 통해서 차량 주변의 보행자, 자전거, 자동차 등의 물체를 인식하고 움직임을 예측하는 데 사용된다. 수업에서는 칼만 필터를 다루기 전에 Localization의 개념을 먼저 소개하는데 Localization은 다른 포스팅을 통해서 자세히 정리하도록 한다.
+
+&lt;h2 id=&quot;칼만-필터란&quot;&gt;칼만 필터란?&lt;/h2&gt;
+
+현재까지 이해하기로는, (수업에서 다루는 물체 인식을 위한 용도) 칼만 필터는 업데이트된 센서값 + 현재까지 누적된 정보를 사용하여 주변 물체의 단위 시간 후의 위치를 예측한다.&lt;br /&gt;
+보행자를 추적한다고 예를 들면, 자동차의 입장에서 보행자가 현재 (x, y) 위치에 있다고 생각하는 것은 참값이 아니라, 사실 확률 분포로 인식하는 것이다 (주어진 정보로 미루어보아 현재로선 보행자가 저기 있을 확률이 가장 크다고 판단하는 것!). 또한, 센서값을 통해 물체의 위치가 연속적으로 주어지기 때문에 현재 위치와 직전 위치를 비교하면 물체의 이동 속도를 예측할 수 있게 된다.
+
+칼만 필터는 연속적으로 주어지는 센서값을 가지고 물체의 위치와 속도를 예측하면서 동시에 예측에 쓰이는파라미터를 튜닝해가는 일련의 과정이라고 이해하고 있다.
+
+&lt;img src=&quot;http://localhost:4000/images/ml/udacity/kf-process.png&quot; alt=&quot;KF Process&quot; title=&quot;칼만필터 과정&quot; /&gt;
+
+LIDAR와  RADAR 센서값을 받으면 먼저 현재까지의 정보를 바탕으로 물체의 위치(와 속도)를 예측하고, 이번에 받은 센서값을 활용해서 파라미터(행렬)을 업데이트하는 과정을 반복한다.
+
+&lt;h2 id=&quot;lidar-센서&quot;&gt;LIDAR 센서&lt;/h2&gt;
+LIDAR 센서는 물체의 위치에 대한 값만 알아낸다 (속도에 대한 정보 없음).
+
+&lt;h3 id=&quot;1d&quot;&gt;1D&lt;/h3&gt;
+
+&lt;img src=&quot;http://localhost:4000/images/ml/udacity/kf1-note1.png&quot; alt=&quot;Note1&quot; title=&quot;KF in 1D&quot; /&gt;
+
+Prediction 과정에서는 현재 우리가 가지고 있는 위치와 속도 정보만 가지고 t+1에서의 위치를 예측한다. Extended Kalman Filter에서는 물체의 이동 속도는 일정하다고 가정한다 (v’ = v).
+
+Measurement Update 과정에서는 새롭게 얻은 센서값과 우리의 예측값을 비교하여 최종 예측값을 도출한다.
+
+&lt;h3 id=&quot;2d&quot;&gt;2D&lt;/h3&gt;
+
+기본적인 골격은 1차원과 같지만, 2차원에서는 물체의 위치와 속도가 x축과 y축이 각각 있어야 하기 때문에 x 벡터의 모양이 바뀌었다. 이에 따라 행렬 F와 H, Q 값이 바뀐다.
+
+&lt;img src=&quot;http://localhost:4000/images/ml/udacity/kf1-note2.png&quot; alt=&quot;Note2&quot; title=&quot;KF in 2D&quot; /&gt;
+</description>
+        <pubDate>Wed, 20 Jun 2018 00:00:00 +0900</pubDate>
+        <link>http://localhost:4000/2018/06/20/kalman-filter-1/</link>
+        <guid isPermaLink="true">http://localhost:4000/2018/06/20/kalman-filter-1/</guid>
+        
+        <category>Machine-Learning</category>
+        
+        <category>SelfDriving-Car</category>
+        
+        
+        <category>Udacity-SDCND</category>
+        
+      </item>
+    
+  </channel>
+</rss>

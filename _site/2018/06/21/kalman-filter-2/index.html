@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>[Udacity SDCND] 칼만필터 Kalman Filter 이해하기 (2)</title>
+    <meta name="description" content="Extended Kalman Filter칼만 필터는 센서 하나의 값만으로 사용하는 것이 아니라 여러 개의 센서 값을 동시에 사용할 수 있기 때문에 유용성이 크다. 자율주행차에서도 마찬가지인데, LADAR와 RIDAR 센서를 통해 얻어진 값을 조합하여 물체 인식과 움직임 예측에 사용...">
+
+    <link rel="shortcut icon" href="/favicon.ico?" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico?" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://at.alicdn.com/t/font_8v3czwksspqlg14i.css">
+    <link rel="stylesheet" href="/css/main.css ">
+    <link rel="canonical" href="http://localhost:4000/2018/06/21/kalman-filter-2/">
+    <link rel="alternate" type="application/rss+xml" title="AHRA's Tech Blog" href="http://localhost:4000/feed.xml ">
+
+
+
+
+
+</head>
+
+
+  <body>
+
+    <header id="top">
+    <div class="wrapper">
+        <a href="/" class="brand">AHRA's Tech Blog</a>
+        <small>Learn and Share</small>
+        <button id="headerMenu" class="menu"><i class="fa fa-bars"></i></button>
+        <nav id="headerNav">
+            <ul>
+                <li>
+                    
+                    <a href="/">
+                    
+                        <i class="fa fa-home"></i>Home
+                    </a>
+                </li>
+
+                
+                    
+                    <li>
+                        
+                        <a href="/archive/">
+                        
+                            <i class="fa fa-archive"></i>Archives
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/category/">
+                        
+                            <i class="fa fa-th-list"></i>Categories
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/tag/">
+                        
+                            <i class="fa fa-tags"></i>Tags
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/about/">
+                        
+                            <i class="fa fa-heart"></i>About Me
+                        </a>
+                    </li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+        </nav>
+    </div>
+</header>
+
+
+        <div class="page clearfix" post>
+    <div class="left">
+        <h1>[Udacity SDCND] 칼만필터 Kalman Filter 이해하기 (2)</h1>
+        <div class="label">
+
+            <div class="label-card">
+                <i class="fa fa-calendar"></i>2018-06-21
+            </div>
+
+            <div class="label-card">
+                
+            </div>
+
+            <div class="label-card">
+                
+            </div>
+
+            <div class="label-card">
+            
+
+
+<!-- <span class="point">•</span> -->
+<span class="categories">
+  <i class="fa fa-th-list"></i>
+  
+    
+        <a href="/category/#Udacity-SDCND" title="Category: Udacity-SDCND" rel="category">Udacity-SDCND</a>
+    
+  
+
+  <!-- <span class="point">•</span> -->
+</span>
+
+
+            </div>
+
+            <div class="label-card">
+            
+<!-- <span class="point">•</span> -->
+<span class="pageTag">
+  <i class="fa fa-tags"></i>
+  
+    
+        <!--a href="/tag/#Machine-Learning" title="Tag: Machine-Learning" rel="tag">Machine-Learning</a-->
+        <a href="/tag/#Machine-Learning" title="Tag: Machine-Learning" rel="tag">Machine-Learning</a>&nbsp;
+    
+        <!--a href="/tag/#SelfDriving-Car" title="Tag: SelfDriving-Car" rel="tag">SelfDriving-Car</a-->
+        <a href="/tag/#SelfDriving-Car" title="Tag: SelfDriving-Car" rel="tag">SelfDriving-Car</a>
+    
+  
+
+</span>
+
+            </div>
+
+        </div>
+        <hr>
+        <article itemscope itemtype="http://schema.org/BlogPosting">
+        
+<h2 id="extended-kalman-filter">Extended Kalman Filter</h2>
+
+<p>칼만 필터는 센서 하나의 값만으로 사용하는 것이 아니라 여러 개의 센서 값을 동시에 사용할 수 있기 때문에 유용성이 크다. 자율주행차에서도 마찬가지인데, LADAR와 RIDAR 센서를 통해 얻어진 값을 조합하여 물체 인식과 움직임 예측에 사용한다. 센서를 여러 개 사용하더라도 앞선 포스팅에서 설명했던 기본적인 칼만 필터의 동작 방식은 동일하다. 센서값이 들어오면 예측을 하고, 예측 알고리즘을 업데이트를 하여 최종 예측값을 계산한다. 다만, 달라지는 것은 여러 개의 센서들이 번갈아가면서 값을 입력한다는 것이다.</p>
+
+<p>LADAR와 RIDAR 센서는 특성도 다르고, 센서 계측값의 형태도 다르다. 물체의 (x,y) 좌표를 결과값으로 주는 LADAR 센서와 달리, RIDAR 센서는 다른 형태의 측정값을 출력한다 (거리, 각도, 속도 등). Prediction 단계에서는 LADAR / RIDAR 센서의 차이가 없지만, Measurement Update 단계에서는 센서에 따라 다른 식을 사용해야 한다. 특히, 예측값과 센서값을 비교하기 위한 식에서 x를 z(센서 출력값)와 같은 형태로 바꾸기 위한 행렬 H가 바뀌어야 한다. 여기서는 행렬 H 대신 함수 h(x)를 사용한다.</p>
+
+<p><img src="http://localhost:4000/images/ml/udacity/ekf-note1.png" alt="Note1" title="h(x) function" /></p>
+
+<p>Error 계산 뿐만 아니라, 행렬 S, K, P를 계산할 때에도 행렬 H가 사용되기 때문에, 이들도 변화가 필요하다. 이때 위에서처럼 함수 h(x)를 그냥 쓰면 간단하겠지만, h(x)는 비선형 함수이기 때문에 이를 사용하면 결과값이 더이상 Gaussian 분포를 따르지 않게 된다는 문제가 있다. 칼만 필터는 Gaussian 분포를 바탕으로 동작하기 때문이다. 기존의 행렬 H도 사용할 수 없고, 함수 h(x)도 사용할 수 없다면 어떡해야 하지?</p>
+
+<p>비선형 함수인 h(x)와 가장 비슷한 분포를 가진 선형 함수를 행렬(Jacobian 행렬)을 찾아 기존의 행렬 H를 대체한다. h(x)의 Jacobian 행렬을 찾는 과정은 아마 미적분 공부를 해야 정확히 이해할 수 있을 것 같다.</p>
+
+<p><img src="http://localhost:4000/images/ml/udacity/ekf-note2.png" alt="Note2" title="Jacobian" /></p>
+
+<h2 id="종합">종합</h2>
+<p><img src="http://localhost:4000/images/ml/udacity/kf-process.png" alt="KF Process" title="칼만필터 과정" /></p>
+
+<p>칼만필터는 센서값을 가지고 물체의 다음 움직임을 예측하고, 예측값을 튜닝하는 과정을 반복하는 것으로 이루어져 있다. 자율주행차에서는 LADAR와 RIDAR 센서를 사용하여 주변 환경을 인식하는데, 특히 RIDAR 센서를 사용할 때는 센서값이 LADAR와 다른 형태이기 때문에 이를 변형하는 과정이 추가된다. Delta t는 이전 센서값과 현재 센서값 사이의 시간 차이를 나타내고, 두 종류의 센서값이 번갈아가면서 입력되기 때문에, 값을 다룰 때 어떤 센서의 값인지 구분하여야 한다.</p>
+
+        </article>
+        <hr>
+
+        
+        
+            
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                        
+                        <h2 id="similar_posts">Similar Posts</h2>
+                        <ul>
+                        
+                        <li class="relatedPost">
+                            <a href="/2018/06/20/kalman-filter-1/">[Udacity SDCND] 칼만필터 Kalman Filter 이해하기 (1)
+                            
+                            </a>
+                        </li>
+                        
+                        
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                        
+                        <li class="relatedPost">
+                            <a href="/2017/12/17/linear-regression/">[Machine Learning] 선형회귀 (Linear Regression)
+                            
+                            </a>
+                        </li>
+                        
+                        
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+        
+        
+            </ul>
+        
+
+        <div class="post-recent">
+    <div class="pre">
+        
+        <p><strong>Prev</strong> <a href="/2018/06/20/kalman-filter-1/">[Udacity SDCND] 칼만필터 Kalman Filter 이해하기 (1)</a></p>
+        
+    </div>
+    <div class="nex">
+
+        
+        <p><strong>Next</strong> <a href="/2018/06/22/1_linearity/">[선형대수] 1강 : 선형성의 정의 및 1차 연립방정식의 의미</a></p>
+        
+    </div>
+</div>
+
+
+        <h2 id="comments">Comments</h2>
+        
+<div id="disqus_thread"></div>
+<script>
+    /**
+     * RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     * LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+
+    var disqus_config = function() {
+        this.page.url = 'http://localhost:4000/2018/06/21/kalman-filter-2/'; // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'http://localhost:4000/2018/06/21/kalman-filter-2/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+
+    (function() { // DON'T EDIT BELOW THIS LINE
+        var d = document,
+            s = d.createElement('script');
+
+        s.src = '//ahracho.disqus.com/embed.js';
+
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+
+
+
+    </div>
+    <button class="anchor"><i class="fa fa-anchor"></i></button>
+    <div class="right">
+        <div class="wrap">
+
+            <!-- Content -->
+            <div class="side content">
+                <div>
+                    Content
+                </div>
+                <ul id="content-side" class="content-ul">
+                    
+                    <li><a href="#similar_posts">Similar Posts</a></li>
+                    
+                    <li><a href="#comments">Comments</a></li>
+                </ul>
+            </div>
+            <!-- 其他div框放到这里 -->
+            <!-- <div class="side">bbbb</div> -->
+        </div>
+    </div>
+</div>
+<script>
+/**
+ * target _blank
+ */
+(function() {
+    var aTags = document.querySelectorAll('article a:not([id])')
+    for (var i = 0; i < aTags.length; i++) {
+        aTags[i].setAttribute('target', '_blank')
+    }
+}());
+</script>
+<script src="/js/pageContent.js " charset="utf-8"></script>
+
+
+    <footer class="site-footer">
+
+
+    <div class="wrapper">
+
+        <p class="description">
+            
+        </p>
+        <p class="contact">
+            Contact me at: 
+            <a href="https://github.com/ahracho" title="GitHub"><i class="fa fa-github" aria-hidden="true"></i></a>  
+            <a href="mailto:ahracho89@gmail.com" title="email"><i class="fa fa-envelope-o" aria-hidden="true"></i></a>     
+            <a href="https://www.facebook.com/ahra.cho3" title="Facebook"><i class="fa fa-facebook-official" aria-hidden="true"></i></a>    
+        </p>
+        <p class="power">
+            <span>
+                Site powered by <a href="https://jekyllrb.com/">Jekyll</a> & <a href="https://pages.github.com/">Github Pages</a>.
+            </span>
+            <span>
+                Theme designed by <a href="https://github.com/Gaohaoyang">HyG</a>.
+            </span>
+        </p>
+    </div>
+</footer>
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+    <div class="back-to-top">
+    <a href="#top" data-scroll>
+        <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    </a>
+</div>
+
+    <script src=" /js/main.js " charset="utf-8"></script>
+    <script src=" /js/smooth-scroll.min.js " charset="utf-8"></script>
+    <script type="text/javascript">
+      smoothScroll.init({
+        speed: 500, // Integer. How fast to complete the scroll in milliseconds
+        easing: 'easeInOutCubic', // Easing pattern to use
+        offset: 20, // Integer. How far to offset the scrolling anchor location in pixels
+      });
+    </script>
+    <!-- <script src=" /js/scroll.min.js " charset="utf-8"></script> -->
+  </body>
+
+</html>

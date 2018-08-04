@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>AHRA&#39;s Tech Blog</title>
+    <meta name="description" content="">
+
+    <link rel="shortcut icon" href="/favicon.ico?" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico?" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://at.alicdn.com/t/font_8v3czwksspqlg14i.css">
+    <link rel="stylesheet" href="/css/main.css ">
+    <link rel="canonical" href="http://localhost:4000/">
+    <link rel="alternate" type="application/rss+xml" title="AHRA's Tech Blog" href="http://localhost:4000/feed.xml ">
+
+
+
+
+
+</head>
+
+
+  <body>
+
+    <header id="top">
+    <div class="wrapper">
+        <a href="/" class="brand">AHRA's Tech Blog</a>
+        <small>Learn and Share</small>
+        <button id="headerMenu" class="menu"><i class="fa fa-bars"></i></button>
+        <nav id="headerNav">
+            <ul>
+                <li>
+                    
+                    <a class="active" href="/">
+                        
+                        <i class="fa fa-home"></i>Home
+                    </a>
+                </li>
+
+                
+                    
+                    <li>
+                        
+                        <a href="/archive/">
+                        
+                            <i class="fa fa-archive"></i>Archives
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/category/">
+                        
+                            <i class="fa fa-th-list"></i>Categories
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/tag/">
+                        
+                            <i class="fa fa-tags"></i>Tags
+                        </a>
+                    </li>
+                    
+                
+                    
+                    <li>
+                        
+                        <a href="/about/">
+                        
+                            <i class="fa fa-heart"></i>About Me
+                        </a>
+                    </li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+        </nav>
+    </div>
+</header>
+
+
+        <div class="page clearfix" index>
+    <div class="left">
+        <h1>Welcome to AHRA's Blog!</h1>
+        <small>프로그래밍 필기노트</small>
+        <hr>
+        <ul>
+            
+              <li>
+                <h2>
+                  <a class="post-link" href="/2018/07/30/8_4_fundamental_subspaces/">[선형대수] 8강 : 4가지 부 벡터 공간</a>
+                </h2>
+                <div class="label">
+                    <div class="label-card">
+                        <i class="fa fa-calendar"></i>2018-07-30
+                    </div>
+                    <div class="label-card">
+                        
+                    </div>
+                    <div class="label-card">
+                        
+                    </div>
+
+                    <div class="label-card">
+                    
+
+
+<!-- <span class="point">•</span> -->
+<span class="categories">
+  <i class="fa fa-th-list"></i>
+  
+    
+        <a href="/category/#Linear-Algebra" title="Category: Linear-Algebra" rel="category">Linear-Algebra</a>
+    
+  
+
+  <!-- <span class="point">•</span> -->
+</span>
+
+
+                    </div>
+
+                    <div class="label-card">
+                    
+<!-- <span class="point">•</span> -->
+<span class="pageTag">
+  <i class="fa fa-tags"></i>
+  
+    
+        <a href="/tag/#Math" title="Tag: Math" rel="tag">Math</a>&nbsp;
+    
+        <a href="/tag/#Linear-Algebra" title="Tag: Linear-Algebra" rel="tag">Linear-Algebra</a>&nbsp;
+    
+        <a href="/tag/#KMOOC" title="Tag: KMOOC" rel="tag">KMOOC</a>
+    
+  
+
+</span>
+
+                    </div>
+                </div>
+                <div class="excerpt">
+                    
+<h2 id="한양대-이상화-교수님의-오픈-강의로-공부한-내용을-정리한-것입니다-강의-영상과-강의-노트는-다음-링크에서-다운받아-작성하였습니다-한양대-mooc">한양대 이상화 교수님의 오픈 강의로 공부한 내용을 정리한 것입니다. 강의 영상과 강의 노트는 다음 링크에서 다운받아 작성하였습니다 <a href="http://www.kocw.net/home/search/kemView.do?kemId=977757">한양대 MOOC</a>.</h2>
+
+<h2 id="4-fundamental-subspaces">4 Fundamental Subspaces</h2>
+<p><img src="http://localhost:4000/images/linear-algebra/ch2/8-1.png" alt="Note1" title="Note1" />  <img src="http://localhost:4000/images/linear-algebra/ch2/8-2.png" alt="Note2" title="Note2" /></p>
+
+<p>A : m X n 행렬이고, Rank r 일 때,</p>
+<ul>
+  <li>Column Space C(A) : 차원은 r</li>
+  <li>Null Space N(A) : 차원은 (n - r)</li>
+  <li>Row Space C(AT) : 차원은 r</li>
+  <li>
+    <p>Left Null Space N(AT) : 차원은 (m - r)</p>
+  </li>
+  <li>C(A) and N(AT) ⊂ Rm, C(AT) and N(A) ⊂ Rn</li>
+  <li>Dim(C(A)) + Dim(N(AT)) = m, Dim(C(AT)) + Dim(N(A)) = n</li>
+  <li>C(A) ⊥ N(AT), C(AT) ⊥ N(A)</li>
+</ul>
+
+<h2 id="existence-of-inverse">Existence of Inverse</h2>
+<p><img src="http://localhost:4000/images/linear-algebra/ch2/8-3.png" alt="Note3" title="Note3" /> <img src="http://localhost:4000/images/linear-algebra/ch2/8-4.png" alt="Note4" title="Note4" /></p>
+<ul>
+  <li>An inverse exists only when the rank is as large as possible.</li>
+  <li>정사각행렬이 아닌 경우에, 긴 방향으로만 역행렬이 존재한다.</li>
+  <li>For r = m (m &lt; n), if there is a right inverse, Ax=b always has a solution(infinitely many solutions) (식보다 미지수가 많은 경우)</li>
+  <li>For r = n (m &gt; n), it is hard to have an inverse, but once it exists it guarantees an unique solution. (미지수보다 식이 많은 경우 - 2차원에 여러개 직선)</li>
+</ul>
+
+                </div>
+                <div class="read-all">
+                    <a  href="/2018/07/30/8_4_fundamental_subspaces/"><i class="fa fa-newspaper-o"></i>Read All</a>
+                </div>
+                <hr>
+              </li>
+            
+              <li>
+                <h2>
+                  <a class="post-link" href="/2018/07/26/7_linear_independent/">[선형대수] 7강 : 선형독립 및 기저벡터</a>
+                </h2>
+                <div class="label">
+                    <div class="label-card">
+                        <i class="fa fa-calendar"></i>2018-07-26
+                    </div>
+                    <div class="label-card">
+                        
+                    </div>
+                    <div class="label-card">
+                        
+                    </div>
+
+                    <div class="label-card">
+                    
+
+
+<!-- <span class="point">•</span> -->
+<span class="categories">
+  <i class="fa fa-th-list"></i>
+  
+    
+        <a href="/category/#Linear-Algebra" title="Category: Linear-Algebra" rel="category">Linear-Algebra</a>
+    
+  
+
+  <!-- <span class="point">•</span> -->
+</span>
+
+
+                    </div>
+
+                    <div class="label-card">
+                    
+<!-- <span class="point">•</span> -->
+<span class="pageTag">
+  <i class="fa fa-tags"></i>
+  
+    
+        <a href="/tag/#Math" title="Tag: Math" rel="tag">Math</a>&nbsp;
+    
+        <a href="/tag/#Linear-Algebra" title="Tag: Linear-Algebra" rel="tag">Linear-Algebra</a>&nbsp;
+    
+        <a href="/tag/#KMOOC" title="Tag: KMOOC" rel="tag">KMOOC</a>
+    
+  
+
+</span>
+
+                    </div>
+                </div>
+                <div class="excerpt">
+                    
+<h2 id="한양대-이상화-교수님의-오픈-강의로-공부한-내용을-정리한-것입니다-강의-영상과-강의-노트는-다음-링크에서-다운받아-작성하였습니다-한양대-mooc">한양대 이상화 교수님의 오픈 강의로 공부한 내용을 정리한 것입니다. 강의 영상과 강의 노트는 다음 링크에서 다운받아 작성하였습니다 <a href="http://www.kocw.net/home/search/kemView.do?kemId=977757">한양대 MOOC</a>.</h2>
+
+<h2 id="linear-independence">Linear Independence</h2>
+<h3 id="basis-vectors-and-dimension">Basis Vectors and Dimension</h3>
+<p><img src="http://localhost:4000/images/linear-algebra/ch2/7-1.png" alt="Note1" title="Note1" /></p>
+
+<ul>
+  <li><code class="highlighter-rouge">C1V1 + C2V2 + ... + CnVn = 0</code> 식에서 <code class="highlighter-rouge">C1 = C2 = ... = Cn = 0</code>일 때만 식이 만족할 때 <code class="highlighter-rouge">V1, V2, ..., Vn</code> 벡터들이 선형독립이다.</li>
+  <li><code class="highlighter-rouge">Vk</code>가 다른 벡터들의 조합으로 표현 불가할 때 선형독립이다.</li>
+  <li>가우스 소거법의 결과로 m개의 pivot이 나왔을 때, 해당 m개의 열벡터는 서로 선형독립이다.</li>
+</ul>
+
+<h3 id="rank-of-a">Rank of A</h3>
+<ul>
+  <li>선형독립인 열벡터의 수</li>
+  <li>선형독립인 행벡터의 수</li>
+  <li>가우스 소거법 pivot의 개수</li>
+  <li>C(A)의 Dimension</li>
+</ul>
+
+<h3 id="spanning">Spanning</h3>
+<p><img src="http://localhost:4000/images/linear-algebra/ch2/7-2.png" alt="Note2" title="Note2" /></p>
+<ul>
+  <li>벡터들이 어떤 공간을 구성할 때 span한다고 한다 (All linear combinations of vectors constract a vector space).</li>
+  <li>특정 공간을 구성하는 벡터의 조합은 유일하지 않다.</li>
+</ul>
+
+<h3 id="basis-vector">Basis Vector</h3>
+<ul>
+  <li>Minimum number of vectors to span the vector space : 2차원 공간을 표현하기 위해서는 적어도 2개의 벡터가 필요</li>
+  <li>Maximum number of linearly independent vectors</li>
+  <li>특정 공간을 표현하는 기저 벡터는 유일하지 않지만, 특정 기저벡터의 선형 조합은 유일하다.</li>
+</ul>
+
+                </div>
+                <div class="read-all">
+                    <a  href="/2018/07/26/7_linear_independent/"><i class="fa fa-newspaper-o"></i>Read All</a>
+                </div>
+                <hr>
+              </li>
+            
+              <li>
+                <h2>
+                  <a class="post-link" href="/2018/07/25/6_null_space/">[선형대수] 6강 : 영벡터공간과 해집합</a>
+                </h2>
+                <div class="label">
+                    <div class="label-card">
+                        <i class="fa fa-calendar"></i>2018-07-25
+                    </div>
+                    <div class="label-card">
+                        
+                    </div>
+                    <div class="label-card">
+                        
+                    </div>
+
+                    <div class="label-card">
+                    
+
+
+<!-- <span class="point">•</span> -->
+<span class="categories">
+  <i class="fa fa-th-list"></i>
+  
+    
+        <a href="/category/#Linear-Algebra" title="Category: Linear-Algebra" rel="category">Linear-Algebra</a>
+    
+  
+
+  <!-- <span class="point">•</span> -->
+</span>
+
+
+                    </div>
+
+                    <div class="label-card">
+                    
+<!-- <span class="point">•</span> -->
+<span class="pageTag">
+  <i class="fa fa-tags"></i>
+  
+    
+        <a href="/tag/#Math" title="Tag: Math" rel="tag">Math</a>&nbsp;
+    
+        <a href="/tag/#Linear-Algebra" title="Tag: Linear-Algebra" rel="tag">Linear-Algebra</a>&nbsp;
+    
+        <a href="/tag/#KMOOC" title="Tag: KMOOC" rel="tag">KMOOC</a>
+    
+  
+
+</span>
+
+                    </div>
+                </div>
+                <div class="excerpt">
+                    
+<h2 id="한양대-이상화-교수님의-오픈-강의로-공부한-내용을-정리한-것입니다-강의-영상과-강의-노트는-다음-링크에서-다운받아-작성하였습니다-한양대-mooc">한양대 이상화 교수님의 오픈 강의로 공부한 내용을 정리한 것입니다. 강의 영상과 강의 노트는 다음 링크에서 다운받아 작성하였습니다 <a href="http://www.kocw.net/home/search/kemView.do?kemId=977757">한양대 MOOC</a>.</h2>
+
+<h2 id="null-space-of-a--na">Null Space of A : N(A)</h2>
+<p><img src="http://localhost:4000/images/linear-algebra/ch2/6-1.png" alt="Note1" title="Note1" /><br />
+<code class="highlighter-rouge">Ax = 0</code>을 만족하는 x의 집합을 A의 영벡터공간(Null Space)라고 한다. <code class="highlighter-rouge">Ax = 0</code>을 계산해보면 벡터 덧셈과 스칼라 곱셈에 닫혀있기 때문에 Null ‘Space’로 볼 수 있다.</p>
+
+<h2 id="solving-ax0-and-axb">Solving Ax=0 and Ax=b</h2>
+<p><img src="http://localhost:4000/images/linear-algebra/ch2/6-2.png" alt="Note2" title="Note2" /><br />
+<code class="highlighter-rouge">Ax = 0</code>에서 A의 역행렬이 존재한다면, 해당 식은 <code class="highlighter-rouge">x = 0</code>일 때만 성립하고, C(A)는 whole space이다(모든 b가 C(A)에 속하기 때문에). 반대로 N(A)에 <code class="highlighter-rouge">x = 0</code> 말고 다른 벡터도 존재한다면, C(A)는 whole space가 아니다.</p>
+
+<h2 id="echelon-form-u-and-row-reduced-form-r">Echelon Form U and Row Reduced Form R</h2>
+<p><img src="http://localhost:4000/images/linear-algebra/ch2/6-3.png" alt="Note3" title="Note3" /><br />
+<img src="http://localhost:4000/images/linear-algebra/ch2/6-4.png" alt="Note4" title="Note4" /><br />
+N(A)가 영벡터보다 클 때, 이를 구하는 정형화된 방식을 설명한다. 가우스 소거법을 통해 free variable과 pivot variable을 구한 다음, pivot variable을 free variable을 사용하여 표현한다. 이 방법을 통해 해집합을 벡터(Special Solution)의 combination으로 표현할 수 있다.</p>
+
+<h2 id="solving-axb">Solving Ax=b</h2>
+<p><img src="http://localhost:4000/images/linear-algebra/ch2/6-5.png" alt="Note5" title="Note5" />
+<code class="highlighter-rouge">Ax = b</code>의 해집합을 벡터들의 조합으로 표현하는 방법.<br />
+Row reduced form으로 A와 b를 변형하여 조건에 맞는 b를 하나 정한다. 임의의 b를 대입하여 마찬가지로 free variable과 벡터들(Special Solution + Particular Solution)의 조합으로 해집합을 표현한다.</p>
+
+<h3 id="종합">종합</h3>
+<p>Finding the solution <code class="highlighter-rouge">Ax = b (where A is m by n matrix (m&lt;n)</code>,</p>
+<ol>
+  <li>[A;b] -&gt; [R;b’] using G/E</li>
+  <li>Seperate pivot and free variables</li>
+  <li>Find the special solution for null space from R</li>
+  <li>Find particular solution</li>
+</ol>
+
+                </div>
+                <div class="read-all">
+                    <a  href="/2018/07/25/6_null_space/"><i class="fa fa-newspaper-o"></i>Read All</a>
+                </div>
+                <hr>
+              </li>
+            
+              <li>
+                <h2>
+                  <a class="post-link" href="/2018/07/25/5_vector_space/">[선형대수] 5강 : 벡터 공간과 열벡터</a>
+                </h2>
+                <div class="label">
+                    <div class="label-card">
+                        <i class="fa fa-calendar"></i>2018-07-25
+                    </div>
+                    <div class="label-card">
+                        
+                    </div>
+                    <div class="label-card">
+                        
+                    </div>
+
+                    <div class="label-card">
+                    
+
+
+<!-- <span class="point">•</span> -->
+<span class="categories">
+  <i class="fa fa-th-list"></i>
+  
+    
+        <a href="/category/#Linear-Algebra" title="Category: Linear-Algebra" rel="category">Linear-Algebra</a>
+    
+  
+
+  <!-- <span class="point">•</span> -->
+</span>
+
+
+                    </div>
+
+                    <div class="label-card">
+                    
+<!-- <span class="point">•</span> -->
+<span class="pageTag">
+  <i class="fa fa-tags"></i>
+  
+    
+        <a href="/tag/#Math" title="Tag: Math" rel="tag">Math</a>&nbsp;
+    
+        <a href="/tag/#Linear-Algebra" title="Tag: Linear-Algebra" rel="tag">Linear-Algebra</a>&nbsp;
+    
+        <a href="/tag/#KMOOC" title="Tag: KMOOC" rel="tag">KMOOC</a>
+    
+  
+
+</span>
+
+                    </div>
+                </div>
+                <div class="excerpt">
+                    
+<h2 id="한양대-이상화-교수님의-오픈-강의로-공부한-내용을-정리한-것입니다-강의-영상과-강의-노트는-다음-링크에서-다운받아-작성하였습니다-한양대-mooc">한양대 이상화 교수님의 오픈 강의로 공부한 내용을 정리한 것입니다. 강의 영상과 강의 노트는 다음 링크에서 다운받아 작성하였습니다 <a href="http://www.kocw.net/home/search/kemView.do?kemId=977757">한양대 MOOC</a>.</h2>
+
+<p>1단원에서는 nXn의 정사각 행렬을 가정하고 연립 방정식을 푸는 방법에 대해 집중하였다면, 2단원에서는 식의 개수(m)이 미지수의 개수(n)이 많은 경우를 다룬다. 가로가 긴 직사각 행렬의 경우에는 해가 존재하지 않거나, 해가 존재하는 경우에는 무수히 많이 존재한다.</p>
+
+<p><img src="http://localhost:4000/images/linear-algebra/ch2/5-1.png" alt="Note1" title="Note1" /></p>
+<h2 id="vector-space-and-subspace">Vector Space and Subspace</h2>
+<h3 id="벡터공간">벡터공간</h3>
+<ul>
+  <li>벡터의 덧셈과 스칼라 곱셈에 닫혀있고,</li>
+  <li>원점을 포함하며,</li>
+  <li>항등원과 역원이 존재하는 공간을 벡터공간으로 정의한다.</li>
+  <li>벡터 공간의 조건을 만족하는 부분집합을 subspace라고 정의한다(원점을 반드시 지나야)</li>
+</ul>
+
+<p><img src="http://localhost:4000/images/linear-algebra/ch2/5-2.png" alt="Note2" title="Note2" /></p>
+<h2 id="column-space-of-a--ca">Column Space of A : C(A)</h2>
+<p>C(A) : 행렬 A의 column 벡터들의 linear combination으로 이루어진 공간<br />
+<code class="highlighter-rouge">Ax = b</code>에서 b가 C(A)에 포함되어야 해가 존재한다 (<code class="highlighter-rouge">Ax=b</code> is sovable if and only if b can be expressed as a combination of the columns of A. Then b is in the column space).</p>
+
+<p>반대로 A의 역행렬이 존재한다면 <code class="highlighter-rouge">x=A'b</code>로 해가 존재하고, b는 C(A)에 포함된다. b가 무엇이든 C(A)에 속해야 하므고 C(A)는 whole space라고 할 수 있다.</p>
+
+<p><img src="http://localhost:4000/images/linear-algebra/ch2/5-3.png" alt="Note3" title="Note3" /></p>
+
+                </div>
+                <div class="read-all">
+                    <a  href="/2018/07/25/5_vector_space/"><i class="fa fa-newspaper-o"></i>Read All</a>
+                </div>
+                <hr>
+              </li>
+            
+              <li>
+                <h2>
+                  <a class="post-link" href="/2018/06/29/4_inverse_transpose/">[선형대수] 4강 : 역행렬과 전치행렬</a>
+                </h2>
+                <div class="label">
+                    <div class="label-card">
+                        <i class="fa fa-calendar"></i>2018-06-29
+                    </div>
+                    <div class="label-card">
+                        
+                    </div>
+                    <div class="label-card">
+                        
+                    </div>
+
+                    <div class="label-card">
+                    
+
+
+<!-- <span class="point">•</span> -->
+<span class="categories">
+  <i class="fa fa-th-list"></i>
+  
+    
+        <a href="/category/#Linear-Algebra" title="Category: Linear-Algebra" rel="category">Linear-Algebra</a>
+    
+  
+
+  <!-- <span class="point">•</span> -->
+</span>
+
+
+                    </div>
+
+                    <div class="label-card">
+                    
+<!-- <span class="point">•</span> -->
+<span class="pageTag">
+  <i class="fa fa-tags"></i>
+  
+    
+        <a href="/tag/#Math" title="Tag: Math" rel="tag">Math</a>&nbsp;
+    
+        <a href="/tag/#Linear-Algebra" title="Tag: Linear-Algebra" rel="tag">Linear-Algebra</a>&nbsp;
+    
+        <a href="/tag/#KMOOC" title="Tag: KMOOC" rel="tag">KMOOC</a>
+    
+  
+
+</span>
+
+                    </div>
+                </div>
+                <div class="excerpt">
+                    
+<p>한양대 이상화 교수님의 오픈 강의로 공부한 내용을 정리한 것입니다. 강의 영상과 강의 노트는 다음 링크에서 다운받아 작성하였습니다 <a href="http://www.kocw.net/home/search/kemView.do?kemId=977757">한양대 MOOC</a>.</p>
+
+<h2 id="역행렬의-조건">역행렬의 조건</h2>
+<ul>
+  <li>역행렬은 Det(A) != 0 일 때에만 존재한다. 즉, 가우스 소거를 수행하고 Pivot 자리의 수가 모두 0이 아닌 값일 때만 역행렬이 존재한다.</li>
+  <li>행렬 A에 대하여, 역행렬이 존재한다면, 행렬 A의 역행렬은 유일하다(Unique). 이는 반대로, Ax = b에서 A의 역행렬이 존재한다면 x도 유일하다는 것을 의미한다.</li>
+</ul>
+
+<p><img src="http://localhost:4000/images/linear-algebra/4-1.png" alt="Note1" title="Note1" /></p>
+
+<h2 id="역행렬-구하는-법">역행렬 구하는 법</h2>
+<p>가우스 소거법과 역행렬의 성질을 사용하면 행렬 A의 역행렬을 구할 수 있다. A’ = U’L’ (편의상 행렬 A의 역행렬을 A’라고 표기하였다)이고, Det(A) = 행렬 U의 대각선 값의 곱이다. 
+<img src="http://localhost:4000/images/linear-algebra/4-2.png" alt="Note2" title="Note2" /><br />
+<img src="http://localhost:4000/images/linear-algebra/4-3.png" alt="Note3" title="Note3" /></p>
+
+<h2 id="전치행렬과-대칭행렬의-성질">전치행렬과 대칭행렬의 성질</h2>
+<p><img src="http://localhost:4000/images/linear-algebra/4-4.png" alt="Note4" title="Note4" /></p>
+
+                </div>
+                <div class="read-all">
+                    <a  href="/2018/06/29/4_inverse_transpose/"><i class="fa fa-newspaper-o"></i>Read All</a>
+                </div>
+                <hr>
+              </li>
+            
+              <li>
+                <h2>
+                  <a class="post-link" href="/2018/06/26/3_elementary-matrix/">[선형대수] 3강 : LU Decomposition</a>
+                </h2>
+                <div class="label">
+                    <div class="label-card">
+                        <i class="fa fa-calendar"></i>2018-06-26
+                    </div>
+                    <div class="label-card">
+                        
+                    </div>
+                    <div class="label-card">
+                        
+                    </div>
+
+                    <div class="label-card">
+                    
+
+
+<!-- <span class="point">•</span> -->
+<span class="categories">
+  <i class="fa fa-th-list"></i>
+  
+    
+        <a href="/category/#Linear-Algebra" title="Category: Linear-Algebra" rel="category">Linear-Algebra</a>
+    
+  
+
+  <!-- <span class="point">•</span> -->
+</span>
+
+
+                    </div>
+
+                    <div class="label-card">
+                    
+<!-- <span class="point">•</span> -->
+<span class="pageTag">
+  <i class="fa fa-tags"></i>
+  
+    
+        <a href="/tag/#Math" title="Tag: Math" rel="tag">Math</a>&nbsp;
+    
+        <a href="/tag/#Linear-Algebra" title="Tag: Linear-Algebra" rel="tag">Linear-Algebra</a>&nbsp;
+    
+        <a href="/tag/#KMOOC" title="Tag: KMOOC" rel="tag">KMOOC</a>
+    
+  
+
+</span>
+
+                    </div>
+                </div>
+                <div class="excerpt">
+                    <p>한양대 이상화 교수님의 오픈 강의로 공부한 내용을 정리한 것입니다. 강의 영상과 강의 노트는 다음 링크에서 다운받아 작성하였습니다.<br />
+<a href="http://www.kocw.net/home/search/kemView.do?kemId=977757">http://www.kocw.net/home/search/kemView.do?kemId=977757</a></p>
+
+<iframe src="//www.slideshare.net/slideshow/embed_code/key/2wlUBjRmVaPw74" width="595" height="485" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen=""> </iframe>
+<div style="margin-bottom:5px"> <strong> <a href="//www.slideshare.net/ahra-cho/03-lu-decomposition" title="선형대수 03. LU Decomposition" target="_blank">선형대수 03. LU Decomposition</a> </strong> from <strong><a href="https://www.slideshare.net/ahra-cho" target="_blank">AHRA CHO</a></strong> </div>
+
+<h2 id="elementary-matrix">Elementary Matrix</h2>
+<p>행끼리 계수를 곱해서 빼기, pivoting을 포함하여 가우스 소거법의 과정을 행렬로 표현할 수 있다. 소거법을 진행하면서 계수를 소거하기 위해서 빼고 곱했던 과정은 Lower Triangular Matrix 행렬 L에 표현되어 최종적으로 <code class="highlighter-rouge">A = LU</code>의 형태로 표현할 수 있다.</p>
+
+<h2 id="triangular-factorization-decomposition">Triangular Factorization (Decomposition)</h2>
+<p>연립방정식의 계수 행렬 A는 가우스 소거법을 통해 <code class="highlighter-rouge">Lower Triangular Matrix L</code>과 <code class="highlighter-rouge">Upper Triangular Matrix U</code>로 분할할 수 있다. 거꾸로 L과 U를 알면 A를 구할 수 있게 된다. A라는 비교적 복잡합 시스템을 그대로 이해할 수 없을 때 간단한 L과 U를 안다면, 시스템 A를 추론할 수 있다.</p>
+
+<p>행렬 U는 다시 pivot들의 대각행렬 D와 U로 분할하여 A = LDU로 표현할 수 있다.</p>
+
+<p>가우스 소거법 중간에 Pivot 자리에 0이 있으면 다른 행과 교체하여 진행하는데 이를 Pivoting이라고 하고 이 과정도 Permutation 행렬로 표현할 수 있다.</p>
+
+<p>가우스 소거법의 결과로 생긴 행렬의 Pivot 자리에 0이 생기면 해당 연립방정식은 해를 구할 수 없는 Singular Case이다. 이런 경우에는 행의 위치를 아무리 바꾸어도 Pivot 자리에 적절한 값을 둘 수 없기 때문에 Permutation Matrix를 구할 수 없다. 반대로 Non-singular Case에는 가우스 소거법의 모든 과정을 행렬 연산으로 표현할 수 있고, <code class="highlighter-rouge">PA = LU = LDU</code>로 표현할 수 있다.</p>
+
+                </div>
+                <div class="read-all">
+                    <a  href="/2018/06/26/3_elementary-matrix/"><i class="fa fa-newspaper-o"></i>Read All</a>
+                </div>
+                <hr>
+              </li>
+            
+        </ul>
+
+
+
+        <!-- Pagination links -->
+        <div class="pagination">
+          
+            <span class="previous disable"><i class="fa fa-angle-double-left"></i></span>
+            <span class="previous disable"><i class="fa fa-angle-left"></i></span>
+          
+          <span class="page_number ">1/4</span>
+          
+            <a href="/page2" class="next"><i class="fa fa-angle-right"></i></a>
+            <a href="/page4" class="next"><i class="fa fa-angle-double-right"></i></a>
+          
+        </div>
+    </div>
+    <!-- <button class="anchor"><i class="fa fa-anchor"></i></button> -->
+    <div class="right">
+        <div class="wrap">
+            <div class="side">
+                <div>
+                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                    Recent Posts
+                </div>
+                <ul class="content-ul" recent>
+                    
+                        <li><a href="/2018/07/30/8_4_fundamental_subspaces/">[선형대수] 8강 : 4가지 부 벡터 공간</a></li>
+                    
+                        <li><a href="/2018/07/26/7_linear_independent/">[선형대수] 7강 : 선형독립 및 기저벡터</a></li>
+                    
+                        <li><a href="/2018/07/25/6_null_space/">[선형대수] 6강 : 영벡터공간과 해집합</a></li>
+                    
+                        <li><a href="/2018/07/25/5_vector_space/">[선형대수] 5강 : 벡터 공간과 열벡터</a></li>
+                    
+                        <li><a href="/2018/06/29/4_inverse_transpose/">[선형대수] 4강 : 역행렬과 전치행렬</a></li>
+                    
+                        <li><a href="/2018/06/26/3_elementary-matrix/">[선형대수] 3강 : LU Decomposition</a></li>
+                    
+                        <li><a href="/2018/06/26/2_gaussian-elimination/">[선형대수] 2강 : 1차 연립방정식과 가우스소거법</a></li>
+                    
+                        <li><a href="/2018/06/22/1_linearity/">[선형대수] 1강 : 선형성의 정의 및 1차 연립방정식의 의미</a></li>
+                    
+                        <li><a href="/2018/06/21/kalman-filter-2/">[Udacity SDCND] 칼만필터 Kalman Filter 이해하기 (2)</a></li>
+                    
+                        <li><a href="/2018/06/20/kalman-filter-1/">[Udacity SDCND] 칼만필터 Kalman Filter 이해하기 (1)</a></li>
+                    
+                </ul>
+            </div>
+
+            <!-- Content -->
+            <div class="side ">
+                <div>
+                    <i class="fa fa-th-list"></i>
+                    Categories
+                </div>
+                <ul class="content-ul" cate>
+                    
+                    <li>
+                        <a href="/category/#Python" class="categories-list-item" cate="Python">
+                            <span class="name">
+                                Python
+                            </span>
+                            <span class="badge">4</span>
+                        </a>
+                    </li>
+                    
+                    <li>
+                        <a href="/category/#강화학습" class="categories-list-item" cate="강화학습">
+                            <span class="name">
+                                강화학습
+                            </span>
+                            <span class="badge">1</span>
+                        </a>
+                    </li>
+                    
+                    <li>
+                        <a href="/category/#Coursera" class="categories-list-item" cate="Coursera">
+                            <span class="name">
+                                Coursera
+                            </span>
+                            <span class="badge">1</span>
+                        </a>
+                    </li>
+                    
+                    <li>
+                        <a href="/category/#Machine-Learning" class="categories-list-item" cate="Machine-Learning">
+                            <span class="name">
+                                Machine-Learning
+                            </span>
+                            <span class="badge">4</span>
+                        </a>
+                    </li>
+                    
+                    <li>
+                        <a href="/category/#Udacity-SDCND" class="categories-list-item" cate="Udacity-SDCND">
+                            <span class="name">
+                                Udacity-SDCND
+                            </span>
+                            <span class="badge">2</span>
+                        </a>
+                    </li>
+                    
+                    <li>
+                        <a href="/category/#Linear-Algebra" class="categories-list-item" cate="Linear-Algebra">
+                            <span class="name">
+                                Linear-Algebra
+                            </span>
+                            <span class="badge">8</span>
+                        </a>
+                    </li>
+                    
+                </ul>
+            </div>
+            <!-- 其他div框放到这里 -->
+            <div class="side">
+                <div>
+                    <i class="fa fa-tags"></i>
+                    Tags
+                </div>
+                <div class="tags-cloud">
+                    
+                    
+                    
+                    
+
+                    
+
+                    
+                      
+                      
+                      
+                      
+                      
+                      <a href="/tag/#Python" style="font-size: 13pt; color: #555;">Python</a>
+                    
+                      
+                      
+                      
+                      
+                      
+                      <a href="/tag/#강화학습" style="font-size: 9pt; color: #999;">강화학습</a>
+                    
+                      
+                      
+                      
+                      
+                      
+                      <a href="/tag/#OpenAI-Gym" style="font-size: 9pt; color: #999;">OpenAI-Gym</a>
+                    
+                      
+                      
+                      
+                      
+                      
+                      <a href="/tag/#Frozen-Lake" style="font-size: 9pt; color: #999;">Frozen-Lake</a>
+                    
+                      
+                      
+                      
+                      
+                      
+                      <a href="/tag/#Deep-Learning" style="font-size: 10.5pt; color: #888;">Deep-Learning</a>
+                    
+                      
+                      
+                      
+                      
+                      
+                      <a href="/tag/#Coursera" style="font-size: 10.5pt; color: #888;">Coursera</a>
+                    
+                      
+                      
+                      
+                      
+                      
+                      <a href="/tag/#Machine-Learning" style="font-size: 15.5pt; color: #333;">Machine-Learning</a>
+                    
+                      
+                      
+                      
+                      
+                      
+                      <a href="/tag/#Beginner" style="font-size: 13pt; color: #555;">Beginner</a>
+                    
+                      
+                      
+                      
+                      
+                      
+                      <a href="/tag/#Linear-Regression" style="font-size: 9pt; color: #999;">Linear-Regression</a>
+                    
+                      
+                      
+                      
+                      
+                      
+                      <a href="/tag/#지도학습" style="font-size: 9pt; color: #999;">지도학습</a>
+                    
+                      
+                      
+                      
+                      
+                      
+                      <a href="/tag/#SelfDriving-Car" style="font-size: 10.5pt; color: #888;">SelfDriving-Car</a>
+                    
+                      
+                      
+                      
+                      
+                      
+                      <a href="/tag/#Math" style="font-size: 18pt; color: #000;">Math</a>
+                    
+                      
+                      
+                      
+                      
+                      
+                      <a href="/tag/#Linear-Algebra" style="font-size: 18pt; color: #000;">Linear-Algebra</a>
+                    
+                      
+                      
+                      
+                      
+                      
+                      <a href="/tag/#KMOOC" style="font-size: 18pt; color: #000;">KMOOC</a>
+                    
+                </div>
+            </div>
+
+            <!-- <div class="side">
+                <div>
+                    <i class="fa fa-external-link"></i>
+                    Links
+                </div>
+                <ul  class="content-ul">
+
+                </ul>
+            </div> -->
+        </div>
+    </div>
+</div>
+<!-- <script src="/js/scroll.min.js " charset="utf-8"></script> -->
+<!-- <script src="/js/pageContent.js " charset="utf-8"></script> -->
+
+
+    <footer class="site-footer">
+
+
+    <div class="wrapper">
+
+        <p class="description">
+            
+        </p>
+        <p class="contact">
+            Contact me at: 
+            <a href="https://github.com/ahracho" title="GitHub"><i class="fa fa-github" aria-hidden="true"></i></a>  
+            <a href="mailto:ahracho89@gmail.com" title="email"><i class="fa fa-envelope-o" aria-hidden="true"></i></a>     
+            <a href="https://www.facebook.com/ahra.cho3" title="Facebook"><i class="fa fa-facebook-official" aria-hidden="true"></i></a>    
+        </p>
+        <p class="power">
+            <span>
+                Site powered by <a href="https://jekyllrb.com/">Jekyll</a> & <a href="https://pages.github.com/">Github Pages</a>.
+            </span>
+            <span>
+                Theme designed by <a href="https://github.com/Gaohaoyang">HyG</a>.
+            </span>
+        </p>
+    </div>
+</footer>
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+    <div class="back-to-top">
+    <a href="#top" data-scroll>
+        <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    </a>
+</div>
+
+    <script src=" /js/main.js " charset="utf-8"></script>
+    <script src=" /js/smooth-scroll.min.js " charset="utf-8"></script>
+    <script type="text/javascript">
+      smoothScroll.init({
+        speed: 500, // Integer. How fast to complete the scroll in milliseconds
+        easing: 'easeInOutCubic', // Easing pattern to use
+        offset: 20, // Integer. How far to offset the scrolling anchor location in pixels
+      });
+    </script>
+    <!-- <script src=" /js/scroll.min.js " charset="utf-8"></script> -->
+  </body>
+
+</html>
