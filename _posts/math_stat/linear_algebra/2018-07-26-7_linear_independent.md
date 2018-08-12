@@ -33,6 +33,7 @@ comments: true
 - Maximum number of linearly independent vectors
 - 특정 공간을 표현하는 기저 벡터는 유일하지 않지만, 특정 기저벡터의 선형 조합은 유일하다. 
 
+
 ## 4 Fundamental Subspaces
 `A : m X n 행렬`이고, `Rank = r` 일 때,
 - Column Space C(A) : 차원은 r
