@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "[선형대수] 7강 : 선형독립 및 기저벡터 / 8강 : 4가지 부 벡터 공간"
+title:  "[선형대수] 9강 : 선형변환(Linear Transformation)"
 categories: Linear-Algebra
 tags: [Math, Linear-Algebra, KMOOC]
 comments: true
