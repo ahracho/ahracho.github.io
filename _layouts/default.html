@@ -1,26 +1,22 @@
 <!DOCTYPE html>
-<html>
-
+<!--
+    So Simple Jekyll Theme 3.1.1
+    Copyright 2013-2018 Michael Rose - mademistakes.com | @mmistakes
+    Free for personal and commercial use under the MIT license
+    https://github.com/mmistakes/so-simple-theme/blob/master/LICENSE
+-->
+<html lang="{{ page.lang | default: site.lang | default: 'en-US' }}" class="no-js">
   {% include head.html %}
 
-  <body>
+  <body class="layout--{{ page.layout | default: layout.layout }}{% if page.classes or layout.classes %}{{ page.classes | default: layout.classes | join: ' ' | prepend: ' ' }}{% endif %} {% if page.entries_layout == 'grid' %}page--wide{% endif %} {{ page.title | slugify }}">
+    {% include skip-links.html %}
+    {% include navigation.html %}
+    {% include masthead.html %}
 
-    {% include header.html %}
-
-        {{ content }}
+    {{ content }}
 
     {% include footer.html %}
-    {% include backToTop.html %}
-    <script src="{{ " /js/main.js " | prepend: site.baseurl }}" charset="utf-8"></script>
-    <script src="{{ " /js/smooth-scroll.min.js " | prepend: site.baseurl }}" charset="utf-8"></script>
-    <script type="text/javascript">
-      smoothScroll.init({
-        speed: 500, // Integer. How fast to complete the scroll in milliseconds
-        easing: 'easeInOutCubic', // Easing pattern to use
-        offset: 20, // Integer. How far to offset the scrolling anchor location in pixels
-      });
-    </script>
-    <!-- <script src="{{ " /js/scroll.min.js " | prepend: site.baseurl }}" charset="utf-8"></script> -->
+    {% include scripts.html %}
   </body>
 
 </html>

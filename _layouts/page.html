@@ -2,27 +2,29 @@
 layout: default
 ---
 
-<div class="page clearfix" post>
-    <div class="left">
-        <h1>{{page.title}}</h1>
-        <hr>
-        {{content}}
-    </div>
-    <button class="anchor"><i class="fa fa-anchor"></i></button>
-    <div class="right">
-        <div class="wrap">
+<main id="main" class="main-content" aria-label="Content">
+  <article>
+    {% include page-image.html %}
+    <div class="page-wrapper">
+      <header class="page-header">
+        {% if page.id %}
+          {% assign title = page.title | markdownify | strip_html %}
+        {% else %}
+          {% assign title = page.title %}
+        {% endif %}
+        {% if page.link %}
+          <h1 id="page-title" class="page-title"><a href="{{ page.link }}">{{ title }} <span class="link-arrow">&rarr;</span></a></h1>
+        {% else %}
+          <h1 id="page-title" class="page-title">{{ title }}</h1>
+        {% endif %}
+      </header>
+      <div class="page-content">
+        {{ content }}
 
-            <!-- Content -->
-            <div class="side content">
-                <div>
-                    Content
-                </div>
-                <ul id="content-side" class="content-ul">
-                </ul>
-            </div>
-            <!-- 其他div框放到这里 -->
-            <!-- <div class="side">bbbb</div> -->
-        </div>
+        {% if page.share %}
+          {% include social-share.html %}
+        {% endif %}
+      </div>
     </div>
-</div>
-<script src="{{ "/js/pageContent.js " | prepend: site.baseurl }}" charset="utf-8"></script>
+  </article>
+</main>

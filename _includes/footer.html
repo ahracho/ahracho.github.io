@@ -1,30 +1,24 @@
-<footer class="site-footer">
+<footer id="footer" class="site-footer">
+  {% include footer-custom.html %}
 
-
-    <div class="wrapper">
-
-        <p class="description">
-            {% if site.description_footer %} {{site.description_footer}} {% endif %}
-        </p>
-        <p class="contact">
-            Contact me at: {% if site.github_username %}
-            <a href="https://github.com/{{site.github_username}}" title="GitHub"><i class="fa fa-github" aria-hidden="true"></i></a> {% endif %} {% if site.email %}
-            <a href="mailto:{{site.email}}" title="email"><i class="fa fa-envelope-o" aria-hidden="true"></i></a> {% endif %} {% if site.weibo_username %}
-            <a href="http://weibo.com/{{site.weibo_username}}" title="Weibo"><i class="fa fa-weibo" aria-hidden="true"></i></a> {% endif %} {% if site.zhihu_username %}
-            <a href="https://www.zhihu.com/people/{{site.zhihu_username}}" title="Zhihu"><i class="iconfont icon-daoruzhihu"></i></a> {% endif %} {% if site.twitter_username %}
-            <a href="https://twitter.com/{{site.twitter_username}}" title="Twitter"><i class="fa fa-twitter" aria-hidden="true"></i></a> {% endif %} {% if site.facebook_username %}
-            <a href="https://www.facebook.com/{{site.facebook_username}}" title="Facebook"><i class="fa fa-facebook-official" aria-hidden="true"></i></a> {% endif %}  {% if site.linkedIn_username %}
-            <a href="https://www.linkedin.com/in/{{site.linkedIn_username}}" title="LinkedIn"><i class="fa fa-linkedin" aria-hidden="true"></i></a> {% endif %} {% if site.dribbble_username %}
-            <a href=" https://dribbble.com/{{site.dribbble_username}}" title="Dribbble"><i class="fa fa-dribbble" aria-hidden="true"></i></a> {% endif %}
-        </p>
-        <p class="power">
-            <span>
-                Site powered by <a href="https://jekyllrb.com/">Jekyll</a> & <a href="https://pages.github.com/">Github Pages</a>.
-            </span>
-            <span>
-                Theme designed by <a href="https://github.com/Gaohaoyang">HyG</a>.
-            </span>
-        </p>
+  {%- if site.footer_links -%}
+    <div class="social-icons">
+      {%- for footer_link in site.footer_links -%}
+        {%- if footer_link.url contains "://" -%}
+          {%- assign url = footer_link.url -%}
+        {%- else -%}
+          {%- assign url = footer_link.url | relative_url -%}
+        {%- endif -%}
+        <a class="social-icon" href="{{ url }}"><i class="{{ footer_link.icon | default: 'fas fa-link' }} fa-2x" title="{{ footer_link.title }}"></i></a>
+      {%- endfor -%}
     </div>
+  {%- endif -%}
+
+  <div class="copyright">
+    {% if site.copyright %}
+      {{ site.copyright | markdownify }}
+    {% else %}
+      <p>&copy; {{ site.time | date: '%Y' }} {{ site.name | default: site.title }}. {{ site.data.text[site.locale].powered_by | default: "Powered by" }} <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://github.com/mmistakes/so-simple-theme" rel="nofollow">So Simple</a>.</p>
+    {% endif %}
+  </div>
 </footer>
-<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>

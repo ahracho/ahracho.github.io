@@ -6,14 +6,16 @@ tags: [Math, Linear-Algebra, KMOOC]
 comments: true
 ---
 
+한양대 이상화 교수님의 오픈 강의로 공부한 내용을 정리한 것입니다. 강의 영상과 강의 노트는 다음 링크에서 다운받아 작성하였습니다.  
+[http://www.kocw.net/home/search/kemView.do?kemId=977757](http://www.kocw.net/home/search/kemView.do?kemId=977757)   
+
+
+<iframe src="//www.slideshare.net/slideshow/embed_code/key/hx9F4J61qUUgST" width="595" height="485" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe> <div style="margin-bottom:5px"> <strong> <a href="//www.slideshare.net/ahra-cho/09-109960717" title="선형대수 09. 벡터의 직교성과 투영" target="_blank">선형대수 09. 벡터의 직교성과 투영</a> </strong> from <strong><a href="https://www.slideshare.net/ahra-cho" target="_blank">AHRA CHO</a></strong> </div>  
+
+
 [//]: # (Image References)
 
 [image1]: {{ site.url }}/images/LinearAlgebra/subspace.png "Subspace"
-
-
-한양대 이상화 교수님의 오픈 강의로 공부한 내용을 정리한 것입니다. 강의 영상과 강의 노트는 다음 링크에서 다운받아 작성하였습니다.  
-[http://www.kocw.net/home/search/kemView.do?kemId=977757](http://www.kocw.net/home/search/kemView.do?kemId=977757)   
-<iframe src="//www.slideshare.net/slideshow/embed_code/key/hx9F4J61qUUgST" width="595" height="485" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe> <div style="margin-bottom:5px"> <strong> <a href="//www.slideshare.net/ahra-cho/09-109960717" title="선형대수 09. 벡터의 직교성과 투영" target="_blank">선형대수 09. 벡터의 직교성과 투영</a> </strong> from <strong><a href="https://www.slideshare.net/ahra-cho" target="_blank">AHRA CHO</a></strong> </div>  
 
 
 ## Orthogonality
