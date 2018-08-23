@@ -6,11 +6,18 @@ tags: [Math, Linear-Algebra, KMOOC]
 comments: true
 ---
 
+# 3강 LU Decomposition
+### 이번 장의 목표
+1. LU Decomposition 과정을 이해한다.  
+2. LDU Decomposition 과정을 이해한다.  
+  
+  
 한양대 이상화 교수님의 오픈 강의로 공부한 내용을 정리한 것입니다. 강의 영상과 강의 노트는 다음 링크에서 다운받아 작성하였습니다.  
 [http://www.kocw.net/home/search/kemView.do?kemId=977757](http://www.kocw.net/home/search/kemView.do?kemId=977757)  
-
-<iframe src="//www.slideshare.net/slideshow/embed_code/key/2wlUBjRmVaPw74" width="595" height="485" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe> <div style="margin-bottom:5px"> <strong> <a href="//www.slideshare.net/ahra-cho/03-lu-decomposition" title="선형대수 03. LU Decomposition" target="_blank">선형대수 03. LU Decomposition</a> </strong> from <strong><a href="https://www.slideshare.net/ahra-cho" target="_blank">AHRA CHO</a></strong> </div>
-
+  
+<iframe src="//www.slideshare.net/slideshow/embed_code/key/2wlUBjRmVaPw74" width="595" height="485" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe> <div style="margin-bottom:5px"> <strong> <a href="//www.slideshare.net/ahra-cho/03-lu-decomposition" title="선형대수 03. LU Decomposition" target="_blank">선형대수 03. LU Decomposition</a> </strong> from <strong><a href="https://www.slideshare.net/ahra-cho" target="_blank">AHRA CHO</a></strong> </div>  
+  
+  
 
 ## Elementary Matrix
 행끼리 계수를 곱해서 빼기, pivoting을 포함하여 가우스 소거법의 과정을 행렬로 표현할 수 있다. 소거법을 진행하면서 계수를 소거하기 위해서 빼고 곱했던 과정은 Lower Triangular Matrix 행렬 L에 표현되어 최종적으로 `A = LU`의 형태로 표현할 수 있다.  

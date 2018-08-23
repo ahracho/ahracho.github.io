@@ -6,6 +6,15 @@ tags: [Math, Linear-Algebra, KMOOC]
 comments: true
 ---
 
+
+
+# 10강  벡터의 직교성과 직선투영
+### 이번 장의 목표
+1. 벡터이 직교하는 조건에 대해 알아본다.  
+2. Orthogonal Complement의 조건과 4가지 부벡터공간의 관계를 알아본다.
+3. 직선 투영에 대해 알아본다.
+
+
 한양대 이상화 교수님의 오픈 강의로 공부한 내용을 정리한 것입니다. 강의 영상과 강의 노트는 다음 링크에서 다운받아 작성하였습니다.  
 [http://www.kocw.net/home/search/kemView.do?kemId=977757](http://www.kocw.net/home/search/kemView.do?kemId=977757)   
 

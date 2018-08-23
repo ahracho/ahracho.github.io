@@ -6,14 +6,21 @@ tags: [Math, Linear-Algebra, KMOOC]
 comments: true
 ---
 
+
+# 2강 1차 연립방정식과 가우스소거법
+### 이번 장의 목표
+1. 가우스 소거법의 과정을 이해한다.  
+2. Singular/Non-singular 행렬의 조건을 알아본다.
+3. Ax=b 방정식의 해가 존재하기 위한 조건을 이해한다.
+  
+  
 한양대 이상화 교수님의 오픈 강의로 공부한 내용을 정리한 것입니다. 강의 영상과 강의 노트는 다음 링크에서 다운받아 작성하였습니다.  
 [http://www.kocw.net/home/search/kemView.do?kemId=977757](http://www.kocw.net/home/search/kemView.do?kemId=977757)  
-
-
-<iframe src="//www.slideshare.net/slideshow/embed_code/key/LjLUIlWbCIbpsK" width="595" height="485" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe> <div style="margin-bottom:5px"> <strong> <a href="//www.slideshare.net/ahra-cho/02-108497093" title="선형대수 02. 가우스 소거법" target="_blank">선형대수 02. 가우스 소거법</a> </strong> from <strong><a href="https://www.slideshare.net/ahra-cho" target="_blank">AHRA CHO</a></strong> </div>  
-
----
-
+  
+  
+<iframe src="//www.slideshare.net/slideshow/embed_code/key/LjLUIlWbCIbpsK" width="595" height="485" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe> <div style="margin-bottom:5px"> <strong> <a href="//www.slideshare.net/ahra-cho/02-108497093" title="선형대수 02. 가우스 소거법" target="_blank">선형대수 02. 가우스 소거법</a> </strong> from <strong><a href="https://www.slideshare.net/ahra-cho" target="_blank">AHRA CHO</a></strong> </div>    
+  
+  
 
 ## Gaussian Elimination
 **가우스 소거법**은 행렬로 표현된 연립방정식에서 1행부터 차례로 적절한 값을 곱하고 서로 빼주면서 쉽게 해를 찾을 수 있는 형태로 변형하여 방정식의 해를 찾는 과정이다. 이 과정에서 계수행렬을 Upper Triangular Matrix로 변형하게 되는데, 행렬 U의 대각선 위치에 있는 값들을 Pivot이라고 한다.  

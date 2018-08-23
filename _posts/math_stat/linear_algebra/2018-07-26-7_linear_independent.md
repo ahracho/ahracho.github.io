@@ -6,11 +6,22 @@ tags: [Math, Linear-Algebra, KMOOC]
 comments: true
 ---
 
+
+
+# 7강/8강 선형 독립과 기저벡터, 4가지 부벡터공간
+### 이번 장의 목표
+1. 선형 독립과 기저벡터의 조건을 알아본다.
+2. Rank와 Dimension의 의미를 이해한다.  
+3. 4가지 부벡터공간과 서로의 관계를 알아본다.
+4. 행렬 A의 모양에 따른 역행렬의 조건을 알아본다.
+  
+  
 한양대 이상화 교수님의 오픈 강의로 공부한 내용을 정리한 것입니다. 강의 영상과 강의 노트는 다음 링크에서 다운받아 작성하였습니다.  
 [http://www.kocw.net/home/search/kemView.do?kemId=977757](http://www.kocw.net/home/search/kemView.do?kemId=977757)   
 
 <iframe src="//www.slideshare.net/slideshow/embed_code/key/LfU4F58xxkzjle" width="595" height="485" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe> <div style="margin-bottom:5px"> <strong> <a href="//www.slideshare.net/ahra-cho/07-4-109037077" title="선형대수 07. 선형독립, 4가지 부벡터공간" target="_blank">선형대수 07. 선형독립, 4가지 부벡터공간</a> </strong> from <strong><a href="https://www.slideshare.net/ahra-cho" target="_blank">AHRA CHO</a></strong> </div>
-
+  
+  
 
 ## Linear Independence
 ### Basis Vectors and Dimension
