@@ -12,6 +12,7 @@
 * 선형대수 및 통계
 * Machine Learning 강의 정리
 * Udacity Self-Driving Nano Degree
+* Unity ML-agent
 
 ### 강의 컨텐츠
 * 기초 C언어
