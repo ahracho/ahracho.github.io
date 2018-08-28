@@ -38,6 +38,7 @@ e829698 HEAD@{2}: commit: 되돌리고 싶은 커밋
 ## 교훈
 ### Commit 되돌리기
 - 수정사항에는 문제가 없지만 commit만 되돌리고 싶다면 `git reset`을 사용하라  
+
 ~~~sh
 # git reset --soft <돌아가고 싶은 commit id>  
 git add는 되어 있는 상태로 돌아간다.  
@@ -45,6 +46,7 @@ git add는 되어 있는 상태로 돌아간다.
 # git reset --mixed <돌아가고 싶은 commit id>  
 git add 이전으로 돌아간다.  
 ~~~  
+
 
 - `git commit --amend`를 활용하라  
   - commit된 파일을 재수정하고 싶다면 수정 이후 `git add -> git commit --amend`하면 된다.  
