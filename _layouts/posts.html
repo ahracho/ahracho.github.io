@@ -12,6 +12,7 @@ layout: page
         <strong>{{ year.name }}</strong> <span class="taxonomy-count">{{ year.items | size }}</span>
       </a>
     </li>
+    <a href="#page-title" class="back-to-top">{{ site.data.text[site.locale].back_to_top | default: 'Back to Top' }} &uarr;</a>
   {% endfor %}
 </ul>
 
